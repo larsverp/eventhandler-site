@@ -7,6 +7,13 @@ namespace RockStar_IT_Events.Models
 {
     public class MailPerson
     {
-        //oke
+        private string Email;
+
+        private string PostCode;
+
+        public MailPerson(string email, string postcode)
+        {
+                 
+        }
     }
 }
