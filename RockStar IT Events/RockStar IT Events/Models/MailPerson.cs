@@ -7,5 +7,25 @@ namespace RockStar_IT_Events.Models
 {
     public class MailPerson
     {
+        private string eMail;
+
+        private string postalCode;
+
+        public MailPerson(string email, string postalcode)
+        {
+            eMail = email;
+            postalCode = postalcode;
+        }
+
+
+        public void ChangeEmail(string newemail)
+        {
+            eMail = newemail;
+        }
+
+        public void ChangePostalCode(string newPostalCode)
+        {
+            postalCode = newPostalCode;
+        }
     }
 }
