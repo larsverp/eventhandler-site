@@ -1,6 +1,6 @@
 ﻿namespace RockStar_IT_Events.Models
 {
-    public class Guest
+    public class Guest : MailPerson
     {
         public string FirstName { get; private set; }
 
