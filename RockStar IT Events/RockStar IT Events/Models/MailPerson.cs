@@ -7,5 +7,6 @@ namespace RockStar_IT_Events.Models
 {
     public class MailPerson
     {
+        //oke
     }
 }
