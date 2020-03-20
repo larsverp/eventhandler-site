@@ -2,9 +2,9 @@
 {
     public class Guest
     {
-        public string FirstName { get; }
+        public string FirstName { get; private set; }
 
-        public string Insertion { get; }
+        public string Insertion { get; private set; }
 
         public string LastName { get; private set; }
 
@@ -15,6 +15,16 @@
             FirstName = firstName;
             Insertion = insertion;
             LastName = lastName;
+        }
+
+        public void ChangeFirstName(string newFirstName)
+        {
+            FirstName = newFirstName;
+        }
+
+        public void ChangeInsertions(string newInsertions)
+        {
+            Insertion = newInsertions;
         }
 
         public void ChangeLastName(string newLastName)
