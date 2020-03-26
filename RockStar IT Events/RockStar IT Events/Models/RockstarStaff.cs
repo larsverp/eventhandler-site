@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +13,5 @@ namespace RockStar_IT_Events.Models
             
         }
 
-        private void CreateEvent(Event)
-        {
-
-        }
     }
 }
