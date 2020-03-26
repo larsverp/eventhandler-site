@@ -17,7 +17,6 @@ namespace RockStar_IT_Events.Models
             postalCode = postalcode;
         }
 
-
         public void ChangeEmail(string newemail)
         {
             eMail = newemail;
@@ -29,3 +28,5 @@ namespace RockStar_IT_Events.Models
         }
     }
 }
+
+
