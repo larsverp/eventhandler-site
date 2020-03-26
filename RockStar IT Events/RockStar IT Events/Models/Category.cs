@@ -2,32 +2,32 @@
 {
     public class Category
     {
-        private string categoryName { get; set; }
+        public string CategoryName { get; private set; }
 
-        private string categoryDescription { get; set; }
+        public string CategoryDescription { get; private set; }
 
-        private string categoryThumbnail { get; set; }
+        public string CategoryThumbnail { get; private set; }
 
         public Category(string categoryname, string categorydescription, string categorythumbnail)
         {
-            categoryName = categoryname;
-            categoryDescription = categorydescription;
-            categoryThumbnail = categorythumbnail;
+            CategoryName = categoryname;
+            CategoryDescription = categorydescription;
+            CategoryThumbnail = categorythumbnail;
         }
 
         public void SetName(string setCategoryname)
         {
-            categoryName = setCategoryname;
+            CategoryName = setCategoryname;
         }
 
         public void SetDescription(string setCategorydescription)
         {
-            categoryName = setCategorydescription;
+            CategoryDescription = setCategorydescription;
         }
 
         public void SetThumbnail(string setCategorythumbnail)
         {
-            categoryThumbnail = setCategorythumbnail;
+            CategoryThumbnail = setCategorythumbnail;
         }
 
     }
