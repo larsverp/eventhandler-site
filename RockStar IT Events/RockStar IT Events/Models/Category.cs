@@ -2,11 +2,11 @@
 {
     public class Category
     {
-        private string categoryName;
+        private string categoryName { get; set; }
 
-        private string categoryDescription;
+        private string categoryDescription { get; set; }
 
-        private string categoryThumbnail;
+        private string categoryThumbnail { get; set; }
 
         public Category(string categoryname, string categorydescription, string categorythumbnail)
         {
