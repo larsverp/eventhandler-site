@@ -42,19 +42,24 @@ namespace RockStar_IT_Events.Models
             EventCategories = eventCategories;
         }
 
-        public void ChangeTitle(string newEventTitle)
+        public void ChangeEventTitle(string newEventTitle)
         {
             EventTitle = newEventTitle;
         }
 
-        public void ChangeDescription(string newEventDescription)
+        public void ChangeEventDescription(string newEventDescription)
         {
             EventDescription = newEventDescription;
         }
 
-        public void ChangeDateTime(DateTime newEventTime)
+        public void ChangeEventDateTime(DateTime newEventTime)
         {
             EventTime = newEventTime;
+        }
+
+        public void ChangeEventThumbnail(string newEventThumbnail)
+        {
+            EventThumbnail = newEventThumbnail;
         }
 
         public void ChangeMaxAvailableSeats(int newMaxAvailableSeats)
@@ -62,7 +67,7 @@ namespace RockStar_IT_Events.Models
             MaxAvailableSeats = newMaxAvailableSeats;
         }
 
-        public bool UserSignUp()
+        public bool UserEventSignUp()
         {
             if (AvailableSeats == MaxAvailableSeats)
             {
@@ -74,7 +79,7 @@ namespace RockStar_IT_Events.Models
             
         }
 
-        public void ChangeLocation(string newEventLocation)
+        public void ChangeEventLocation(string newEventLocation)
         {
             EventLocation = newEventLocation;
         }
@@ -84,7 +89,7 @@ namespace RockStar_IT_Events.Models
             EventNotifications = newEventNotifications;
         }
 
-        public void SetCategories(List<Category> newEventCategories)
+        public void SetEventCategories(List<Category> newEventCategories)
         {
             EventCategories = newEventCategories;
         }
