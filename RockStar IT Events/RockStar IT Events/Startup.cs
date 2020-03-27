@@ -16,6 +16,7 @@ namespace RockStar_IT_Events
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,14 +28,13 @@ namespace RockStar_IT_Events
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(routes =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                routes.MapControllerRoute("Default", "{controller=Event}/{action=index}/{id?}");
             });
+            app.UseFileServer();
         }
     }
 }
