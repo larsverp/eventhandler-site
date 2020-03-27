@@ -13,6 +13,11 @@ namespace RockStar_IT_Events.Controllers
             return View();
         }
 
+        public IActionResult Event(int id)
+        {
+            return View();
+        }
+
         public IActionResult Manage()
         {
             //check if admin is logged in
