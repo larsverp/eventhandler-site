@@ -12,6 +12,6 @@ namespace RockStar_IT_Events.Models
         {
             
         }
-
+        
     }
 }
