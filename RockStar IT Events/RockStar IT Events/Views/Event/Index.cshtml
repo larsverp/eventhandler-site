@@ -1,6 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Index";
-}
+﻿@model List<RockStar_IT_Events.Models.Event>
+
+    @{
+        ViewData["Title"] = "Index";
+    }
 
 <!DOCTYPE html>
 <html>
@@ -24,33 +26,32 @@
         <p>UPCOMING EVENTS</p>
     </div>
 
-    @{for (int i = 0; i < 10; i++)
-        {
+    @foreach (var e in Model)
+    {
         <div class="EventBlock">
-            <div class="LeftImage"> <img src="~/img/Man.jpg" alt=""></div>
+            <div class="LeftImage"> <img src="@e.thumbnail" alt="@e. image"></div>
             <div class="TextRight">
                 <ul>
                     <div class="TextColumn">
-                        <li><h1>Start testing your code! - Alkmaar</h1></li>
+                        <li><h1>@e.title - Eindhoven</h1></li>
                         <li>
                             <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolores velit tempore recusandae, aperiam fugiat magni itaque laboriosam asperiores distinctio error voluptate id dignissimos rem libero explicabo veritatis eum quae?
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, enim repellat eius ratione nisi, necessitatibus similique ipsa, corrupti laboriosam aut doloribus explicabo debitis. Illum expedita beatae ab placeat ipsa non.
+                                @e.description
                             </p>
                         </li>
                         <div class="TextRow">
                             <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
-
                             <div class="InfoButton">
-                                <h2>More info</h2>
+                                <h2>
+                                    @Html.ActionLink("More info", "Event", "Event", new{e.id})
+                                </h2>
                             </div>
                         </div>
                     </div>
                 </ul>
             </div>
         </div>
-        }
     }
-</body>
 <script src="~/scroll.js"></script>
+</body>
 </html>
