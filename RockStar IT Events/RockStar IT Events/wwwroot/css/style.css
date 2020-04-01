@@ -2,6 +2,10 @@
     overflow-X: hidden;
 }
 
+.header {
+    z-index: 100;
+}
+
 body {
     background: #333333;
     font-family: 'Roboto', sans-serif;
