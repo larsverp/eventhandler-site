@@ -35,6 +35,10 @@ namespace RockStar_IT_Events
                 routes.MapControllerRoute("Default", "{controller=Event}/{action=index}/{id?}");
             });
             app.UseFileServer();
+
+            
         }
+
+        
     }
 }
