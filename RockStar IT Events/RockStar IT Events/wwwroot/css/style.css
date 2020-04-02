@@ -45,7 +45,8 @@ body {
 #NavHomePage {
     background-color: #FFE000;
     width: 100%;
-    padding-top: 100px;
+    padding-top: 60px;
+    position: absolute;
 }
 
     #NavHomePage p {
@@ -54,19 +55,19 @@ body {
 
 .LogoNavBar {
     margin-left: 10%;
-    position: absolute;
-    top: 23%;
+    top: 0%;
     left: 0;
+    position: relative;
 }
 
 
 #UpcomingEvents {
-    display: block;
     text-align: center;
     font-style: normal;
     font-weight: bold;
     font-size: 72px;
     line-height: 84px;
+    position: relative;
 }
 
 .EventBlock {
