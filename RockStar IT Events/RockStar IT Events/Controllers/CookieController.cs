@@ -1,71 +1,70 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using RockStar_IT_Events.Models;
+using Newtonsoft.Json;
 
 namespace RockStar_IT_Events.Controllers
 {
-    public class CookieController
+    public class CookieController : Controller
     {
-        private HttpClient httpClient = new HttpClient();
-        private static readonly string _key = ".rockstar_Auth";
-        private HttpResponse Response;
-        private HttpRequest Request;
+        private readonly string _key = ".rockstar_Auth";
 
-        public void CreateCookie(string accessToken)
+
+        public async Task CreateCookie(string accessToken)
         {
+
             string _value = accessToken;
 
             CookieOptions cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddDays(10);
             cookieOptions.HttpOnly = true;
+
             Response.Cookies.Append(_key, _value, cookieOptions);
         }
 
-        public void ReadCookie()
+        public async Task ReadCookie(string username, string password)
         {
             if (Request.Cookies[_key] != null)
             {
-                //Cookie found! Log user in automatically.
+                //user authentication.
             }
             else
             {
-                //No cookie found.
-                CreateCookie(GetAccessToken().Result);
+                var getToken = await GetAccessToken(username, password); 
+                await CreateCookie(getToken);
             }
         }
 
-        public void RemoveCookie()
+        public IActionResult RemoveCookie()
         {
             if (Request.Cookies[_key] != null)
             {
                 Response.Cookies.Delete(_key);
             }
+            return RedirectToAction("Index", "Event");
         }
 
-        public async Task<string> GetAccessToken()//string username, string password
-        {
 
-            string _username = "test@test.com";
-            string _password = "password";
+        public async Task<string> GetAccessToken(string username, string password)
+        {
 
             var userDetails = new Dictionary<string, string>()
             {
-                { "username", _username },
-                { "password", _password }
+                { "username", username },
+                { "password", password }
             };
 
             string json = JsonConvert.SerializeObject(userDetails);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             string url = "https://eventhandler-api.herokuapp.com/api/users/login";
+            var httpClient = new HttpClient();
 
             var response = await httpClient.PostAsync(url, data);
 
