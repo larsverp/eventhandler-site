@@ -8,6 +8,8 @@ namespace RockStar_IT_Events.Controllers
     {
         public IActionResult Index()
         {
+            CookieController test = new CookieController();
+            test.ReadCookie();
             DataLayer dataLayer = new DataLayer();
             var events = dataLayer.GetAllEvents().OrderBy(e => e.id).ToList();
             return View(events);

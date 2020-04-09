@@ -43,20 +43,5 @@ namespace RockStar_IT_Events
 
             return output;
         }
-
-        public string GetAccessToken(/*string userName, string passWord*/)
-        {
-            string _api = "https://eventhandler-api.herokuapp.com/api/users/login";
-            webRequest = WebRequest.Create(_api);
-            webRequest.Method = "POST";
-            
-            streamWriter = new StreamWriter(webRequest.GetRequestStream(), Encoding.UTF8);
-            string userName = "{username : test@test.com}";
-            string passWord = "{password : password}";
-            string jsonString = new JsonSerializer().Serialize();
-            
-            string requestData = JsonTe;
-            
-        }
     }
 }
