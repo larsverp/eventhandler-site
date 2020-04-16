@@ -14,11 +14,16 @@ namespace RockStar_IT_Events.Controllers
     public class CookieController : Controller
     {
         private readonly string _key = ".rockstar_Auth";
+        private string username;
+        private string password;
 
-
-        public async Task CreateCookie(string accessToken)
+        public CookieController(string _username, string _password)
         {
-
+            username = _username;
+            password = _password;
+        }
+        public void CreateCookie(string accessToken)
+        {
             string _value = accessToken;
 
             CookieOptions cookieOptions = new CookieOptions();
@@ -28,7 +33,7 @@ namespace RockStar_IT_Events.Controllers
             Response.Cookies.Append(_key, _value, cookieOptions);
         }
 
-        public async Task ReadCookie(string username, string password)
+        public async void ReadCookie(string username, string password)
         {
             if (Request.Cookies[_key] != null)
             {
@@ -36,8 +41,8 @@ namespace RockStar_IT_Events.Controllers
             }
             else
             {
-                var getToken = await GetAccessToken(username, password); 
-                await CreateCookie(getToken);
+                //var getToken = GetAccessToken(username, password); 
+                //CreateCookie(getToken);
             }
         }
 
@@ -51,9 +56,8 @@ namespace RockStar_IT_Events.Controllers
         }
 
 
-        public async Task<string> GetAccessToken(string username, string password)
+        public static async void GetAccessToken(string username, string password)
         {
-
             var userDetails = new Dictionary<string, string>()
             {
                 { "username", username },
@@ -69,12 +73,10 @@ namespace RockStar_IT_Events.Controllers
             var response = await httpClient.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> develop
-            return JsonConvert.DeserializeObject<Token>(result).access_token;
+            string retrn = JsonConvert.DeserializeObject<Token>(result).access_token;
+
+            CreateCookie(retrn);
         }
     }
 }
