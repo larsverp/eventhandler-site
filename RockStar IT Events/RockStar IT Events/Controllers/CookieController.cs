@@ -69,7 +69,11 @@ namespace RockStar_IT_Events.Controllers
             var response = await httpClient.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> develop
             return JsonConvert.DeserializeObject<Token>(result).access_token;
         }
     }

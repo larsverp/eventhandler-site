@@ -26,6 +26,7 @@
         <p>UPCOMING EVENTS</p>
     </div>
 
+
     @foreach (var e in Model)
     {
         <div class="EventBlock">
@@ -43,7 +44,7 @@
                             <li><h5>PHP  |  Unit testing  |  Python  |  C# </h5></li>
                             <div class="InfoButton">
                                 <h2>
-                                    @Html.ActionLink("More info", "Event", "Event", new{e.id})
+                                    @Html.ActionLink("More info", "Event", "Event", new { e.id })
                                 </h2>
                             </div>
                         </div>
@@ -52,6 +53,6 @@
             </div>
         </div>
     }
-<script src="~/scroll.js"></script>
+    <script src="~/scroll.js"></script>
 </body>
 </html>
