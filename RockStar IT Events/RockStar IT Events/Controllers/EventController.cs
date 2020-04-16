@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.Models;
+using RockStar_IT_Events.Controllers;
 using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
