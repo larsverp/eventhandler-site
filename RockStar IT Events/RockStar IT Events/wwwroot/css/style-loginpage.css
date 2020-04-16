@@ -1,0 +1,100 @@
+﻿:root {
+    font-family: Roboto;
+    font-style: normal;
+}
+
+html {
+    overflow: hidden;
+}
+
+.left {
+    background-color: #FFE000;
+}
+
+.left-top {
+    vertical-align: middle;
+    text-align: left;
+    color: white;
+    font-weight: 700;
+    font-size: 130px;
+    margin-top: 8%;
+}
+
+.left-bottom {
+    vertical-align: middle;
+    text-align: left;
+    color: black;
+    font-weight: 700;
+    font-size: 60px;
+    margin-top: 15%;
+    padding-bottom: 1000px;
+}
+
+.right {
+    background-color: #333333;
+}
+
+.logo {
+    justify-content: space-between;
+    margin-top: 15%;
+}
+
+.welcometext {
+    color: white;
+    font-weight: 300;
+    font-size: 50px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.formwrapper {
+    margin-top: 30px;
+}
+
+    .formwrapper input {
+        background-color: transparent;
+    }
+
+.email {
+    color: white;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.password {
+    color: white;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.loginbutton {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
+}
+
+.notamember {
+    color: white;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+}
+
+input:not(:placeholder-shown) {
+    background: none !important;
+    color: var(--textColorLight) !important;
+}
+
+
+input:placeholder-shown {
+    background: none !important;
+    color: var(--textColorLight) !important;
+}
+
+.form-control:focus {
+    border-color: var(--textColorLight);
+    box-shadow: none;
+}
+/*  */
