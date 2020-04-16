@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.Models;
+using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -24,6 +25,23 @@ namespace RockStar_IT_Events.Controllers
         {
             //check if admin is logged in
             return Content("Manage page");
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(UserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+
+            return View();
         }
     }
 }

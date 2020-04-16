@@ -1,0 +1,55 @@
+﻿@model RockStar_IT_Events.ViewModels.UserModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inlogpagina</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style-loginpage.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6 left">
+            <div class="col-md-10 offset-1 left-top">
+                <p>"SHARING IS CARING"</p>
+            </div>
+            <div class="col-md-11 offset-1 left-bottom">
+                <p>AT ROCKSTARS, WE LOVE TO SHARE OUR KNOWLEDGE.</p>
+            </div>
+        </div>
+        <div class="col-md-6 right">
+            <div class="row logo">
+                <div></div>
+                <img src="../Html-css/img/logo-rockstars@2x_2 1.png">
+                <div></div>
+            </div>
+            <div class="welcometext">
+                <p>Welcome back</p>
+            </div>
+
+            <form class="offset-1 col-md-10 formwrapper">
+                <div class="email">
+                    <label for="emailformid" class="font-weight-light">Email adress</label>
+                    <input asp-for="username" type="text" id="emailformid" class="form-control">
+                </div>
+
+                <div class="password">
+                    <label for="passwordformid" class="font-weight-light">Password</label>
+                    <input asp-for="password" type="text" id="passwordformid" class="form-control">
+                </div>
+                <div class="col-md-12 loginbutton">
+                    <button type="submit" value="login" class="btn btn-lg btn-block btn-outline-warning">Log in</button>
+                </div>
+                <div class="notamember">
+                    <p>Not yet a member?</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
