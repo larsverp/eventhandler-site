@@ -1,0 +1,105 @@
+﻿:root {
+    --backgroundColor: #333333;
+    --eventBLockColor: #232323;
+    --textColorDark: #000000;
+    --textColorLight: #ffffff;
+    --yellowColor: #FFE000;
+    --invertAmount: 100%;
+}
+
+* {
+    outline: none;
+}
+
+body {
+    background: var(--backgroundColor);
+    font-family: 'Roboto', sans-serif;
+    color: var(--textColorDark);
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftSide {
+    background-color: var(--yellowColor);
+    text-align: center;
+}
+
+    .leftSide h1 {
+        font-size: 7vw;
+        font-weight: 900;
+        padding: 8.5% 0px;
+    }
+
+.FormHeader {
+    text-align: center;
+}
+
+.formRight {
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+    .formRight h1 {
+        color: var(--textColorLight);
+        font-size: 60px;
+        font-weight: 600;
+    }
+
+    .formRight label {
+        color: var(--textColorLight);
+        font-weight: 800;
+        padding-top: 6px;
+        padding-bottom: 3px;
+        margin: 0;
+    }
+
+    .formRight input {
+        background: none;
+        border-radius: 0%;
+        font-size: 30px;
+        padding: 20px;
+    }
+
+    .formRight button {
+        color: var(--textColorDark);
+        background: var(--yellowColor);
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+.form-elegant .font-small {
+    font-size: 0.8rem;
+}
+
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+
+input:not(:placeholder-shown) {
+    background: none !important;
+    color: var(--textColorLight) !important;
+}
+
+
+input:placeholder-shown {
+    background: none !important;
+    color: var(--textColorLight) !important;
+}
+
+.form-control:focus {
+    border-color: var(--textColorLight);
+    box-shadow: none;
+}
