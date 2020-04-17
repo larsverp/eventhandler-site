@@ -35,7 +35,7 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(UserModel model)
+        public IActionResult Create(EventModel model)
         {
             if (ModelState.IsValid)
             {
