@@ -76,7 +76,7 @@ namespace RockStar_IT_Events.Controllers
 
             string retrn = JsonConvert.DeserializeObject<Token>(result).access_token;
 
-            CreateCookie(retrn);
+            //CreateCookie(retrn);
         }
     }
 }

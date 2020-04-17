@@ -26,8 +26,11 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                CookieController cookieController = new CookieController();
-                CookieController.GetAccessToken(model.username, model.password);
+                //CookieController cookieController = new CookieController();
+                //CookieController.GetAccessToken(model.username, model.password);
+
+                
+
                 return RedirectToAction("Index", "Event");
             }
 
