@@ -43,63 +43,83 @@
             </div>
         </div>
         <div class="col-md-10 right-panel">
-
+            <div class="row right-wrapper">
+                <div></div>
+                <div class="right-info">
+                    <div class="right-top-text">
+                        <p>This is the start of something great</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 wrapper-left-side">
+                            <p>iuvravriuaj</p>
+                        </div>
+                        <div class="col-md-8">
+                            <form asp-action="Create">
+                                <div class="form-group">
+                                    <label asp-for="Title" class="control-label"></label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="row start-end-date">
+                                    <div class="form-group start-date">
+                                        <label asp-for="StartDate" class="control-label"></label>
+                                        <input asp-for="StartDate" class="form-control" />
+                                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group end-date">
+                                        <label asp-for="EndDate" class="control-label"></label>
+                                        <input asp-for="EndDate" class="form-control" />
+                                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Thumbnail" class="control-label"></label>
+                                    <input asp-for="Thumbnail" class="form-control" />
+                                    <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                                </div>
+                                <div class="row triple-input">
+                                    <div class="form-group totalseats">
+                                        <label asp-for="TotalSeats" class="control-label"></label>
+                                        <input asp-for="TotalSeats" class="form-control" />
+                                        <span asp-validation-for="TotalSeats" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group postalcode">
+                                        <label asp-for="PostalCode" class="control-label"></label>
+                                        <input asp-for="PostalCode" class="form-control" />
+                                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group housenumber">
+                                        <label asp-for="HouseNumber" class="control-label"></label>
+                                        <input asp-for="HouseNumber" class="form-control" />
+                                        <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="SendNotifications" /> @Html.DisplayNameFor(model => model.SendNotifications)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
         </div>
     </div>
-
-    @*<div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="StartDate" class="control-label"></label>
-                    <input asp-for="StartDate" class="form-control" />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EndDate" class="control-label"></label>
-                    <input asp-for="EndDate" class="form-control" />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Thumbnail" class="control-label"></label>
-                    <input asp-for="Thumbnail" class="form-control" />
-                    <span asp-validation-for="Thumbnail" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TotalSeats" class="control-label"></label>
-                    <input asp-for="TotalSeats" class="form-control" />
-                    <span asp-validation-for="TotalSeats" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PostalCode" class="control-label"></label>
-                    <input asp-for="PostalCode" class="form-control" />
-                    <span asp-validation-for="PostalCode" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="HouseNumber" class="control-label"></label>
-                    <input asp-for="HouseNumber" class="form-control" />
-                    <span asp-validation-for="HouseNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="SendNotifications" /> @Html.DisplayNameFor(model => model.SendNotifications)
-                    </label>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>*@
 </body>
 </html>

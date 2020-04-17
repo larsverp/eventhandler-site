@@ -28,3 +28,46 @@ html {
     font-weight: 400;
     text-align: center;
 }
+
+.right-wrapper{
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.right-top-text{
+    font-weight: 400;
+    font-size: 60px;
+    color: black;
+    text-align: center;
+}
+
+.start-end-date{
+    justify-content: space-between;
+    margin: 0px;
+}
+
+.start-date {
+    width: 49.5%;
+}
+
+.end-date {
+    width: 49.5%;
+}
+
+.triple-input{
+    justify-content: space-between;
+    margin: 0;
+}
+
+.totalseats{
+    width: 33%;
+}
+
+.postalcode {
+    width: 33%;
+}
+
+.housenumber {
+    width: 33%;
+}
+
