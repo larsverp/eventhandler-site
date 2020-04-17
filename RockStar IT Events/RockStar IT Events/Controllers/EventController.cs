@@ -15,7 +15,7 @@ namespace RockStar_IT_Events.Controllers
             return View(events);
         }
 
-        public IActionResult Event(int id)
+        public IActionResult Event(string id)
         {
             DataLayer dataLayer = new DataLayer();
             var e = dataLayer.GetEvent(id);
@@ -39,7 +39,21 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
+                DataLayer dataLayer = new DataLayer();
+                
+                var e = new Event()
+                {
+                    title = model.Title,
+                    description = model.Description,
+                    date = "2020-10-10 12:12:12",
+                    thumbnail = model.Thumbnail,
+                    seats = model.TotalSeats,
+                    postal_code = model.PostalCode,
+                    hnum = model.HouseNumber,
+                    notification = model.SendNotifications
+                };
 
+                dataLayer.Create(e);
             }
 
             return View();
