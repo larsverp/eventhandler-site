@@ -1,58 +1,219 @@
-﻿@model List<RockStar_IT_Events.Models.Event>
+﻿@*@model List<RockStar_IT_Events.Models.Event>
 
-    @{
-        ViewData["Title"] = "Index";
-    }
+        @{
+            ViewData["Title"] = "Index";
+        }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Rockstar Events</title>
+        <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+        <link rel="icon" href="~/img/logo-rockstars@2x_2 1.png">
+    </head>
+    <body>
+        <div id="HeaderHomePage">
+            <h1>ROCKSTAR EVENTS</h1>
+        </div>
+        <div class="header" id="myHeader">
+            <div id="NavHomePage">
+            </div>
+            <div class="LogoNavBar">
+                <img src="~/img/logo-rockstars@2x_2 1.png" alt="logo-rockstars">
+            </div>
+        </div>
+        <div id="UpcomingEvents" class="content">
+            <p>UPCOMING EVENTS</p>
+        </div>
+
+
+        @foreach (var e in Model)
+        {
+            <div class="EventBlock">
+                <div class="LeftImage"> <img src="@e.thumbnail" alt="@e. image"></div>
+                <div class="TextRight">
+                    <ul>
+                        <div class="TextColumn">
+                            <li><h1>@e.title - Eindhoven</h1></li>
+                            <li>
+                                <p>
+                                    @e.description
+                                </p>
+                            </li>
+                            <div class="TextRow">
+                                <li><h5>PHP  |  Unit testing  |  Python  |  C# </h5></li>
+                                <div class="InfoButton">
+                                    <h2>
+                                        @Html.ActionLink("More info", "Event", "Event", new { e.id })
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        }
+        <script src="~/scroll.js"></script>
+    </body>
+    </html>*@
+
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Rockstar Events</title>
-    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
-    <link rel="icon" href="~/img/logo-rockstars@2x_2 1.png">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="icon" href="~/img/Background-banner1.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
 </head>
 <body>
+
     <div id="HeaderHomePage">
         <h1>ROCKSTAR EVENTS</h1>
     </div>
+
     <div class="header" id="myHeader">
         <div id="NavHomePage">
+
+            <button class="ToggleButton" id="ToggleButton"><img src="img/Moon.png"></button>
+
         </div>
         <div class="LogoNavBar">
-            <img src="~/img/logo-rockstars@2x_2 1.png" alt="logo-rockstars">
+            <img src="img/logo-rockstars@2x_2 1.png" alt="logo-rockstars">
         </div>
     </div>
+
     <div id="UpcomingEvents" class="content">
         <p>UPCOMING EVENTS</p>
     </div>
 
+    <div class="EventBlock">
+        <div class="LeftImage">
+            <img src="img/Man.jpg" alt="">
+            <h1>27-03</h1>
+        </div>
+        <div class="TextRight">
+            <ul>
 
-    @foreach (var e in Model)
-    {
-        <div class="EventBlock">
-            <div class="LeftImage"> <img src="@e.thumbnail" alt="@e. image"></div>
-            <div class="TextRight">
-                <ul>
-                    <div class="TextColumn">
-                        <li><h1>@e.title - Eindhoven</h1></li>
-                        <li>
-                            <p>
-                                @e.description
-                            </p>
-                        </li>
-                        <div class="TextRow">
-                            <li><h5>PHP  |  Unit testing  |  Python  |  C# </h5></li>
-                            <div class="InfoButton">
-                                <h2>
-                                    @Html.ActionLink("More info", "Event", "Event", new { e.id })
-                                </h2>
-                            </div>
+                <div class="TextColumn">
+                    <li><h1>Start testing your code! - Alkmaar</h1></li>
+                    <li>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolores velit tempore recusandae, aperiam fugiat magni itaque laboriosam asperiores distinctio error voluptate id dignissimos rem libero explicabo veritatis eum quae?
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, enim repellat eius ratione nisi, necessitatibus similique ipsa, corrupti laboriosam aut doloribus explicabo debitis. Illum expedita beatae ab placeat ipsa non.
+                        </p>
+                    </li>
+
+                    <div class="TextRow">
+                        <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
+
+                        <div class="InfoButton">
+                            <h2>More info</h2>
                         </div>
                     </div>
-                </ul>
-            </div>
+                </div>
+            </ul>
         </div>
-    }
-    <script src="~/scroll.js"></script>
+    </div>
+
+    <div class="EventBlock">
+        <div class="LeftImage">
+            <img src="img/Man.jpg" alt="">
+            <h1>01-05</h1>
+        </div>
+        <div class="TextRight">
+            <ul>
+
+                <div class="TextColumn">
+                    <li><h1>Start testing your code! - Alkmaar</h1></li>
+                    <li>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolores velit tempore recusandae, aperiam fugiat magni itaque laboriosam asperiores distinctio error voluptate id dignissimos rem libero explicabo veritatis eum quae?
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, enim repellat eius ratione nisi, necessitatibus similique ipsa, corrupti laboriosam aut doloribus explicabo debitis. Illum expedita beatae ab placeat ipsa non.
+                        </p>
+                    </li>
+
+                    <div class="TextRow">
+                        <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
+
+                        <div class="InfoButton">
+                            <h2>More info</h2>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="EventBlock">
+        <div class="LeftImage">
+            <img src="img/Man.jpg" alt="">
+            <h1>14-07</h1>
+        </div>
+        <div class="TextRight">
+            <ul>
+
+                <div class="TextColumn">
+                    <li><h1>Start testing your code! - Alkmaar</h1></li>
+                    <li>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolores velit tempore recusandae, aperiam fugiat magni itaque laboriosam asperiores distinctio error voluptate id dignissimos rem libero explicabo veritatis eum quae?
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, enim repellat eius ratione nisi, necessitatibus similique ipsa, corrupti laboriosam aut doloribus explicabo debitis. Illum expedita beatae ab placeat ipsa non.
+                        </p>
+                    </li>
+
+                    <div class="TextRow">
+                        <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
+
+                        <div class="InfoButton">
+                            <h2>More info</h2>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="EventBlock">
+        <div class="LeftImage">
+            <img src="img/Man.jpg" alt="">
+            <h1>05-10</h1>
+        </div>
+        <div class="TextRight">
+            <ul>
+
+                <div class="TextColumn">
+                    <li><h1>Start testing your code! - Alkmaar</h1></li>
+                    <li>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dolores velit tempore recusandae, aperiam fugiat magni itaque laboriosam asperiores distinctio error voluptate id dignissimos rem libero explicabo veritatis eum quae?
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, enim repellat eius ratione nisi, necessitatibus similique ipsa, corrupti laboriosam aut doloribus explicabo debitis. Illum expedita beatae ab placeat ipsa non.
+                        </p>
+                    </li>
+
+                    <div class="TextRow">
+                        <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
+
+                        <div class="InfoButton">
+                            <h2>More info</h2>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="FooterText">
+        <p>Copyright &copy; 2020 EventHandlers</p>
+
+        <script src="~/Scripts/scroll.js"></script>
+        <script src="~/Scripts/ToggleDarkMode.js"></script>
+    </footer>
+
 </body>
 </html>
+
