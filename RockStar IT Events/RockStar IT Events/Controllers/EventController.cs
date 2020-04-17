@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.Models;
+using RockStar_IT_Events.Controllers;
 using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
@@ -34,7 +35,7 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(UserModel model)
+        public IActionResult Create(EventModel model)
         {
             if (ModelState.IsValid)
             {

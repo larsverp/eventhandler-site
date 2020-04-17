@@ -1,23 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Data;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RockStar_IT_Events.Models;
+using System.Threading.Tasks;
 
 namespace RockStar_IT_Events
 {
     public class DataLayer
     {
+        private WebRequest webRequest;
+        private WebResponse webResponse;
+        private StreamReader streamReader;
+        private StreamWriter streamWriter;
+        
         public List<Event> GetAllEvents()
         {
-            WebRequest request = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/events");
+            webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/events");
 
-            WebResponse response = request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string responseString = reader.ReadToEnd();
-            List<Event> events = JsonConvert.DeserializeObject<List<Event>>(responseString);
+            webResponse = webRequest.GetResponse();
+            streamReader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8);
+            string webResponseString = streamReader.ReadToEnd();
+            List<Event> events = JsonConvert.DeserializeObject<List<Event>>(webResponseString);
 
             return events;
         }
@@ -25,11 +34,11 @@ namespace RockStar_IT_Events
 
         public Event GetEvent(int id)
         {
-            WebRequest request = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/events/" + id);
+            webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/events/" + id);
 
-            WebResponse response = request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string json = reader.ReadToEnd();
+            webResponse = webRequest.GetResponse();
+            streamReader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8);
+            string json = streamReader.ReadToEnd();
 
             Event output = JsonConvert.DeserializeObject<Event>(json);
 
