@@ -1,0 +1,30 @@
+﻿body {
+}
+
+html {
+    overflow: hidden;
+}
+
+.left-panel {
+    background-color: #FFE000;
+    padding-bottom: 1000px;
+}
+
+.logo {
+    justify-content: space-between;
+    margin-top: 15%;
+}
+
+.left-big-font{
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.left-small-font{
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
