@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RockStar_IT_Events.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace RockStar_IT_Events
 {
@@ -46,7 +47,7 @@ namespace RockStar_IT_Events
             return output;
         }
 
-        public async Task Create(Event e)
+        public async Task Create(Event e, string cookieValue)
         {
             //var json = JsonConvert.SerializeObject(e);
             //var data = new StringContent(json,Encoding.UTF8,"application/json");
@@ -63,15 +64,54 @@ namespace RockStar_IT_Events
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             var url = "https://eventhandler-api.herokuapp.com/api/events";
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDI3MjIzOGY0Y2U0MmQyZjZiMWNhNjI2YmM3OTZiOWUyZmNkY2JkNjEyZjcyYTUyMjUzMzk2ZWNhY2IwMTAxYjc5M2VhNDYxMTZkOGJjYjgiLCJpYXQiOjE1ODcxMTc2NTQsIm5iZiI6MTU4NzExNzY1NCwiZXhwIjoxNjE4NjUzNjU0LCJzdWIiOiIxIiwic2NvcGVzIjpbInJvY2tzdGFyIl19.QOXjtNaFtHsNB9HwHbQZOx0xhSYSn2U2o214dBXzAvW_EF_0Wo-jETkloFhOks3-RPMtAWu6Sbe8pcXSyCReCw63baTivCIjEg1xxQsO1Ej9gFbx3nZr5I3__YRJPa1tMM7nOmKqqAp2XQsxJ7HPS1BzAKvjqULePMzQ0u5XaBH8zCXCMgWb8ZTZd1EKA-a25u1wAzmTLphOhUcE7Z131Df_fbIequWdNQst6l9BdEnwolbyNeQ7QmTcUJRTgLcYV6UsQ7N-CFCbm1YIzkrku6aqSxfDgij-mokkTAjsTdJ9R8xoPog1NXpjnRBgWFPP_bTqffLfpaPSrCOthMC4IOvCNrWgaK79k73wNdYRkHfRE6x-_G0CKjNpWmNks3PA7DC8mVpnDU_Y5cvGaurSh3ng6lilWCtbBuxGQ5H8HP3Dn0HnxoY78SB5Nt2ymM8TRwYAfu8PkbvbNA92gsR5PSqrjmGPMXODlKDkBTc56BGWAEVK11SNyJwn4GkR8aJ_oTEH6FobTLUigd93UHZR0E4nU0MViFN51bMyD-HGnu6hc85GOp2peyFOdu7ZPZaYlAB7KWaku7cUxzX_KQHgy0P7wSduO7tQnknj-_7FH7LVRxvRJdrQ0G8L6uAdMHSdYGgciC3LwjP_1WKswroYjqqxGgzhyW7v9oX3lbAM5YU");
+            var client = new HttpClient();
+
+            //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmQ2NjYyZDMxN2I3OTBkZmY5MjEyNGM5ZTZlZGIxMTZiYzljMGQyNjJmODQ0YjU0NzIwMGQ1OTQ1ZWQ0MTFhMGZiZmJhNTk5YzI4M2Q0MGUiLCJpYXQiOjE1ODc1NDUxNjQsIm5iZiI6MTU4NzU0NTE2NCwiZXhwIjoxNjE5MDgxMTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbInJvY2tzdGFyIl19.g6IJif5fqcINC5 - Q8OF8VoqqrGMt - TzO7iYKxiTMsCWjTUwBuwyJi1lsvb0Y0SBcVypf6TW49QfhPvKyMSk6PIbUrHxzv3Q_VRO1vAc_DQSmGLKofNNp8HW - PnNY6782Nh6ruznHTAPeNpVrAd9CAqcl67MqQj9fS8IzTTabIaftjBCzqJMa2tlMact3mUsmeebdVvNzcOeYyL3Kxqg6AYPOwyHhlHuoG14a_z0qz6QI8mXz4vsDeXVH6IlZOgNScnpFe_8G - oIgfKtR33Ss7YSQvHuqnWyHfiDLwFwYRblINRngdQJP8KoyGqElqvaczw9VAniEUVbICnaiIAFGFb_LCPWSmHKi63yWkX8BJkY7Lk40UfvWCGKCcWm86PmCOjVFoeVf - eAT9 - 59eTL62OMxj7FejhsiJbRnnOlTOt5m8vlmKN2qNte0jOwVRFb--OvBaaJB0drGWuvXj8zYX9zHkvPD1Soi7ky1rT66XBDv07Xa5p5_Qw23LgijZSZr7kqrlPBFA - E2DcVz91X5XMU9jrJR5UC - pRB2PkgjEUMG - SRJyVnYBwmDKjOZo1roeK918hlrFyOz4U4QLGJcCiYpBXnKSdxbkpcltytCCQ4oQqXqLljW6JzInN086n4hGdWPAElB5wygeMDUrx3LkkFbITKdtrwXWTHfgHANiAk");
+            //var response = await client.GetStringAsync(url);
+
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmQ2NjYyZDMxN2I3OTBkZmY5MjEyNGM5ZTZlZGIxMTZiYzljMGQyNjJmODQ0YjU0NzIwMGQ1OTQ1ZWQ0MTFhMGZiZmJhNTk5YzI4M2Q0MGUiLCJpYXQiOjE1ODc1NDUxNjQsIm5iZiI6MTU4NzU0NTE2NCwiZXhwIjoxNjE5MDgxMTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbInJvY2tzdGFyIl19.g6IJif5fqcINC5-Q8OF8VoqqrGMt-TzO7iYKxiTMsCWjTUwBuwyJi1lsvb0Y0SBcVypf6TW49QfhPvKyMSk6PIbUrHxzv3Q_VRO1vAc_DQSmGLKofNNp8HW-PnNY6782Nh6ruznHTAPeNpVrAd9CAqcl67MqQj9fS8IzTTabIaftjBCzqJMa2tlMact3mUsmeebdVvNzcOeYyL3Kxqg6AYPOwyHhlHuoG14a_z0qz6QI8mXz4vsDeXVH6IlZOgNScnpFe_8G-oIgfKtR33Ss7YSQvHuqnWyHfiDLwFwYRblINRngdQJP8KoyGqElqvaczw9VAniEUVbICnaiIAFGFb_LCPWSmHKi63yWkX8BJkY7Lk40UfvWCGKCcWm86PmCOjVFoeVf-eAT9-59eTL62OMxj7FejhsiJbRnnOlTOt5m8vlmKN2qNte0jOwVRFb--OvBaaJB0drGWuvXj8zYX9zHkvPD1Soi7ky1rT66XBDv07Xa5p5_Qw23LgijZSZr7kqrlPBFA-E2DcVz91X5XMU9jrJR5UC-pRB2PkgjEUMG-SRJyVnYBwmDKjOZo1roeK918hlrFyOz4U4QLGJcCiYpBXnKSdxbkpcltytCCQ4oQqXqLljW6JzInN086n4hGdWPAElB5wygeMDUrx3LkkFbITKdtrwXWTHfgHANiAk");
 
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
             
             Console.WriteLine(result);
+        }
+
+        public async Task<string> GetBearerToken(string username, string password)
+        {
+            var userDetails = new Dictionary<string, string>()
+            {
+                { "username", username },
+                { "password", password }
+            };
+
+            string json = JsonConvert.SerializeObject(userDetails);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+            string url = "https://eventhandler-api.herokuapp.com/api/users/login";
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            
+
+            var r = await client.PostAsync(url, data);
+
+            return "sa";
+
+            string result = r.Content.ReadAsStringAsync().Result;
+            string token = JsonConvert.DeserializeObject<Token>(result).access_token;
+            return token;
+        }
+
+        public class Token
+        {
+            public string token_type { get; set; }
+            public string expires_in { get; set; }
+            public string access_token { get; set; }
+            public string refresh_token { get; set; }
         }
     }
 }
