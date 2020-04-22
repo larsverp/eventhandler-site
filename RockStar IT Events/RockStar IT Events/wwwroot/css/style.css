@@ -162,6 +162,11 @@ body {
         font-family: 800;
     }
 
+.InfoButton a {
+    text-decoration: none;
+    color: var(--textColorDark);
+}
+
 .sticky {
     position: fixed;
     top: 0;
