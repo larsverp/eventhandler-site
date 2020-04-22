@@ -98,13 +98,13 @@ html {
 
 input:not(:placeholder-shown) {
     background: #f7f7f7 !important;
-    color: var(--textColorLight) !important;
+    color: var(--textColorDark) !important;
 }
 
 
 input:placeholder-shown {
     background: #f7f7f7 !important;
-    color: var(--textColorLight) !important;
+    color: var(--textColorDark) !important;
 }
 
 .form-control:focus {
