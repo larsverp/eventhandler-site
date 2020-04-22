@@ -75,11 +75,8 @@ namespace RockStar_IT_Events
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
-<<<<<<< HEAD
-=======
-            
+
             Console.WriteLine(result);
->>>>>>> 0a075f3432e66f7e18b2e40ae9146b2c98984ae2
         }
 
         public async Task<string> GetBearerToken(string username, string password)
