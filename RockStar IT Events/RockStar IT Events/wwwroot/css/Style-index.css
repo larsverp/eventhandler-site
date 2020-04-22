@@ -1,6 +1,6 @@
 ﻿:root {
     --backgroundColor: #333333;
-    --eventBLockColor: #232323;
+    --eventBLockColor: #000;
     --textColorDark: #000000;
     --textColorLight: #ffffff;
     --yellowColor: #FFE000;
@@ -23,10 +23,16 @@ body {
     padding: 0;
 }
 
+.row{
+    display:flex;
+    flex-direction:row;
+
+}
+
 #HeaderHomePage {
     display: block;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(img/Background-banner1.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(~/img/Background-banner1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 70%;
@@ -35,19 +41,17 @@ body {
 
 #HeaderHomePage h1 {
     color: #ffffff;
-    font-style: normal;
     font-weight: 900;
-    font-size: 96px;
-    line-height: 112px;
+    font-size: 9vh;
     margin: 0;
-    padding-top: 2%;
+    padding-top: 2vh;
     padding-bottom: 2%;
 }
 
 #NavHomePage {
     background-color: var(--yellowColor);
     width: 100%;
-    padding-top: 100px;
+    padding-top: 8vh;
 }
 
 #NavHomePage p {
@@ -61,16 +65,63 @@ body {
     left: 0;
 }
 
+.LogoNavBar img {
+    width: 16vh;
+}
+
+.dropbtn {
+    background-color: #000;
+    color: var(--yellowColor);
+    padding: 3.5vh;
+    font-size: 3vh;
+    border: none;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding-right: 15vh;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--yellowColor);
+    background: #000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--yellowColor);
+    color: var(--textColorDark);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 #UpcomingEvents {
     display: block;
     text-align: center;
     font-style: normal;
     font-weight: bold;
-    font-size: 72px;
+    font-size: 7vh;
     line-height: 84px;
 }
 
 .header {
+    background: var(--yellowColor);
     box-shadow: 0 0 5px black;
     z-index: 1000;
 }
@@ -88,14 +139,15 @@ body {
 
 .ToggleButton {
     position: absolute;
+    padding: 5vh;
     background: none;
     border: none;
-    margin: 10px;
+    margin: 1vh;
 }
 
 .ToggleButton img {
-    height: 80px;
-    width: 80px;
+    height: 8vh;
+    width: 8vh;
     filter: invert(var(--invertAmount));
 }
 
@@ -113,15 +165,15 @@ body {
     width: 30%;
 }
 
-    .LeftImage h1 {
-        position: relative;
-        bottom: 300px;
-        left: 0;
-        font-size: 120px;
-        text-align: center;
-        color: #ffffff;
-        width: 100%;
-    }
+.LeftImage h1 {
+    position: relative;
+    bottom: 300px;
+    left: 0;
+    font-size: 120px;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+}
 
 
 .TextRight {
@@ -130,11 +182,11 @@ body {
     width: 70%;
 }
 
-    .TextRight ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
+.TextRight ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
 .TextColumn {
     display: flex;
@@ -156,11 +208,11 @@ body {
     margin-bottom: 20%;
 }
 
-    .InfoButton h2 {
-        margin: 0;
-        padding: 0;
-        font-family: 800;
-    }
+.InfoButton h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 800;
+}
 
 .InfoButton a {
     text-decoration: none;
@@ -173,9 +225,9 @@ body {
     width: 100%
 }
 
-    .sticky + .content {
-        padding-top: 102px;
-    }
+.sticky + .content {
+    padding-top: 102px;
+}
 
 .FooterText {
     width: 100%;
@@ -188,8 +240,6 @@ body {
 }
 
 
-
-/* to make it kinda responsive */
 
 @media(max-width: 1300px) {
     #HeaderHomePage h1 {
