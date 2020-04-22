@@ -31,47 +31,47 @@
                 <form asp-action="Register">
                     <div class="form-row">
                         <div class="col-md-9">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">First Name</label>
-                            <input type="text" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="FirstName" class="font-weight-light"></label>
+                            <input asp-for="FirstName" class="form-control" id="defaultFormCardNameEx"/>
                         </div>
                         <div class="col-md-3">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Insertion</label>
-                            <input type="text" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="Insertion" class="font-weight-light"></label>
+                            <input asp-for="Insertion" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Last Name</label>
-                            <input type="text" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="LastName" class="font-weight-light"></label>
+                            <input asp-for="LastName" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Email address</label>
-                            <input type="email" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="EmailAddress" class="font-weight-light"></label>
+                            <input asp-for="EmailAddress" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Postal Code</label>
-                            <input type="text" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="PostalCode" class="font-weight-light"></label>
+                            <input asp-for="PostalCode" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Password</label>
-                            <input type="password" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="Password" class="font-weight-light"></label>
+                            <input asp-for="Password" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12">
-                            <label for="defaultFormCardNameEx" class="font-weight-light">Repeat Password</label>
-                            <input type="password" id="defaultFormCardNameEx" class="form-control">
+                            <label asp-for="ConfirmedPassword" class="font-weight-light"></label>
+                            <input asp-for="ConfirmedPassword" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                     </div>
 
@@ -80,7 +80,6 @@
                             Register<i class="fa fa-paper-plane-o ml-2"></i>
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
