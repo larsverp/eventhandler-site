@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace RockStar_IT_Events
 {
@@ -17,6 +13,10 @@ namespace RockStar_IT_Events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,15 +30,13 @@ namespace RockStar_IT_Events
             app.UseRouting();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseEndpoints(routes =>
             {
                 routes.MapControllerRoute("Default", "{controller=Event}/{action=index}/{id?}");
             });
             app.UseFileServer();
-
-            
         }
-
-        
     }
 }
