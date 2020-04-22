@@ -22,8 +22,6 @@ namespace RockStar_IT_Events
             app.UseRouting();
             app.UseStaticFiles();
 
-            app.UseSession();
-
             app.UseEndpoints(routes =>
             {
                 routes.MapControllerRoute("Default", "{controller=Event}/{action=index}/{id?}");
