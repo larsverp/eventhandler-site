@@ -55,7 +55,6 @@ namespace RockStar_IT_Events
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
-<<<<<<< HEAD
         }
 
         public async Task<string> GetBearerToken(string username, string password)
@@ -91,8 +90,6 @@ namespace RockStar_IT_Events
             public string expires_in { get; set; }
             public string access_token { get; set; }
             public string refresh_token { get; set; }
-=======
->>>>>>> 660f812be3eac215a7bdcd6680e9fb9472310d4c
         }
     }
 }
