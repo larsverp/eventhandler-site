@@ -1,11 +1,10 @@
 ﻿namespace RockStar_IT_Events.Models
 {
+    //Class will be used to sort events on categories.
     public class Category
     {
         public string CategoryName { get; private set; }
-
         public string CategoryDescription { get; private set; }
-
         public string CategoryThumbnail { get; private set; }
 
         public Category(string categoryname, string categorydescription, string categorythumbnail)

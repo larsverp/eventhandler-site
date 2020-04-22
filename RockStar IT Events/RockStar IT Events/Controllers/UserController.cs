@@ -18,6 +18,7 @@ namespace RockStar_IT_Events.Controllers
             return View();
         }
 
+        /*
         [HttpPost]
         public IActionResult Login(UserModel model)
         {
@@ -49,7 +50,7 @@ namespace RockStar_IT_Events.Controllers
         {
             return View();
         }
-
+        
         private async void AddCookies(string username, string password, CookieOptions options)
         {
             //Response.Cookies.Append("test", "test", options);
@@ -67,6 +68,6 @@ namespace RockStar_IT_Events.Controllers
             };
             Response.Cookies.Append("sadf", "asdf", oo);
             //Response.Cookies.Append("test", value, options);
-            }
+            }*/
     }
 }

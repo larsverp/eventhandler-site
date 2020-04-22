@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Data;
 using System.Net.Http.Headers;
 using System.Text;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RockStar_IT_Events.Models;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace RockStar_IT_Events
 {
@@ -19,7 +15,6 @@ namespace RockStar_IT_Events
         private WebRequest webRequest;
         private WebResponse webResponse;
         private StreamReader streamReader;
-        private StreamWriter streamWriter;
         
         public List<Event> GetAllEvents()
         {
@@ -32,7 +27,6 @@ namespace RockStar_IT_Events
 
             return events;
         }
-
 
         public Event GetEvent(string id)
         {
@@ -61,6 +55,7 @@ namespace RockStar_IT_Events
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
+<<<<<<< HEAD
         }
 
         public async Task<string> GetBearerToken(string username, string password)
@@ -96,6 +91,8 @@ namespace RockStar_IT_Events
             public string expires_in { get; set; }
             public string access_token { get; set; }
             public string refresh_token { get; set; }
+=======
+>>>>>>> 660f812be3eac215a7bdcd6680e9fb9472310d4c
         }
     }
 }
