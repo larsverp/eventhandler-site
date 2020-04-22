@@ -35,6 +35,8 @@ body {
     background-position: center;
     background-size: cover;
     overflow: hidden;
+    width: 45vh;
+    height: 80vh;
     margin: 0;
 }
 
