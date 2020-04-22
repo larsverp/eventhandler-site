@@ -33,7 +33,7 @@
             <div class="col-md-12 hoverable">
                 <p>Events</p>
             </div>
-            <div class="col-md-12 hoverable">
+            <div class="col-md-12 hoverable" style="background: black; color: #ffffff;">
                 <p>Create new event</p>
             </div>
             <div class="col-md-12 hoverable">
@@ -92,60 +92,53 @@
                             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                             <div class="form-row">
                                 <div class="col-md-12">
-                                    <label asp-for="Title" for="defaultFormCardNameEx" class="font-weight-light"></label>
-                                    <input asp-for="Title" type="text" id="Title" class="form-control">
+                                    <input asp-for="Title" type="text" id="Title" class="form-control" placeholder="Title">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-md-12">
-                                    <label asp-for="Description" for="defaultFormCardNameEx" class="font-weight-light">Description</label>
-                                    <input asp-for="Description" class="form-control" id="comment">
+                                    <textarea asp-for="Description" class="form-control" id="comment" placeholder="Description" rows="8.5"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-md-12">
-                                    <label for="defaultFormCardNameEx" class="font-weight-light">Speaker</label>
-                                    <input type="text" id="Speaker" class="form-control">
+                                    <input type="text" id="Speaker" class="form-control" placeholder="Speaker">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label asp-for="StartDate" class="font-weight-light">Begin Date</label>
                                     <input asp-for="StartDate" class="form-control" />
                                     <span asp-validation-for="StartDate" class="text-danger"></span>
                                 </div>
                                 <div class="col-md-6 end-date">
-                                    <label asp-for="EndDate" class="font-weight-light">End date</label>
                                     <input asp-for="EndDate" class="form-control" />
                                     <span asp-validation-for="EndDate" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <label asp-for="Thumbnail" class="font-weight-light"></label>
-                                <input asp-for="Thumbnail" id="Speaker" class="form-control">
+                                <div class="col-md-12">
+                                    <input asp-for="Thumbnail" id="Speaker" class="form-control" placeholder="Thumbnail">
+                                </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="col-md-5">
-                                    <label asp-for="PostalCode" class="font-weight-light"></label>
-                                    <input asp-for="PostalCode" id="Speaker" class="form-control">
+                                    <input asp-for="PostalCode" id="Speaker" class="form-control" placeholder="PostalCode">
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label asp-for="HouseNumber" class="font-weight-light">House Number</label>
-                                    <input asp-for="HouseNumber" id="Speaker" class="form-control">
+                                    <input asp-for="HouseNumber" id="Speaker" class="form-control" placeholder="HouseNumber">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label asp-for="TotalSeats" class="font-weight-light">Available seats</label>
-                                    <input asp-for="TotalSeats" id="Speaker" class="form-control">
+                                    <input asp-for="TotalSeats" id="Speaker" class="form-control" placeholder="TotalSeats">
                                 </div>
                             </div>
-                            
+
 
 
                             <div class="form-row">
