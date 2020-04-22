@@ -74,6 +74,10 @@ namespace RockStar_IT_Events
 
             var response = await client.PostAsync(url, data);
 
+            if (response.StatusCode != HttpStatusCode.Created)
+            {
+                throw new ArgumentException("Good try, mr hacker...!");
+            }
             string result = response.Content.ReadAsStringAsync().Result;
 
             Console.WriteLine(result);
