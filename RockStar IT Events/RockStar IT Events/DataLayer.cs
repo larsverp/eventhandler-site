@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Data;
 using System.Net.Http.Headers;
 using System.Text;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RockStar_IT_Events.Models;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace RockStar_IT_Events
 {
@@ -19,7 +15,6 @@ namespace RockStar_IT_Events
         private WebRequest webRequest;
         private WebResponse webResponse;
         private StreamReader streamReader;
-        private StreamWriter streamWriter;
         
         public List<Event> GetAllEvents()
         {
