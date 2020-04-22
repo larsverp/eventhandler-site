@@ -42,72 +42,59 @@ html {
 .welcometext {
     color: white;
     font-weight: 300;
-    font-size: 5vh;
+    font-size: 50px;
     vertical-align: middle;
     text-align: center;
 }
 
 .formwrapper {
-    margin-top: 3vh;
+    margin-top: 30px;
 }
 
-.formwrapper input {
-    padding: 2vh;
-    border-radius: 0px;
-}
-
-.formwrapper ::placeholder{
-    color: #000000;
-    opacity: 0.5;
-    font-weight: 300;
-    font-size: 2vh;
-}
+    .formwrapper input {
+        background-color: transparent;
+    }
 
 .email {
     color: white;
     justify-content: space-between;
-    margin-top: 3vh;
+    margin-top: 30px;
 }
 
 .password {
     color: white;
     justify-content: space-between;
-    margin-top: 1vh;
+    margin-top: 10px;
 }
 
 .loginbutton {
     color: white;
     text-align: center;
-    margin-top: 3vh;
+    margin-top: 30px;
     width: 100%;
     padding: 0;
-}
-
-.loginbutton button {
-    font-size: 2vh;
 }
 
 .notamember {
     color: white;
     font-weight: 500;
-    font-size: 2vh;
-    margin-top: 1vh;
+    margin-top: 10px;
     text-align: center;
 }
 
 input:not(:placeholder-shown) {
-    background-color: #f7f7f7 !important;
-    color: black !important;
+    background: none !important;
+    color: var(--textColorLight) !important;
 }
 
 
 input:placeholder-shown {
-    background-color: #f7f7f7 !important;
-    color: black !important;
+    background: none !important;
+    color: var(--textColorLight) !important;
 }
 
 .form-control:focus {
-    border-color: black!important;
+    border-color: var(--textColorLight);
     box-shadow: none;
 }
 /*  */
