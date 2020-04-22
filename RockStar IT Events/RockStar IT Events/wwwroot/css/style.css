@@ -33,16 +33,16 @@ body {
 }
 
 
-    #HeaderHomePage h1 {
-        color: #ffffff;
-        font-style: normal;
-        font-weight: 900;
-        font-size: 96px;
-        line-height: 112px;
-        margin: 0;
-        padding-top: 2%;
-        padding-bottom: 2%;
-    }
+#HeaderHomePage h1 {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 112px;
+    margin: 0;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
 
 #NavHomePage {
     background-color: var(--yellowColor);
@@ -50,9 +50,9 @@ body {
     padding-top: 100px;
 }
 
-    #NavHomePage p {
-        background-color: none;
-    }
+#NavHomePage p {
+    background-color: none;
+}
 
 .LogoNavBar {
     margin-left: 10%;
@@ -93,11 +93,11 @@ body {
     margin: 10px;
 }
 
-    .ToggleButton img {
-        height: 80px;
-        width: 80px;
-        filter: invert(var(--invertAmount));
-    }
+.ToggleButton img {
+    height: 80px;
+    width: 80px;
+    filter: invert(var(--invertAmount));
+}
 
 
 
