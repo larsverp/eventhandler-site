@@ -47,31 +47,35 @@ body {
 
     .formRight h1 {
         color: var(--textColorLight);
-        font-size: 60px;
+        font-size: 6vh;
         font-weight: 600;
     }
 
-    .formRight label {
-        color: var(--textColorLight);
-        font-weight: 800;
-        padding-top: 6px;
-        padding-bottom: 3px;
-        margin: 0;
-    }
-
     .formRight input {
-        background: none;
+        background-color: #f7f7f7;
         border-radius: 0%;
-        font-size: 30px;
-        padding: 20px;
+        font-size: 3vh;
+        padding: 2vh;
     }
 
     .formRight button {
         color: var(--textColorDark);
         background: var(--yellowColor);
-        font-size: 30px;
+        font-size: 3vh;
         font-weight: 600;
     }
+
+    .formRight ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #000000;
+        opacity: 0.5;
+        font-weight: 300;
+        font-size: 3vh;
+    }
+
+.box {
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+}
 
 .form-elegant .font-small {
     font-size: 0.8rem;
@@ -89,17 +93,17 @@ body {
 }
 
 input:not(:placeholder-shown) {
-    background: none !important;
-    color: var(--textColorLight) !important;
+    background-color: #f7f7f7 !important;
+    color: var(--textColorDark) !important;
 }
 
 
 input:placeholder-shown {
-    background: none !important;
-    color: var(--textColorLight) !important;
+    background-color: #f7f7f7 !important;
+    color: var(--textColorDark) !important;
 }
 
 .form-control:focus {
-    border-color: var(--textColorLight);
+    border-color: var(--textColorDark);
     box-shadow: none;
 }
