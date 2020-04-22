@@ -33,12 +33,11 @@ namespace RockStar_IT_Events.Models
         //public bool notification { get; private set; }
 
         //public List<Category> Categories { get; private set; }
-
-        public int id { get; set; }
+        public string id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
 
-        public DateTime date { get; set; }
+        public string date { get; set; }
 
         public string thumbnail { get; set; }
 
@@ -49,9 +48,9 @@ namespace RockStar_IT_Events.Models
 
         public bool notification { get; set; }
 
-        public DateTime created_at { get; set; }
+        //public DateTime created_at { get; set; }
 
-        public DateTime updated_at { get; set; }
+        //public DateTime updated_at { get; set; }
 
         //public Event(int eventId, string eventTitle, string eventDescription, DateTime eventDate, string eventThumbnail, int maxavailableSeats, string eventPostalCode, string eventHnum, bool eventNotifications, List<Category> eventCategories)
         //{
