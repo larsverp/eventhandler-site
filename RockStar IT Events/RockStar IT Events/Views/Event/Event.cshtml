@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@model RockStar_IT_Events.Models.Event
+﻿@model RockStar_IT_Events.Models.Event
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +32,7 @@
                                 <img src="~/img/calendar.png">
                             </div>
                             <div class="col-md-10">
-                                <p>28 March 2020</p>
+                                <p>@Model.date</p>
                             </div>
                         </div>
 
@@ -42,7 +41,7 @@
                                 <img src="~/img/clock.png">
                             </div>
                             <div class="col-md-10">
-                                <p>20:00-23:45</p>
+                                <p>@Model.date</p>
                             </div>
                         </div>
 
@@ -68,7 +67,7 @@
                                 <img src="~/img/Chair.png">
                             </div>
                             <div class="col-md-10">
-                                <p>23/50 places left</p><br>
+                                <p>@Model.seats places left</p><br>
                             </div>
                         </div>
                     </div>

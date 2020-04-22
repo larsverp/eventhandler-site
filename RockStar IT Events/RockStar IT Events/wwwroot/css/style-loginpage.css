@@ -42,58 +42,71 @@ html {
 .welcometext {
     color: white;
     font-weight: 300;
-    font-size: 50px;
+    font-size: 5vh;
     vertical-align: middle;
     text-align: center;
 }
 
 .formwrapper {
-    margin-top: 30px;
+    margin-top: 3vh;
 }
 
 .formwrapper input {
-    background-color: transparent;
+    padding: 2vh;
+    border-radius: 0px;
+}
+
+.formwrapper ::placeholder{
+    color: #000000;
+    opacity: 0.5;
+    font-weight: 300;
+    font-size: 2vh;
 }
 
 .email {
     color: white;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 3vh;
 }
 
 .password {
     color: white;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 1vh;
 }
 
 .loginbutton {
     color: white;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 3vh;
     width: 100%;
     padding: 0;
+}
+
+.loginbutton button {
+    font-size: 2vh;
 }
 
 .notamember {
     color: white;
     font-weight: 500;
-    margin-top: 10px;
+    font-size: 2vh;
+    margin-top: 1vh;
     text-align: center;
 }
 
 input:not(:placeholder-shown) {
-    background: none !important;
-    color: var(--textColorLight) !important;
+    background-color: #f7f7f7 !important;
+    color: black !important;
 }
 
 
 input:placeholder-shown {
-    background: none !important;
-    color: var(--textColorLight) !important;
+    background-color: #f7f7f7 !important;
+    color: black !important;
 }
 
 .form-control:focus {
-    border-color: var(--textColorLight);
+    border-color: black!important;
     box-shadow: none;
 }
