@@ -33,9 +33,9 @@
             </div>
 
             <form asp-action="Login" class="offset-1 col-md-10 formwrapper">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="email">
                     <input asp-for="username" id="emailformid" class="form-control" placeholder="Emailadress">
-                    
                 </div>
 
                 <div class="password">
