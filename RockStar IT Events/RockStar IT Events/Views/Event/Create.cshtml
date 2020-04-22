@@ -9,66 +9,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <script src="../jquery-3.4.1.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" type="text/css" href="~/css/style-create.css">
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+
+    <div class="row  no-gutters">
+        <div class="col-md-2 Left-Box">
+            <div class="col-md-10 offset-1 Logo ToggleButton" id="ToggleButton">
+                <img  src="~/img/logo-rockstars@2x_2 1.png" alt="RockstarLogo">
+            </div>
+
+            <div class="col-md-12">
+                <h1>EVENTS</h1>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Events</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new event</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Tickets</p>
+            </div>
+
+            <div class="col-md-12">
+                <h1>USERS</h1>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Users</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Mailing list</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new Partner</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new Rockstar</p>
+            </div>
+        </div>
+
+        <div class="col-md-10 Right-Box">
+            <div class="col-md-10 offset-1 FromWrapper">
+                <h1>This is the start of something great</h1>
+
+
+                <div class="row">
+
+                    <div class="col-md-4 offset-1 ThumbNail">
+                        <div>
+                            <img src="~/img/Man.jpg" alt="Thumbnail">
+                        </div>
+                        <div>
+                            <button class="btn col-md-12 ThumbNail-btn" type="submit">
+                                CHANGE THUMBNAIL <i class="ml-2"></i>
+                            </button>
+                        </div>
+                        <div class="row social">
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="fa fa-facebook"></a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="fa fa-twitter"></a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="#" class="fa fa-instagram"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 Form">
+
+                        <form action="">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <input type="text" id="Title" class="form-control" placeholder="Title">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" rows="7" id="comment" placeholder="Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <abel for="defaultFormCardNameEx" class="font-weight-light"></abel>
+                                    <input type="text" id="Speaker" class="form-control" placeholder="Speaker">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <input asp-for="StartDate" class="form-control"/>
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 end-date">
+                                    <input asp-for="EndDate" class="form-control"/>
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-5">
+                                    <input type="text" id="Speaker" class="form-control" placeholder="Postalcode">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <input type="text" id="Speaker" class="form-control" placeholder="House Number" />
+                                </div>
+
+                                <div class="col-md-4">
+                                    <input type="text" id="Speaker" class="form-control" placeholder="Available seats">
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="checkbox font-weight-light">
+                                    <label><input type="checkbox" value="">     Send an email about this new event</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="text-center col-md-4 save-btn">
+                                    <button class="btn btn-outline-purple col-md-12" type="submit">SAVE DRAFT</button>
+                                </div>
+
+                                <div class="text-center col-md-8 publish-btn">
+                                    <button class="btn btn-outline-purple col-md-12" type="submit">CREATE THIS EVENT</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="StartDate" class="control-label"></label>
-                    <input asp-for="StartDate" class="form-control" />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EndDate" class="control-label"></label>
-                    <input asp-for="EndDate" class="form-control" />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Thumbnail" class="control-label"></label>
-                    <input asp-for="Thumbnail" class="form-control" />
-                    <span asp-validation-for="Thumbnail" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TotalSeats" class="control-label"></label>
-                    <input asp-for="TotalSeats" class="form-control" />
-                    <span asp-validation-for="TotalSeats" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PostalCode" class="control-label"></label>
-                    <input asp-for="PostalCode" class="form-control" />
-                    <span asp-validation-for="PostalCode" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="HouseNumber" class="control-label"></label>
-                    <input asp-for="HouseNumber" class="form-control" />
-                    <span asp-validation-for="HouseNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="SendNotifications" /> @Html.DisplayNameFor(model => model.SendNotifications)
-                    </label>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+    <footer class="FooterText">
+
+        <script src="~/Scripts/ToggleDarkMode-Create.js"></script>
+    </footer>
 </body>
 </html>
