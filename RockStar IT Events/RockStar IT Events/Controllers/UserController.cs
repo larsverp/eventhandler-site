@@ -27,7 +27,11 @@ namespace RockStar_IT_Events.Controllers
                     ModelState.AddModelError("", "Incorrect username-password combination");
                     return View();
                 }
-                HttpContext.Session.SetString("BearerToken", token);
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(1);
+
+                Response.Cookies.Append("BearerToken", token);
+
                 return RedirectToAction("Index", "Event");
             }
 
@@ -45,24 +49,5 @@ namespace RockStar_IT_Events.Controllers
         {
             return View();
         }
-
-        private async void AddCookies(string username, string password, CookieOptions options)
-        {
-            //Response.Cookies.Append("test", "test", options);
-            DataLayer dataLayer = new DataLayer();
-            Task<string> task = dataLayer.GetBearerToken(username, password);
-            Response.Cookies.Append("test", "test", options);
-            string value = await task;
-
-            var client = new HttpClient();
-            CookieOptions oo = new CookieOptions()
-            {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTime.Now.AddDays(1)
-            };
-            Response.Cookies.Append("sadf", "asdf", oo);
-            //Response.Cookies.Append("test", value, options);
-            }
     }
 }

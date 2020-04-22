@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace RockStar_IT_Events
 {
@@ -11,10 +12,7 @@ namespace RockStar_IT_Events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(60);
-            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -26,8 +24,6 @@ namespace RockStar_IT_Events
 
             app.UseRouting();
             app.UseStaticFiles();
-
-            app.UseSession();
 
             app.UseEndpoints(routes =>
             {
