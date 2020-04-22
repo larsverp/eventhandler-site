@@ -7,7 +7,6 @@ namespace RockStar_IT_Events.Controllers
 {
     public class EventController : Controller
     {
-        //Retreives all events.
         public IActionResult Index()
         {
             DataLayer dataLayer = new DataLayer();
@@ -15,7 +14,6 @@ namespace RockStar_IT_Events.Controllers
             return View(events);
         }
 
-        //Shows the event with id #.
         public IActionResult Event(string id)
         {
             DataLayer dataLayer = new DataLayer();
@@ -23,13 +21,18 @@ namespace RockStar_IT_Events.Controllers
             return View(e);
         }
 
-        //Checks if the admin is logged in.
+        public IActionResult Manage()
+        {
+            //check if admin is logged in
+            return Content("Manage page");
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        //Creates an event.
         [HttpPost]
         public IActionResult Create(EventModel model)
         {
@@ -52,6 +55,7 @@ namespace RockStar_IT_Events.Controllers
 
                 dataLayer.Create(e, cookie);
             }
+
             return View();
         }
     }
