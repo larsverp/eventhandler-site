@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.Models;
 using RockStar_IT_Events.ViewModels;
@@ -7,6 +10,11 @@ namespace RockStar_IT_Events.Controllers
 {
     public class EventController : Controller
     {
+        private IHttpContextAccessor contextAccessor;
+        public EventController(IHttpContextAccessor contextAccessor)
+        {
+            this.contextAccessor = contextAccessor;
+        }
         public IActionResult Index()
         {
             DataLayer dataLayer = new DataLayer();
@@ -30,11 +38,16 @@ namespace RockStar_IT_Events.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(EventModel model)
+        public async Task<IActionResult> Create(EventModel model)
         {
             if (ModelState.IsValid)
             {
@@ -51,13 +64,19 @@ namespace RockStar_IT_Events.Controllers
                     hnum = model.HouseNumber,
                     notification = model.SendNotifications
                 };
-                string cookie = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmQ2NjYyZDMxN2I3OTBkZmY5MjEyNGM5ZTZlZGIxMTZiYzljMGQyNjJmODQ0YjU0NzIwMGQ1OTQ1ZWQ0MTFhMGZiZmJhNTk5YzI4M2Q0MGUiLCJpYXQiOjE1ODc1NDUxNjQsIm5iZiI6MTU4NzU0NTE2NCwiZXhwIjoxNjE5MDgxMTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbInJvY2tzdGFyIl19.g6IJif5fqcINC5 - Q8OF8VoqqrGMt - TzO7iYKxiTMsCWjTUwBuwyJi1lsvb0Y0SBcVypf6TW49QfhPvKyMSk6PIbUrHxzv3Q_VRO1vAc_DQSmGLKofNNp8HW - PnNY6782Nh6ruznHTAPeNpVrAd9CAqcl67MqQj9fS8IzTTabIaftjBCzqJMa2tlMact3mUsmeebdVvNzcOeYyL3Kxqg6AYPOwyHhlHuoG14a_z0qz6QI8mXz4vsDeXVH6IlZOgNScnpFe_8G - oIgfKtR33Ss7YSQvHuqnWyHfiDLwFwYRblINRngdQJP8KoyGqElqvaczw9VAniEUVbICnaiIAFGFb_LCPWSmHKi63yWkX8BJkY7Lk40UfvWCGKCcWm86PmCOjVFoeVf - eAT9 - 59eTL62OMxj7FejhsiJbRnnOlTOt5m8vlmKN2qNte0jOwVRFb--OvBaaJB0drGWuvXj8zYX9zHkvPD1Soi7ky1rT66XBDv07Xa5p5_Qw23LgijZSZr7kqrlPBFA - E2DcVz91X5XMU9jrJR5UC - pRB2PkgjEUMG - SRJyVnYBwmDKjOZo1roeK918hlrFyOz4U4QLGJcCiYpBXnKSdxbkpcltytCCQ4oQqXqLljW6JzInN086n4hGdWPAElB5wygeMDUrx3LkkFbITKdtrwXWTHfgHANiAk";
-
-                dataLayer.Create(e, cookie);
+                string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+                await dataLayer.Create(e, cookie);
                 return RedirectToAction("Index", "Event");
             }
 
             return View();
+        }
+
+        public IActionResult adminpanel()
+        {
+            DataLayer layer = new DataLayer();
+            List<Event> models = new List<Event>(layer.GetAllEvents());
+            return View(models);
         }
     }
 }

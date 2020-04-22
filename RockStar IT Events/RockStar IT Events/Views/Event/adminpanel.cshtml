@@ -1,0 +1,99 @@
+﻿@model IEnumerable<RockStar_IT_Events.Models.Event>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Get Event</title>
+
+    <script src="../jquery-3.4.1.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/Style-adminpanel.css">
+</head>
+<body>
+
+    <div class="row  no-gutters">
+        <div class="col-md-2 Left-Box">
+            <div class="col-md-10 offset-1 Logo">
+                <img src="./img/logo-rockstars@2x_2 1.png" alt="RockstarLogo">
+            </div>
+
+            <div class="col-md-12">
+                <h1>EVENTS</h1>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Events</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new event</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Tickets</p>
+            </div>
+
+            <div class="col-md-12">
+                <h1>USERS</h1>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Users</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Mailing list</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new Partner</p>
+            </div>
+            <div class="col-md-12 hoverable">
+                <p>Create new Rockstar</p>
+            </div>
+        </div>
+
+        <div class="col-md-10 right-box">
+            <div class="top-text">
+                Lots of great things are gonna happen
+            </div>
+            <div class="event-table col-md-10 offset-1">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Tickets sold</th>
+                            <th scope="col">Last updated at</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            <tr>
+                                <th scope="row">@e.title</th>
+                                <td>@e.date</td>
+                                <td>@e.seats</td>
+                                <td>@e.date</td>
+                                <td>Update</td>
+                                <td>Remove</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="FooterText">
+
+        <script src="~/Scripts/ToggleDarkMode-Create.js"></script>
+    </footer>
+</body>
+</html>
+
+

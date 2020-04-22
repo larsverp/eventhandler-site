@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.ViewModels;
-using RockStar_IT_Events.Controllers;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -19,19 +16,22 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(UserModel model)
+        public async Task<IActionResult> Login(UserModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                CookieOptions cookieOptions = new CookieOptions()
+                var DAL = new DataLayer();
+                string token = await DAL.GetBearerToken(model.username, model.password);
+                if (token == null)
                 {
-                    Expires = DateTime.Now.AddDays(1),
-                    Secure = true,
-                    HttpOnly = true
-                };
+                    ModelState.AddModelError("", "Incorrect username-password combination");
+                    return View();
+                }
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(1);
 
-                AddCookies(model.username, model.password, cookieOptions);
+                Response.Cookies.Append("BearerToken", token);
+
                 return RedirectToAction("Index", "Event");
             }
 
@@ -49,24 +49,5 @@ namespace RockStar_IT_Events.Controllers
         {
             return View();
         }
-
-        private async void AddCookies(string username, string password, CookieOptions options)
-        {
-            //Response.Cookies.Append("test", "test", options);
-            DataLayer dataLayer = new DataLayer();
-            Task<string> task = dataLayer.GetBearerToken(username, password);
-            Response.Cookies.Append("test", "test", options);
-            string value = await task;
-
-            var client = new HttpClient();
-            CookieOptions oo = new CookieOptions()
-            {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTime.Now.AddDays(1)
-            };
-            Response.Cookies.Append("sadf", "asdf", oo);
-            //Response.Cookies.Append("test", value, options);
-            }
     }
 }
