@@ -12,13 +12,13 @@ namespace RockStar_IT_Events.Controllers
 {
     public class UserController : Controller
     {
-        [HttpPost]
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Login(UserModel model)
         {
             
@@ -35,6 +35,18 @@ namespace RockStar_IT_Events.Controllers
                 return RedirectToAction("Index", "Event");
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(UserRegisterModel model)
+        {
             return View();
         }
 

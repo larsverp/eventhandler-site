@@ -32,20 +32,20 @@
                 <p>Welcome back</p>
             </div>
 
-            <form class="offset-1 col-md-10 formwrapper">
+            <form asp-action="Login" class="offset-1 col-md-10 formwrapper">
                 <div class="email">
-                    <input asp-for="username" type="text" id="emailformid" class="form-control" placeholder="Email adress">
+                    <label for="emailformid" class="font-weight-light">Email adress</label>
+                    <input asp-for="username" id="emailformid" class="form-control">
                     
                 </div>
 
                 <div class="password">
-                    <input asp-for="password" type="text" id="passwordformid" class="form-control" placeholder="Password">
+                    <label for="passwordformid" class="font-weight-light">Password</label>
+                    <input asp-for="password" id="passwordformid" class="form-control">
                 </div>
-
                 <div class="col-md-12 loginbutton">
                     <button type="submit" value="login" class="btn btn-lg btn-block btn-outline-warning">Log in</button>
                 </div>
-
                 <div class="notamember">
                     <p>Not yet a member?</p>
                 </div>
