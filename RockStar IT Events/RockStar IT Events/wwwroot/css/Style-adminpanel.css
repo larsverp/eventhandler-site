@@ -57,7 +57,7 @@ body {
 
 .right-box {
     background-color: var(--textColorLight);
-    padding-bottom: 1000px;
+    padding-bottom: 20vh;
 }
 
 .top-text {
