@@ -26,12 +26,12 @@ body {
     padding-left: 20%;
 }
 
-    .Logo img {
-        padding-bottom: 3vh;
-        object-fit: cover;
-        box-shadow: 0 .5px var(--textColorDark);
-        width: 80%;
-    }
+.Logo img {
+    padding-bottom: 3vh;
+    object-fit: cover;
+    box-shadow: 0 .5px var(--textColorDark);
+    width: 80%;
+}
 
 .Left-Box h1 {
     font-size: 3vh;
@@ -133,15 +133,28 @@ body {
 }
 
 .Form input {
-    background: var(--textColorLight);
+    background-color: #f7f7f7;
+    box-shadow: 0 .5px var(--textColorDark);
+    border: none;
     border-radius: 0px;
     font-size: 2vh;
     padding: 1vh;
+    margin-top: 3vh;
 }
 
 .Form textarea {
     background: var(--textColorLight);
+    box-shadow: 0 .5px var(--textColorDark);
     border-radius: 0px;
+    border: none;
+    font-size: 2vh;
+    margin-top: 3vh;
+}
+
+.Form ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #000000;
+    opacity: 0.5;
+    font-weight: 300;
     font-size: 2vh;
 }
 
@@ -179,24 +192,24 @@ body {
 }
 
 input:not(:placeholder-shown) {
-    background: none !important;
+    background-color: #f7f7f7;
     color: var(--textColorDark) !important;
 }
 
 
 input:placeholder-shown {
-    background: none !important;
+    background-color: #f7f7f7;
     color: var(--textColorDark) !important;
 }
 
 textarea:not(:placeholder-shown) {
-    background: none !important;
+    background-color: #f7f7f7;
     color: var(--textColorDark) !important;
 }
 
 
 textarea:placeholder-shown {
-    background: none !important;
+    background-color: #f7f7f7;
     color: var(--textColorDark) !important;
 }
 
