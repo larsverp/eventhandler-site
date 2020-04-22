@@ -29,6 +29,8 @@ namespace RockStar_IT_Events.Controllers
                 }
                 CookieOptions options = new CookieOptions();
                 options.Expires = DateTime.Now.AddDays(1);
+                options.Secure = true;
+                options.HttpOnly = true;
 
                 Response.Cookies.Append("BearerToken", token);
 
