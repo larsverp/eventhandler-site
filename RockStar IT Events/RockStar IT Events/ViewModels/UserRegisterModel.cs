@@ -18,6 +18,7 @@ namespace RockStar_IT_Events.ViewModels
 
         [Required(ErrorMessage = "Enter a email address")]
         [StringLength(maximumLength: 191, MinimumLength = 1, ErrorMessage = "Enter max. 191 characters")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
         [DataType(DataType.PostalCode)]
@@ -29,6 +30,7 @@ namespace RockStar_IT_Events.ViewModels
         public string Password { get; set; }
         
         [Compare("Password", ErrorMessage = "Passwords don't match")]
+        [DataType(DataType.Password)]
         public string ConfirmedPassword { get; set; }
     }
 }
