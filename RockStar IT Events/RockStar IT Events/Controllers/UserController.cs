@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RockStar_IT_Events.ViewModels;
-using RockStar_IT_Events.Controllers;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -19,19 +16,18 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(UserModel model)
+        public async Task<IActionResult> Login(UserModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                CookieOptions cookieOptions = new CookieOptions()
+                var DAL = new DataLayer();
+                string token = await DAL.GetBearerToken(model.username, model.password);
+                if (token == null)
                 {
-                    Expires = DateTime.Now.AddDays(1),
-                    Secure = true,
-                    HttpOnly = true
-                };
-
-                AddCookies(model.username, model.password, cookieOptions);
+                    ModelState.AddModelError("", "Incorrect username-password combination");
+                    return View();
+                }
+                HttpContext.Session.SetString("BearerToken", token);
                 return RedirectToAction("Index", "Event");
             }
 
