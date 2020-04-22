@@ -29,11 +29,11 @@ body {
     text-align: center;
 }
 
-    .leftSide h1 {
-        font-size: 7vw;
-        font-weight: 900;
-        padding: 8.5% 0px;
-    }
+.leftSide h1 {
+    font-size: 7vw;
+    font-weight: 900;
+    padding: 8.5% 0px;
+}
 
 .FormHeader {
     text-align: center;
@@ -47,29 +47,29 @@ body {
 
     .formRight h1 {
         color: var(--textColorLight);
-        font-size: 60px;
+        font-size: 6vh;
         font-weight: 600;
     }
 
     .formRight label {
         color: var(--textColorLight);
         font-weight: 800;
-        padding-top: 6px;
-        padding-bottom: 3px;
+        padding-top: .6vh;
+        padding-bottom: .3vh;
         margin: 0;
     }
 
     .formRight input {
         background: none;
         border-radius: 0%;
-        font-size: 30px;
-        padding: 20px;
+        font-size: 3vh;
+        padding: 2vh;
     }
 
     .formRight button {
         color: var(--textColorDark);
         background: var(--yellowColor);
-        font-size: 30px;
+        font-size: 3vh;
         font-weight: 600;
     }
 
