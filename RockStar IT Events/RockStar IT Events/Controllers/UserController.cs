@@ -44,6 +44,12 @@ namespace RockStar_IT_Events.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Register(UserRegisterModel model)
+        {
+            return View();
+        }
+
         private async void AddCookies(string username, string password, CookieOptions options)
         {
             //Response.Cookies.Append("test", "test", options);
