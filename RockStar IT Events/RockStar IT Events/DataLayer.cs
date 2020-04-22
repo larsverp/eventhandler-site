@@ -75,7 +75,7 @@ namespace RockStar_IT_Events
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
-            
+
             Console.WriteLine(result);
         }
 
