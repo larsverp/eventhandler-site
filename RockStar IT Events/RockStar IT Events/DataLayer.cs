@@ -95,13 +95,9 @@ namespace RockStar_IT_Events
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            
+            var response = await client.PostAsync(url, data);
 
-            var r = await client.PostAsync(url, data);
-
-            return "sa";
-
-            string result = r.Content.ReadAsStringAsync().Result;
+            string result = response.Content.ReadAsStringAsync().Result;
             string token = JsonConvert.DeserializeObject<Token>(result).access_token;
             return token;
         }
