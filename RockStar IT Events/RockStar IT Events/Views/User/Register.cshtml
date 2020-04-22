@@ -29,10 +29,11 @@
                     <h1>Welcome aboard</h1>
                 </div>
                 <form asp-action="Register">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                     <div class="form-row">
                         <div class="col-md-9">
                             <label asp-for="FirstName" class="font-weight-light"></label>
-                            <input asp-for="FirstName" class="form-control" id="defaultFormCardNameEx"/>
+                            <input asp-for="FirstName" class="form-control" id="defaultFormCardNameEx" />
                         </div>
                         <div class="col-md-3">
                             <label asp-for="Insertion" class="font-weight-light"></label>
