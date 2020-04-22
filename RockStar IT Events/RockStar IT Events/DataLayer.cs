@@ -55,44 +55,6 @@ namespace RockStar_IT_Events
             var response = await client.PostAsync(url, data);
 
             string result = response.Content.ReadAsStringAsync().Result;
-<<<<<<< HEAD
-        }
-
-        public async Task<string> GetBearerToken(string username, string password)
-        {
-            var userDetails = new Dictionary<string, string>()
-            {
-                { "username", username },
-                { "password", password }
-            };
-
-            string json = JsonConvert.SerializeObject(userDetails);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-
-            string url = "https://eventhandler-api.herokuapp.com/api/users/login";
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            
-
-            var r = await client.PostAsync(url, data);
-
-            return "sa";
-
-            string result = r.Content.ReadAsStringAsync().Result;
-            string token = JsonConvert.DeserializeObject<Token>(result).access_token;
-            return token;
-        }
-
-        public class Token
-        {
-            public string token_type { get; set; }
-            public string expires_in { get; set; }
-            public string access_token { get; set; }
-            public string refresh_token { get; set; }
-=======
->>>>>>> 660f812be3eac215a7bdcd6680e9fb9472310d4c
         }
     }
 }
