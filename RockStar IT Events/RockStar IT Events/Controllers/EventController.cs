@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -65,8 +66,15 @@ namespace RockStar_IT_Events.Controllers
                     notification = model.SendNotifications
                 };
                 string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
-                await dataLayer.Create(e, cookie);
-                return RedirectToAction("Index", "Event");
+                try
+                {
+                    await dataLayer.Create(e, cookie);
+                    return RedirectToAction("Index", "Event");
+                }
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError("", exception.Message);
+                }
             }
 
             return View();
