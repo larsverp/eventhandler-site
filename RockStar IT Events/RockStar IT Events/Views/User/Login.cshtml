@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/style-loginpage.css">
+    <link rel="stylesheet" href="~/css/Style-user-login.css">
 </head>
 <body>
     <div class="row">
@@ -33,18 +33,16 @@
             </div>
 
             <form asp-action="Login" class="offset-1 col-md-10 formwrapper">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="email">
-                    <label for="emailformid" class="font-weight-light">Email adress</label>
-                    <input asp-for="username" id="emailformid" class="form-control">
-                    
+                    <input asp-for="username" id="emailformid" class="form-control" placeholder="Emailadress">
                 </div>
 
                 <div class="password">
-                    <label for="passwordformid" class="font-weight-light">Password</label>
-                    <input asp-for="password" id="passwordformid" class="form-control">
+                    <input asp-for="password" id="passwordformid" class="form-control" placeholder="Password">
                 </div>
                 <div class="col-md-12 loginbutton">
-                    <button type="submit" value="login" class="btn btn-lg btn-block btn-outline-warning">Log in</button>
+                    <button type="submit" value="login" class="btn">Log in</button>
                 </div>
                 <div class="notamember">
                     <p>Not yet a member?</p>

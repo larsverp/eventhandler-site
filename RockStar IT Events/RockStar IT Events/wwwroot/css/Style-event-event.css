@@ -11,14 +11,15 @@ body {
 
 .header-eventpage {
     background-color: #FFE000;
-    height: 120px;
+    height: 12vh;
 }
 
 .header-eventpage img {
     position: relative;
-    left: 8%;
-    top: 42%;
-    z-index: 10000;
+    width: 17vh;
+    left: 15vh;
+    top: 4vh;
+    z-index: 10;
 }
 
 .wrapper {
@@ -30,9 +31,9 @@ body {
 
 .side-picture {
     background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),url(../img/Man.jpg);
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
     overflow: hidden;
     margin: 0;
 }
@@ -43,64 +44,80 @@ body {
 }
 
 .picture-date {
-    font-size: 4vw;
+    font-size: 2vw;
     font-weight: 600;
     margin-top: 100%;
 }
 
+.info-panel{
+    padding: 3vh;
+}
+
 .info-panel h1 {
-    font-size: 60px;
+    font-size: 5vh;
+}
+
+.info-panel h3{
+    padding-top:2vh;
+    padding-bottom:4vh;
+    font-size: 2vh;
 }
 
 .info-panel p {
-    margin-right: 10px;
+    margin-right: 1vh;
+    font-size: 1.5vh;
 }
 
 .content-information img {
-    width: 100%;
+    width: 4vh;
     filter: invert(var(--content-icon-color));
 }
 
 .content-information p {
     vertical-align: middle;
-    padding: 10px 0;
+    font-size: 1.5vh;
+    padding: 1vh 0;
 }
 
 .invite {
     background-color: #FFE000;
     height: 15%;
-    padding: 10px;
+    padding: 1vh;
     margin-right: 5%;
 }
 
 .checkbox {
-    text-align: center;
-    padding-top: 3.5%;
+    padding-top: 3.5vh;
+    padding-left: 5vh;
 }
 
 .info-panel h4 {
     color: black;
     font-weight: 500;
-    font-size: 32px;
+    font-size: 3vh;
     text-align: center;
     vertical-align: middle;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 2vh;
 }
 
 .invite-button {
     text-align: center;
-    padding-top: 0.667%;
 }
 
 .invite-button h5 {
-    font-size: 40px;
-    padding: 10px;
+    font-size: 4vh;
+    padding: 1.5vh;
     color: white;
+    font-size: 3vh;
 }
 
 .invite-button button {
     border: none;
     background: #232323;
-    padding: 0 70px;
+    padding: 0 7vh;
+}
+
+.map {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
