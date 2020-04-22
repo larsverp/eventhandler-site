@@ -12,49 +12,11 @@ namespace RockStar_IT_Events.Controllers
 {
     public class UserController : Controller
     {
+        //Will be used to login, still needs to be implemented.
         [HttpPost]
         public IActionResult Login()
         {
             return View();
         }
-
-        [HttpGet]
-        public IActionResult Login(UserModel model)
-        {
-            
-            if (ModelState.IsValid)
-            {
-                CookieOptions cookieOptions = new CookieOptions()
-                {
-                    Expires = DateTime.Now.AddDays(1),
-                    Secure = true,
-                    HttpOnly = true
-                };
-
-                AddCookies(model.username, model.password, cookieOptions);
-                return RedirectToAction("Index", "Event");
-            }
-
-            return View();
-        }
-
-        private async void AddCookies(string username, string password, CookieOptions options)
-        {
-            //Response.Cookies.Append("test", "test", options);
-            DataLayer dataLayer = new DataLayer();
-            Task<string> task = dataLayer.GetBearerToken(username, password);
-            Response.Cookies.Append("test", "test", options);
-            string value = await task;
-
-            var client = new HttpClient();
-            CookieOptions oo = new CookieOptions()
-            {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTime.Now.AddDays(1)
-            };
-            Response.Cookies.Append("sadf", "asdf", oo);
-            //Response.Cookies.Append("test", value, options);
-            }
     }
 }
