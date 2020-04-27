@@ -106,6 +106,51 @@ namespace RockStar_IT_Events
             return token;
         }
 
+        public async Task Delete(string id, string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/events/" + id;
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            var response = await client.DeleteAsync(url);
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine(result);
+        }
+
+        public async Task Update(string id, string cookieValue)
+        {
+            Event e = new Event
+            {
+                title = "SUPER GOEDE NIEUWE NAAM DIE HOPELIJK ZICHTBAAR WORDT GEMAAKT",
+                description = "EN EEN NOG BETERE OMSCHRIJVING WAJOOWWWWWWW",
+                date = "2020-10-10 12:12:12",
+                thumbnail = "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                seats = 1,
+                postal_code = "5711bz",
+                hnum = "3",
+                notification = false
+            };
+            var json = JsonConvert.SerializeObject(e);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+            var url = "https://eventhandler-api.herokuapp.com/api/events/" + id;
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            var response = await client.PutAsync(url, data);
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            Console.WriteLine(result);
+        }
+
         public class Token
         {
             public string token_type { get; set; }

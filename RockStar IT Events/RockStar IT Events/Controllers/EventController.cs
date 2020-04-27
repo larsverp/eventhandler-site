@@ -86,5 +86,41 @@ namespace RockStar_IT_Events.Controllers
             List<Event> models = new List<Event>(layer.GetAllEvents());
             return View(models);
         }
+
+        public async Task<IActionResult> DeleteEvent()
+        {
+            DataLayer dataLayer = new DataLayer();
+
+            string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+            try
+            {
+                string id = "9e8ee412-78cd-478c-aae2-5e5b8c33e755";
+                await dataLayer.Delete(id, cookie);
+                return RedirectToAction("Index", "Event");
+            }
+            catch (Exception exception)
+            {
+                throw new ArgumentException("Error: " + exception.Message);
+            }
+
+            return RedirectToAction("Index", "Event");
+        }
+
+        public async Task<IActionResult> Update()
+        {
+            DataLayer dataLayer = new DataLayer();
+
+            string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+            try
+            {
+                string id = "51a67d93-9647-4972-a383-5cc1ed5a68ed";
+                await dataLayer.Update(id, cookie);
+                return RedirectToAction("Index", "Event");
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("Error: " + e.Message);
+            }
+        }
     }
 }
