@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Rockstar.Models.Event>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +69,7 @@
                             <th scope="col">Date</th>
                             <th scope="col">Tickets sold</th>
                             <th scope="col">Last updated at</th>
-                            <th scope="col">Update</th>
+                            <th scope="col"><label>Update</label></th>
                             <th scope="col">Remove</th>
                         </tr>
                     </thead>
@@ -80,7 +81,7 @@
                                 <td>@e.date</td>
                                 <td>@e.seats</td>
                                 <td>@e.date</td>
-                                <td>Update</td>
+                                <td><a asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
                                 <td>Remove</td>
                             </tr>
                         }

@@ -87,7 +87,7 @@ namespace Rockstar.Data
 
         private void checkResponse(HttpStatusCode code)
         {
-            if (code != HttpStatusCode.Created)
+            if (code == HttpStatusCode.OK)
             {
                 throw new ArgumentException($"Something went wrong : {(int)code}");
             }
