@@ -5,6 +5,14 @@
     {
       "library": "jquery-validate@1.19.1",
       "destination": "wwwroot/lib/jquery-validate/"
+    },
+    {
+      "library": "bootstrap-toggle@2.2.2",
+      "destination": "wwwroot/bootstrap-toggle/"
+    },
+    {
+      "library": "twitter-bootstrap@4.4.0",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
     }
   ]
 }

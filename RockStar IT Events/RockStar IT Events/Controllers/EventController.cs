@@ -1,39 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RockStar_IT_Events.Models;
+using Rockstar.Data;
 using RockStar_IT_Events.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Event = Rockstar.Models;
 
 namespace RockStar_IT_Events.Controllers
 {
     public class EventController : Controller
     {
         private IHttpContextAccessor contextAccessor;
+        private readonly EventApi eventApi;
         public EventController(IHttpContextAccessor contextAccessor)
         {
             this.contextAccessor = contextAccessor;
+            eventApi = new EventApi();
         }
         public IActionResult Index()
         {
-            DataLayer dataLayer = new DataLayer();
-            var events = dataLayer.GetAllEvents().OrderBy(e => e.id).ToList();
+            List<Event.Event> events = eventApi.GetAllEvents();
+
             return View(events);
         }
 
         public IActionResult Event(string id)
         {
-            DataLayer dataLayer = new DataLayer();
-            var e = dataLayer.GetEvent(id);
+            var e = eventApi.GetEvent(id);
             return View(e);
-        }
-
-        public IActionResult Manage()
-        {
-            //check if admin is logged in
-            return Content("Manage page");
         }
 
         [HttpGet]
@@ -52,23 +47,23 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                DataLayer dataLayer = new DataLayer();
-                
-                var e = new Event()
+                var e = new Event.Event()
                 {
                     title = model.Title,
                     description = model.Description,
-                    date = "2020-10-10 12:12:12",
+                    date = model.StartDate.ToString(),
                     thumbnail = model.Thumbnail,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
                     hnum = model.HouseNumber,
                     notification = model.SendNotifications
                 };
+                
                 string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+                
                 try
                 {
-                    await dataLayer.Create(e, cookie);
+                    await eventApi.Create(e, cookie);
                     return RedirectToAction("Index", "Event");
                 }
                 catch (Exception exception)
@@ -80,11 +75,35 @@ namespace RockStar_IT_Events.Controllers
             return View();
         }
 
-        public IActionResult adminpanel()
+        public async Task<IActionResult> DeleteEvent(string id)
         {
-            DataLayer layer = new DataLayer();
-            List<Event> models = new List<Event>(layer.GetAllEvents());
-            return View(models);
+            string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+
+            try
+            {
+                await eventApi.Delete(id, cookie);
+                return RedirectToAction("Index", "Event");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
+        }
+
+        public async Task<IActionResult> Update(Event.Event updatedEvent)
+        {
+            string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+            try
+            {
+                await eventApi.Update(updatedEvent, cookie);
+                return RedirectToAction("Index", "Event");
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            }
+
+            return View();
         }
     }
 }
