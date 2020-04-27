@@ -54,7 +54,7 @@ namespace Rockstar.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
 
             var response = await client.PostAsync(url, data);
-
+            string x = response.Content.ReadAsStringAsync().Result;
             checkResponse(response.StatusCode);
         }
 
@@ -81,16 +81,16 @@ namespace Rockstar.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
 
             var response = await client.PutAsync(url, data);
-
             checkResponse(response.StatusCode);
         }
 
         private void checkResponse(HttpStatusCode code)
         {
-            if (code == HttpStatusCode.OK)
+            if (code == HttpStatusCode.OK || code == HttpStatusCode.Created)
             {
-                throw new ArgumentException($"Something went wrong : {(int)code}");
+                return;
             }
+            throw new ArgumentException($"Something went wrong : {(int)code}");
         }
     }
 }

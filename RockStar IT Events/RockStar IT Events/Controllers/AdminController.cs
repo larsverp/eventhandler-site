@@ -69,15 +69,16 @@ namespace RockStar_IT_Events.Controllers
 
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
                     await eventApi.Update(e, cookie);
+
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    throw;
+                    ModelState.AddModelError("", e.Message);
                 }
             }
 
-            return RedirectToAction("Index");
+            return View();
         }
 
         public async Task<IActionResult> DeleteEvent(string id)
@@ -92,6 +93,50 @@ namespace RockStar_IT_Events.Controllers
             {
                 return Content(e.Message);
             }
+        }
+
+        [HttpGet]
+        public IActionResult CreateEvent()
+        {
+            if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEvent(EventModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var e = new Event
+                {
+                    title = model.Title,
+                    description = model.Description,
+                    date = model.StartDate.ToString(),
+                    thumbnail = model.Thumbnail,
+                    seats = model.TotalSeats,
+                    postal_code = model.PostalCode,
+                    hnum = model.HouseNumber,
+                    notification = model.SendNotifications
+                };
+
+                string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+
+                try
+                {
+                    await eventApi.Create(e, cookie);
+                    return RedirectToAction("Index", "Event");
+                }
+                catch (Exception exception)
+                {
+                    ModelState.AddModelError("", exception.Message);
+                }
+            }
+
+            return View();
         }
     }
 }
