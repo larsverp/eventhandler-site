@@ -4,11 +4,19 @@ using RockStar_IT_Events.ViewModels;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Rockstar.Data;
+using Rockstar.Models;
 
 namespace RockStar_IT_Events.Controllers
 {
     public class UserController : Controller
     {
+        private readonly UserApi userApi;
+        public UserController()
+        {
+            userApi = new UserApi();    
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -20,8 +28,7 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                var DAL = new DataLayer();
-                string token = await DAL.GetBearerToken(model.username, model.password);
+                string token = await userApi.Login(model.username, model.password);
                 if (token == null)
                 {
                     ModelState.AddModelError("", "Incorrect username-password combination");
@@ -47,8 +54,18 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(UserRegisterModel model)
+        public async Task<IActionResult> Register(UserRegisterModel model)
         {
+            Rockstar.Models.User user = new User()
+            {
+                first_name = "Ruben",
+                email = "rubenfricke@gmail.com",
+                insertion = "iets",
+                last_name = "Fricke",
+                password = "RubenFricke",
+                postal_code = "5711BZ"
+            };
+            await userApi.Signup(user);
             return View();
         }
     }
