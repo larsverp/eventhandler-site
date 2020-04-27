@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using Rockstar.Models;
+using System.Collections.Generic;
 
 namespace RockStar_IT_Events.Controllers
 {

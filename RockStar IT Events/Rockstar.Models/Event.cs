@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Rockstar.Models
+﻿namespace Rockstar.Models
 {
     public class Event
     {
