@@ -5,24 +5,30 @@ namespace RockStar_IT_Events.ViewModels
 {
     public class EventModel
     {
+        public string Id { get; set; }
         [Required(ErrorMessage = "Title must be entered")]
         [Display(Name = "Title")]
+        [DataType(DataType.Text)]
         public string Title { get; set; }
 
         [Display(Name = "Description")]
         [Required(ErrorMessage = "Description must be entered")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Display(Name = "Start of the Event")]
         [Required(ErrorMessage = "Value for start of the event is invalid")]
-        public DateTime StartDate { get; set; }
+        [DataType(DataType.Date)]
+        public string StartDate { get; set; }
 
         [Display(Name = "End of the Event")]
         [Required(ErrorMessage = "Value for end of the event is invalid")]
-        public DateTime EndDate { get; set; }
+        [DataType(DataType.Date)]
+        public string EndDate { get; set; }
 
         [Display(Name = "Thumbnail")]
         [Required(ErrorMessage = "Thumbnail must be entered")]
+        [DataType(DataType.ImageUrl)]
         public string Thumbnail { get; set; }
 
         [Display(Name = "Total seats")]
@@ -31,6 +37,7 @@ namespace RockStar_IT_Events.ViewModels
 
         [Display(Name = "Postal code")]
         [Required(ErrorMessage = "Postal code must be entered")]
+        [DataType(DataType.PostalCode)]
         public string PostalCode { get; set; }
 
         [Display(Name = "House number")]
