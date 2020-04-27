@@ -9,6 +9,10 @@
     {
       "library": "bootstrap-toggle@2.2.2",
       "destination": "wwwroot/bootstrap-toggle/"
+    },
+    {
+      "library": "twitter-bootstrap@4.4.0",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
     }
   ]
 }
