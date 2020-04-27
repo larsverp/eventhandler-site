@@ -19,12 +19,12 @@ namespace RockStar_IT_Events.ViewModels
         [Display(Name = "Start of the Event")]
         [Required(ErrorMessage = "Value for start of the event is invalid")]
         [DataType(DataType.Date)]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "End of the Event")]
         [Required(ErrorMessage = "Value for end of the event is invalid")]
         [DataType(DataType.Date)]
-        public string EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Display(Name = "Thumbnail")]
         [Required(ErrorMessage = "Thumbnail must be entered")]
