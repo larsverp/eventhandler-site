@@ -82,7 +82,7 @@
                                 <td>@e.seats</td>
                                 <td>@e.date</td>
                                 <td><a asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
-                                <td>Remove</td>
+                                <td><a asp-action="DeleteEvent" asp-route-id="@e.id">Delete</a></td>
                             </tr>
                         }
                     </tbody>

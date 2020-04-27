@@ -79,5 +79,19 @@ namespace RockStar_IT_Events.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DeleteEvent(string id)
+        {
+            try
+            {
+                string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+                await eventApi.Delete(id, cookie);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
+        }
     }
 }
