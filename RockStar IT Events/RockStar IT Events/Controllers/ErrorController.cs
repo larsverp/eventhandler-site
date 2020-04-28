@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -7,7 +8,7 @@ namespace RockStar_IT_Events.Controllers
         [Route("ErrorMessage/{statusCode}")]
         public IActionResult Index(int statusCode)
         {
-            ErrorViewModel model = new ErrorViewModel();
+            ErrorModel model = new ErrorModel();
             switch (statusCode)
             {
                 case 404:
