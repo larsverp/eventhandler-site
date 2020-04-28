@@ -34,8 +34,8 @@ namespace RockStar_IT_Events.Controllers
             {
                 Id = e.id,
                 Description = e.description,
-                EndDate = e.date,
-                StartDate = e.date,
+                EndDate = DateTime.Parse(e.date),
+                StartDate = DateTime.Parse(e.date),
                 HouseNumber = e.hnum,
                 PostalCode = e.postal_code,
                 SendNotifications = e.notification,
@@ -59,7 +59,7 @@ namespace RockStar_IT_Events.Controllers
                         id = model.Id,
                         title = model.Title,
                         description = model.Description,
-                        date = model.StartDate,
+                        date = model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
                         hnum = model.HouseNumber,
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
@@ -115,7 +115,7 @@ namespace RockStar_IT_Events.Controllers
                 {
                     title = model.Title,
                     description = model.Description,
-                    date = model.StartDate.ToString(),
+                    date = model.StartDate.ToString("dd-MM-yyyy") + "00:00:00",
                     thumbnail = model.Thumbnail,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,

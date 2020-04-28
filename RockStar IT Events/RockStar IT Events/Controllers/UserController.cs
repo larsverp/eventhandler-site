@@ -55,16 +55,25 @@ namespace RockStar_IT_Events.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel model)
         {
-            Rockstar.Models.User user = new User()
+            try
             {
-                first_name = "Ruben",
-                email = "rubenfricke@gmail.com",
-                insertion = "iets",
-                last_name = "Fricke",
-                password = "RubenFricke",
-                postal_code = "5711BZ"
-            };
-            await userApi.Signup(user);
+                Rockstar.Models.User user = new User()
+                {
+                    first_name = model.FirstName,
+                    email = model.EmailAddress,
+                    insertion = model.Insertion,
+                    last_name = model.LastName,
+                    password = model.Password,
+                    postal_code = model.PostalCode
+                };
+                await userApi.Signup(user);
+                return RedirectToAction("Login");
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            }
+
             return View();
         }
     }
