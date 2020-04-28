@@ -11,9 +11,11 @@ namespace RockStar_IT_Events.Controllers
             switch (statusCode)
             {
                 case 404:
+                    model.StatusCode = statusCode;
                     model.ErrorMessage = "YOU SEEM TO BE LOST";
                     break;
                 default:
+                    model.StatusCode = null;
                     model.ErrorMessage = "SOMETHING WENT WRONG";
                     break;
             }
