@@ -20,6 +20,10 @@ namespace RockStar_IT_Events
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/ErrorMessage/{0}");
+            }
 
             app.UseRouting();
             app.UseStaticFiles();
