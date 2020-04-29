@@ -1,13 +1,48 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
 <head>
     <title>Rockstar Events</title>
-    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
-    <link rel="icon" href="~/img/logo-rockstars@2x_2 1.png">
+    <link rel="icon" href="~/img/Background-banner1.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/Style-event-event.css">
+    <link rel="stylesheet" type="text/css" href="~/css/Style-index.css" />
 </head>
 <body>
+<div id="HeaderHomePage">
+        <h1>ROCKSTAR EVENTS</h1>
+    </div>
+<div class="header row" id="myHeader">
+        <div id="NavHomePage">
+            <button class="ToggleButton" id="ToggleButton"><img src="~/img/Moon.png"></button>
+        </div>
+        <div class="LogoNavBar">
+            <img src="~/img/logo-rockstars@2x_2 1.png" alt="logo-rockstars">
+        </div>
+    <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <a href="#">Account</a>
+            <a href="#">Settings</a>
+            <a href="#">Log Out</a>
+        </div>
+    </div>
+</div>
+
     @RenderBody()
 
-    
+    <footer class="FooterText">
+        <p>Copyright &copy; 2020 EventHandlers</p>
+
+        <script src="~/Scripts/scroll.js"></script>
+        <script src="~/Scripts/ToggleDarkMode.js"></script>
+    </footer>
+
 </body>
 </html>
 
