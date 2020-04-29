@@ -1,86 +1,63 @@
-﻿@model List<Rockstar.Models.Event>
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model IEnumerable<Rockstar.Models.Event>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rockstar Events</title>
-    <link rel="icon" href="~/img/Background-banner1.jpg">
-
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="~/css/Style-index.css" />
-
-</head>
-<body>
-
-    <div id="HeaderHomePage">
-        <h1>ROCKSTAR EVENTS</h1>
-    </div>
-
-    <div class="header row" id="myHeader">
-        <div id="NavHomePage">
-
-            <button class="ToggleButton" id="ToggleButton"><img src="img/Moon.png"></button>
-
-        </div>
-        <div class="LogoNavBar">
-            <img src="~/img/logo-rockstars@2x_2 1.png" alt="logo-rockstars">
-        </div>
-
-        <div class="dropdown">
-            <button class="dropbtn">Menu</button>
-            <div class="dropdown-content">
-                <a href="#">Account</a>
-                <a href="#">Settings</a>
-                <a href="#">Log Out</a>
+<div class="container-fluid bg-subwhite">
+    <div class="container main-padding">
+        <div class="row bg-white">
+            <div class="col-lg normal-padding">
+                <h1>Update your Interests!</h1>
+                <p class="sub-text">A brand new way of discovering your interests</p>
+                <a class="d-inline-flex next-button">
+                    <span class="align-self-center">discover</span>
+                    <img class="align-self-center" src="~/Images/Next.png" />
+                </a>
+            </div>
+            <div class="col-sm">
+                <img src="~/Images/tinder.png" class="img-demo" />
             </div>
         </div>
 
-    </div>
-
-    <div id="UpcomingEvents" class="content">
-        <p>UPCOMING EVENTS</p>
-    </div>
-
-    @foreach (var e in Model)
-    {
-        <div class="EventBlock">
-            <div class="LeftImage">
-                <img src=@e.thumbnail alt="">
-                <h1>27-03</h1>
+        <div class="row mt-5">
+            <div class="col-sm normal-padding">
+                <h1>Event Overview</h1>
             </div>
-            <div class="TextRight">
-                <ul>
-                    <div class="TextColumn">
-                        <li><h1>@e.title - Alkmaar</h1></li>
-                        <li>
-                            <p>
-                                @e.description
-                            </p>
-                        </li>
-                        <div class="TextRow">
-                            <li><h5>PHP	|	Unit testing	|	Python	| C# </h5></li>
-
-                            <div class="InfoButton">
-                                <h2><a asp-action="Event" asp-route-id="@e.id">More info</a></h2>
+        </div>
+        
+        <div class="d-flex flex-row mb-3">
+            <div class="p-2 category">all</div>
+            <div class="p-2 category">your interests</div>
+            <div class="p-2 category">your location</div>
+            <div class="p-2 category">your interests & location</div>
+        </div>
+        
+        <div class="row">
+            @foreach (var e in Model)
+            {
+                <div class="col-sm-4 pt-5">
+                    <a href="#" class="text-decoration-none">
+                        <div class="card text-dark" style="height: 500px; box-shadow: rgba(0,0,0,.2) 0px 0px 5px">
+                            <img class="card-img-top" src="@e.thumbnail" style="height: 250px; width: 100%; margin: 0"/>
+                            <hr class="m-0"/>
+                            <div class="px-3" style="height: 250px">
+                                <p class="p-0 m-0">Thursday, May 7, 2020</p>
+                                <p class="p-0 m-0">8:00 AM - 10:30 AM</p>
+                                <p class="p-0 m-0">32 Seats available</p>
+                                @if (@e.title.Length >= 50)
+                                {
+                                    <h2 class="mt-3">
+                                        @e.title.Substring(0, 50) ...
+                                    </h2>
+                                }
+                                else
+                                {
+                                    <h2 class="mt-3">
+                                        @e.title
+                                    </h2>
+                                }
                             </div>
                         </div>
-                    </div>
-                </ul>
-            </div>
+                    </a>
+                </div>
+            }
         </div>
-    }
-
-    <footer class="FooterText">
-        <p>Copyright &copy; 2020 EventHandlers</p>
-
-        <script src="~/Scripts/scroll.js"></script>
-        <script src="~/Scripts/ToggleDarkMode.js"></script>
-    </footer>
-
-</body>
-</html>
-
+    </div>
+</div>
