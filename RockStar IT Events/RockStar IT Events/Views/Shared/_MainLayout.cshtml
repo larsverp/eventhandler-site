@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
     <a href="#">
         <img src="~/Images/RockstarLogo.svg" class="nav-height mr-auto" />
     </a>
@@ -46,7 +46,11 @@
         </ul>
     </div>
 </nav>
-@RenderBody()
+<div class="container-fluid bg-subwhite">
+    <div class="container main-padding">
+        @RenderBody()
+    </div>
+</div>
 <footer class="d-flex justify-content-around" style="line-height: 100px">
     <span class="text-white d-inline-block">© Copyright Team EventHandler 2020</span>
 </footer>
