@@ -1,0 +1,67 @@
+﻿@model Rockstar.Models.Event
+
+<div class="row bg-white">
+    <div class="col-sm">
+        <img src="@Model.thumbnail"/>
+    </div>
+    <div class="col-sm">
+        @*<p>@DateTime.Parse(Model.date).Month</p>
+        <p>@DateTime.Parse(Model.date).Day</p>*@
+        <h1>@Model.title</h1>
+        <p>by Richard Baaters</p>
+        <a href="#">
+            <p>Following</p>
+            <img src="~/Images/Check.png"/>
+        </a>
+        <p>25/50 seats available</p>
+        <p>PHP | Unit Testing | Python</p>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-sm border-top border-bottom">
+        <img src="~/Images/Share.png"/>
+        <img src="~/Images/Heart.png"/>
+        <a href="#">
+            <p>tickets</p>
+            <img src="~/Images/Next.png"/>
+        </a>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-sm">
+        <h1>About this Event</h1>
+        <p>
+            @Model.description
+        </p>
+        <h1>About this Host</h1>
+        @*img*@
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
+            the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+            the release of Letraset. took a galley of type and scrambled it to make a type specimen book. It has survived 
+            not only five centuries, but also the leap into electronic typesetting, remaining essentially 
+            unchanged.
+        </p>
+    </div>
+    <div class="col-sm">
+        <div>
+            <h1>Date and Time</h1>
+            @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
+            <a href="#">
+                <p>add to calander</p>
+                <img src="~/Images/Next.png"/>
+            </a>
+        </div>
+        <div>
+            <h1>location</h1>
+            <p>Oude kerk, 2</p>
+            <p>
+                Alkmaar, The Netherlands
+            </p>
+            <a href="#">
+                <p>plan route</p>
+                <img src="~/Images/Next.png" />
+            </a>
+        </div>
+    </div>
+</div>
