@@ -31,7 +31,7 @@
     @foreach (var e in Model)
     {
         <div class="col-sm-4 pt-5">
-            <a href="#" class="text-decoration-none">
+            <a asp-action="Event" asp-route-id="@e.id" class="text-decoration-none">
                 <div class="card text-dark" style="height: 500px; box-shadow: rgba(0,0,0,.2) 0px 0px 5px">
                     <img class="card-img-top" src="@e.thumbnail" style="height: 250px; width: 100%; margin: 0"/>
                     <hr class="m-0"/>
