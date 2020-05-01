@@ -1,6 +1,7 @@
-﻿[
+[
   {
     "outputFile": "wwwroot/css/Style.css",
-    "inputFile": "wwwroot/css/Style.scss"
+    "inputFile": "wwwroot/css/Style.scss",
+    "sourceMap": false
   }
 ]

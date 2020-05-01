@@ -1,29 +1,33 @@
 ﻿@model Rockstar.Models.Event
 
 <div class="row bg-white">
-    <div class="col-sm">
-        <img src="@Model.thumbnail"/>
+    <div class="col-sm p-0">
+        <img src="@Model.thumbnail" class="main-img-thumbnail"/>
     </div>
     <div class="col-sm">
         @*<p>@DateTime.Parse(Model.date).Month</p>
         <p>@DateTime.Parse(Model.date).Day</p>*@
         <h1>@Model.title</h1>
         <p>by Richard Baaters</p>
-        <a href="#">
-            <p>Following</p>
-            <img src="~/Images/Check.png"/>
+        <a href="#" class="rockstar-btn d-inline-flex">
+            <p class="align-self-center">Following</p>
+            <img class="align-self-center" src="~/Images/Check.png" />
         </a>
         <p>25/50 seats available</p>
         <p>PHP | Unit Testing | Python</p>
     </div>
     <div class="w-100"></div>
-    <div class="col-sm border-top border-bottom">
-        <img src="~/Images/Share.png"/>
-        <img src="~/Images/Heart.png"/>
-        <a href="#">
-            <p>tickets</p>
-            <img src="~/Images/Next.png"/>
+    <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
+        <a href="#" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+            <p class="align-self-center">tickets</p>
+            <img class="align-self-center" src="~/Images/Next.png"/>
         </a>
+        <div class="align-self-center text-right">
+            <div class="float-right">
+                <img src="~/Images/Share.png" class="icon mx-2"/>
+                <img src="~/Images/Heart.png" class="icon mx-2"/>
+            </div>
+        </div>
     </div>
     <div class="w-100"></div>
     <div class="col-sm">
@@ -46,10 +50,11 @@
     <div class="col-sm">
         <div>
             <h1>Date and Time</h1>
+            <p>Datum spul</p>
             @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
-            <a href="#">
+            <a href="#" class="rockstar-btn d-inline-flex">
                 <p>add to calander</p>
-                <img src="~/Images/Next.png"/>
+                <img src="~/Images/Next.png" class="icon"/>
             </a>
         </div>
         <div>
@@ -58,9 +63,9 @@
             <p>
                 Alkmaar, The Netherlands
             </p>
-            <a href="#">
+            <a href="#" class="rockstar-btn d-inline-flex">
                 <p>plan route</p>
-                <img src="~/Images/Next.png" />
+                <img src="~/Images/Next.png" class="icon" />
             </a>
         </div>
     </div>
