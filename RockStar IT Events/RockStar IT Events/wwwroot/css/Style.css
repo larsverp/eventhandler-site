@@ -57,6 +57,9 @@ p {
   width: auto;
   display: inline; }
 
+#navbar {
+  transition: top 0.2s; }
+
 nav img {
   height: 80px; }
 

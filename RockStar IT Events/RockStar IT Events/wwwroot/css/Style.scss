@@ -31,7 +31,12 @@ p {
     display: inline;
 }
 
+#navbar {
+    transition: top 0.2s;
+}
+
 nav{
+
     img{
         height: $nav-height;
     }
