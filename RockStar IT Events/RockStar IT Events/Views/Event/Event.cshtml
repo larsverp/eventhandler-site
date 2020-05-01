@@ -1,0 +1,72 @@
+﻿@model Rockstar.Models.Event
+
+<div class="row bg-white">
+    <div class="col-sm p-0">
+        <img src="@Model.thumbnail" class="main-img-thumbnail"/>
+    </div>
+    <div class="col-sm">
+        @*<p>@DateTime.Parse(Model.date).Month</p>
+        <p>@DateTime.Parse(Model.date).Day</p>*@
+        <h1>@Model.title</h1>
+        <p>by Richard Baaters</p>
+        <a href="#" class="rockstar-btn d-inline-flex">
+            <p class="align-self-center">Following</p>
+            <img class="align-self-center" src="~/Images/Check.png" />
+        </a>
+        <p>25/50 seats available</p>
+        <p>PHP | Unit Testing | Python</p>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
+        <a href="#" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+            <p class="align-self-center">tickets</p>
+            <img class="align-self-center" src="~/Images/Next.png"/>
+        </a>
+        <div class="align-self-center text-right">
+            <div class="float-right">
+                <img src="~/Images/Share.png" class="icon mx-2"/>
+                <img src="~/Images/Heart.png" class="icon mx-2"/>
+            </div>
+        </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-sm">
+        <h1>About this Event</h1>
+        <p>
+            @Model.description
+        </p>
+        <h1>About this Host</h1>
+        @*img*@
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+            type and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
+            the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+            the release of Letraset. took a galley of type and scrambled it to make a type specimen book. It has survived 
+            not only five centuries, but also the leap into electronic typesetting, remaining essentially 
+            unchanged.
+        </p>
+    </div>
+    <div class="col-sm">
+        <div>
+            <h1>Date and Time</h1>
+            <p>Datum spul</p>
+            @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
+            <a href="#" class="rockstar-btn d-inline-flex">
+                <p>add to calander</p>
+                <img src="~/Images/Next.png" class="icon"/>
+            </a>
+        </div>
+        <div>
+            <h1>location</h1>
+            <p>Oude kerk, 2</p>
+            <p>
+                Alkmaar, The Netherlands
+            </p>
+            <a href="#" class="rockstar-btn d-inline-flex">
+                <p>plan route</p>
+                <img src="~/Images/Next.png" class="icon" />
+            </a>
+        </div>
+    </div>
+</div>

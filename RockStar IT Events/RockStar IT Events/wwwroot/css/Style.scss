@@ -1,0 +1,91 @@
+﻿@import "init";
+@import "variables";
+
+h1{
+    font-size: $rockstar-h1-size;
+}
+
+h2{
+    font-size: $rockstar-h2-size;
+}
+
+h3 {
+    font-size: $rockstar-h3-size;
+}
+
+h4 {
+    font-size: $rockstar-h4-size;
+}
+
+h5 {
+    font-size: $rockstar-h5-size;
+}
+
+p {
+    font-size: $rockstar-p-size;
+}
+
+.icon{
+    height: $icon-size;
+    width: auto;
+    display: inline;
+}
+
+#navbar {
+    transition: top 0.2s;
+}
+
+nav{
+
+    img{
+        height: $nav-height;
+    }
+}
+
+.rockstar-btn {
+    background-color: $rockstar-yellow;
+    padding: 10px;
+    color: $rockstar-black;
+    transition: 0.4s;
+
+    p {
+        display: inline;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    img {
+        height: 100%;
+        margin-left: 20px;
+        height: $rockstar-p-size;
+    }
+
+    &:hover{
+        background-color: $rockstar-yellow-hover;
+        text-decoration: none;
+        color: $rockstar-black;
+    }
+}
+
+.main-img-thumbnail{
+    height: 300px;
+    width: 100%;
+   
+}
+
+.sub-info-div{
+    padding: 20px;
+}
+
+.bg-subwhite {
+    background-color: $sub-white;
+}
+
+footer{
+    background: $rockstar-dark-gray;
+}
+
+.main-padding {
+    padding: 50px 0;
+}
