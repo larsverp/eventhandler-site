@@ -34,13 +34,13 @@
         <div class="col-sm-4 pt-5">
             <a asp-action="Event" asp-route-id="@e.id" class="text-decoration-none">
                 <div class="card text-dark" style="height: 500px; box-shadow: rgba(0,0,0,.2) 0px 0px 5px">
-                    <img class="card-img-top" src="@e.thumbnail" style="height: 250px; width: 100%; margin: 0"/>
+                    <img class="card-img-top" src="@e.thumbnail" style="height: 250px; width: 100%; margin: 0; object-fit: cover"/>
                     <hr class="m-0"/>
                     <div class="px-3" style="height: 250px">
                         @if (@e.title.Length >= 50)
                         {
                             <h2 class="mt-3">
-                                @e.title.Substring(0, 50) ...
+                                @e.title.Substring(0, 48) ...
                             </h2>
                         }
                         else
