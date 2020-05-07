@@ -100,16 +100,17 @@ nav img {
   margin-bottom: 20px;
   border-radius: 0px;
   box-shadow: rgba(0, 0, 0, 0.3) 0 1px;
-  background: #f4f4f4; }
+  background: #f4f4f4;
+  padding: 10px; }
 
 .rockstar-form h1 {
   padding: 50px 0 20px 0;
-  font-weight: lighter; }
+  font-weight: normal; }
 
 .rockstar-form div {
   margin: auto; }
 
-.rockstar-form a {
+.rockstar-form .bottom-text a {
   color: #232323;
   text-decoration: underline; }
 

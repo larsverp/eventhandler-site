@@ -94,18 +94,19 @@ nav{
         border-radius: 0px;
         box-shadow: rgba(0,0,0,.3) 0 1px;
         background: $sub-white;
+        padding: 10px;
     }
 
     h1 {
         padding: 50px 0 20px 0;
-        font-weight: lighter;
+        font-weight: normal;
     }
 
     div {
         margin: auto;
     }
 
-    a {
+    .bottom-text a{
         color: $rockstar-dark-gray;
         text-decoration: underline;
     }
@@ -140,5 +141,5 @@ nav{
     margin: auto;
     margin-top: 16vh;
     margin-bottom: 16vh;
-    box-shadow: rgba(0,0,0,.2) 0px 0px 5px
+    box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
 }
