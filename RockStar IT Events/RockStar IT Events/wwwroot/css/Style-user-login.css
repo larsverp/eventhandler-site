@@ -1,0 +1,114 @@
+﻿:root {
+    --backgroundColor: #333333;
+    --eventBLockColor: #232323;
+    --textColorDark: #000000;
+    --textColorLight: #ffffff;
+    --yellowColor: #FFE000;
+    --invertAmount: 100%;
+}
+
+html {
+    overflow: hidden;
+}
+
+.left {
+    background-color: #FFE000;
+}
+
+.left-top {
+    vertical-align: middle;
+    text-align: left;
+    color: white;
+    font-weight: 700;
+    font-size: 12vh;
+    margin-top: 8%;
+}
+
+.left-bottom {
+    vertical-align: middle;
+    text-align: left;
+    color: black;
+    font-weight: 700;
+    font-size: 7vh;
+    margin-top: 15%;
+    padding-bottom: 1000px;
+}
+
+.right {
+    background-color: #333333;
+}
+
+.logo {
+    justify-content: space-between;
+    margin-top: 15%;
+}
+
+.welcometext {
+    color: white;
+    font-weight: 300;
+    font-size: 50px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.formwrapper {
+    margin-top: 30px;
+}
+
+.formwrapper input {
+    background-color: transparent;
+}
+
+.email {
+    color: white;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.email input {
+    border-radius: 0px;
+}
+
+.password {
+    color: white;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-radius: 0px;
+}
+
+.password input {
+    border-radius: 0px;
+}
+
+.loginbutton {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
+    background: var(--yellowColor);
+}
+
+.notamember {
+    color: white;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+}
+
+input:not(:placeholder-shown) {
+    background: #f7f7f7 !important;
+    color: var(--textColorDark) !important;
+}
+
+
+input:placeholder-shown {
+    background: #f7f7f7 !important;
+    color: var(--textColorDark) !important;
+}
+
+.form-control:focus {
+    border-color: #f7f7f7(--textColorLight);
+    box-shadow: none;
+}
+/*  */

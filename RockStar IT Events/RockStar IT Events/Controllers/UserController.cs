@@ -1,60 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rockstar.Data;
+using Rockstar.Models;
 using RockStar_IT_Events.ViewModels;
-using RockStar_IT_Events.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
     public class UserController : Controller
     {
-        [HttpPost]
+        private readonly UserApi userApi;
+        public UserController()
+        {
+            userApi = new UserApi();    
+        }
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Login(UserModel model)
+        [HttpPost]
+        public async Task<IActionResult> Login(UserModel model)
         {
-            
             if (ModelState.IsValid)
             {
-                CookieOptions cookieOptions = new CookieOptions()
+                string token = await userApi.Login(model.username, model.password);
+                if (token == null)
                 {
-                    Expires = DateTime.Now.AddDays(1),
-                    Secure = true,
-                    HttpOnly = true
-                };
+                    ModelState.AddModelError("", "Incorrect username-password combination");
+                    return View();
+                }
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddDays(1);
+                options.Secure = true;
+                options.HttpOnly = true;
+                options.IsEssential = true;
 
-                AddCookies(model.username, model.password, cookieOptions);
+                Response.Cookies.Append("BearerToken", token, options);
+
                 return RedirectToAction("Index", "Event");
             }
 
             return View();
         }
 
-        private async void AddCookies(string username, string password, CookieOptions options)
+        [HttpGet]
+        public IActionResult Register()
         {
-            //Response.Cookies.Append("test", "test", options);
-            DataLayer dataLayer = new DataLayer();
-            Task<string> task = dataLayer.GetBearerToken(username, password);
-            Response.Cookies.Append("test", "test", options);
-            string value = await task;
+            return View();
+        }
 
-            var client = new HttpClient();
-            CookieOptions oo = new CookieOptions()
+        [HttpPost]
+        public async Task<IActionResult> Register(UserRegisterModel model)
+        {
+            try
             {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTime.Now.AddDays(1)
-            };
-            Response.Cookies.Append("sadf", "asdf", oo);
-            //Response.Cookies.Append("test", value, options);
+                Rockstar.Models.User user = new User()
+                {
+                    first_name = model.FirstName,
+                    email = model.EmailAddress,
+                    insertion = model.Insertion,
+                    last_name = model.LastName,
+                    password = model.Password,
+                    postal_code = model.PostalCode
+                };
+                await userApi.Signup(user);
+                return RedirectToAction("Login");
             }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            }
+
+            return View();
+        }
     }
 }

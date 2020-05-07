@@ -1,0 +1,45 @@
+﻿@model RockStar_IT_Events.ViewModels.ErrorModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errorpage</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="~/css/Style-errorpage.css">
+</head>
+
+<body>
+    <div class="col-md-12 topLayer">
+        <div class="row">
+            <div class="col-md-2 logo">
+                <img src="img/logo-rockstars@2x_2 1.png" alt="whoops">
+            </div>
+
+            <div class="col-md-8 topNumber">
+                @if (Model.StatusCode != null)
+                {
+                    <p>
+                        @Model.StatusCode
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="col-md-12 topText">
+            <p>@Model.ErrorMessage</p>
+        </div>
+    </div>
+
+    <div class="col-md-12 botLayer botText">
+        <a asp-action="Index" asp-controller="Event" style="text-decoration: none;">CLICK ME <br>TO GO HOME</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿@model RockStar_IT_Events.ViewModels.UserRegisterModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html style="overflow-x: hidden;">
+<head>
+    <title>Register</title>
+
+    <script src="../jquery-3.4.1.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="~/css/Style-user-register.css">
+</head>
+<body>
+    <div class="row">
+
+        <div class="col-md-6 leftSide">
+            <h1 class="col-md-8 offset-2 ">"WE'RE  GONNA NEED A BIGGER BOAT"</h1>
+        </div>
+
+        <div class="col-md-4 offset-1">
+            <div class="formRight">
+                <div class="text-center">
+                    <h1>Welcome aboard</h1>
+                </div>
+                <form asp-action="Register">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="col-md-9 box">
+                            <input asp-for="FirstName" class="form-control" id="defaultFormCardNameEx" placeholder="FirstName"/>
+                        </div>
+                        <div class="col-md-3 box">
+                            <input asp-for="Insertion" class="form-control" id="defaultFormCardNameEx" placeholder="Insertion"/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 box">
+                            <input asp-for="LastName" class="form-control" id="defaultFormCardNameEx" placeholder="Last Name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 box">
+                            <input asp-for="EmailAddress" class="form-control" id="defaultFormCardNameEx" placeholder="Email address"/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 box">
+                            <input asp-for="PostalCode" class="form-control" id="defaultFormCardNameEx" placeholder="Postal Code"/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 box">
+                            <input asp-for="Password" class="form-control" id="defaultFormCardNameEx" placeholder="Password"/>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-12 box">
+                            <input asp-for="ConfirmedPassword" class="form-control" id="defaultFormCardNameEx" placeholder="Repeat Password"/>
+                        </div>
+                    </div>
+
+                    <div class="text-center py-4 mt-3">
+                        <button class="btn btn-outline-purple col-md-12" type="submit">
+                            Register<i class="fa fa-paper-plane-o ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

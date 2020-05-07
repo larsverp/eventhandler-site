@@ -1,0 +1,95 @@
+﻿@model RockStar_IT_Events.ViewModels.EventModel
+@{
+    Layout = "_Admin";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<link rel="stylesheet" type="text/css" href="~/css/Style-event-create.css">
+
+
+<div class="col-md-10 Right-Box">
+    <div class="col-md-10 offset-1 FromWrapper">
+        <h1>This is the start of something great</h1>
+        <div class="row">
+            <div class="col-md-4 offset-1 ThumbNail">
+                <img src="~/img/Man.jpg" alt="">
+                <button class="btn col-md-12 ThumbNail-btn" type="submit">
+                    CHANGE THUMBNAIL <i class="ml-2"></i>
+                </button>
+                <div class="row social">
+                    <div class="col-md-4 text-center">
+                        <a href="#" class="fa fa-facebook"></a>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <a href="#" class="fa fa-twitter"></a>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <a href="#" class="fa fa-instagram"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 Form">
+                <form asp-action="CreateEvent">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input asp-for="Title" type="text" id="Title" class="form-control" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <textarea asp-for="Description" class="form-control" id="comment" placeholder="Description" rows="8.5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input type="text" id="Speaker" class="form-control" placeholder="Speaker">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <input asp-for="StartDate" class="form-control" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 end-date">
+                            <input asp-for="EndDate" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <input asp-for="Thumbnail" id="Speaker" class="form-control" placeholder="Thumbnail">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-5">
+                            <input asp-for="PostalCode" id="Speaker" class="form-control" placeholder="PostalCode">
+                        </div>
+
+                        <div class="col-md-3">
+                            <input asp-for="HouseNumber" id="Speaker" class="form-control" placeholder="HouseNumber">
+                        </div>
+
+                        <div class="col-md-4">
+                            <input asp-for="TotalSeats" id="Speaker" class="form-control" placeholder="TotalSeats">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="checkbox font-weight-light">
+                            <label><input type="checkbox" value=""> Send an email about this new event</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="text-center col-md-4 save-btn">
+                            <button class="btn btn-outline-purple col-md-12" type="submit">SAVE DRAFT</button>
+                        </div>
+
+                        <div class="text-center col-md-8 publish-btn">
+                            <button class="btn btn-outline-purple col-md-12" type="submit">CREATE THIS EVENT</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

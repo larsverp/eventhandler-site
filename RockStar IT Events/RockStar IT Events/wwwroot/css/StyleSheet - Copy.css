@@ -1,0 +1,85 @@
+﻿:root {
+    --rockstar-black-color: #000000;
+    --rockstar-dark-gray-color: #232323;
+    --rockstar-white-color: #ffffff;
+    --rockstar-yellow-color: #ffe000;
+    --rockstar-yellow-color-hover: #F5D800;
+    --sub-white: #F4F4F4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+    font-size: 48px!important;
+    font-weight: normal!important;
+}
+
+.nav-height {
+    height: 70px;
+}
+
+.bg-subwhite {
+    background-color: var(--sub-white);
+}
+
+.main-padding {
+    padding:100px 0;
+}
+
+.normal-padding {
+    padding: 10px;
+}
+
+.sub-text {
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+a span {
+    text-transform: uppercase;
+    font-weight: 500!important;
+    font-size: 20px;
+}
+
+a img {
+    height: 26px;
+    margin-left: 20px;
+}
+
+.next-button {
+    color: var(--rockstar-white-color);
+    background-color: var(--rockstar-yellow-color);
+    padding: 15px;
+    transition: 0.6s;
+}
+
+.next-button:hover {
+    cursor: pointer;
+    background-color: var(--rockstar-yellow-color-hover);
+}
+
+.img-demo {
+    width: 100%;
+}
+
+.category {
+    text-transform: capitalize;
+}
+
+.category:hover {
+    border-bottom: 3px solid var(--rockstar-yellow-color);
+}
+
+footer {
+    background-color: var(--gray-dark)!important;
+    height: 100px;
+}
