@@ -94,3 +94,46 @@ nav img {
 
 .main-padding {
   padding: 50px 0; }
+
+.rockstar-form input {
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 0px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px;
+  background: #f4f4f4; }
+
+.rockstar-form h1 {
+  padding: 50px 0 20px 0;
+  font-weight: lighter; }
+
+.rockstar-form div {
+  margin: auto; }
+
+.rockstar-form a {
+  color: #232323;
+  text-decoration: underline; }
+
+.rockstar-form a:hover {
+  color: #232323; }
+
+.rockstar-form .bottom-text {
+  padding-top: 10px;
+  padding-bottom: 50px;
+  margin: auto; }
+
+.rockstar-form input:not(:placeholder-shown) {
+  background: #f4f4f4 !important; }
+
+.rockstar-form input:placeholder-shown {
+  background: #f4f4f4 !important; }
+
+.rockstar-form .form-control:focus {
+  box-shadow: none; }
+
+.login-container {
+  background: #ffffff;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 16vh;
+  margin-bottom: 16vh;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px; }
