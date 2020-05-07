@@ -165,3 +165,31 @@ nav img {
   background: #ffffff;
   border-radius: 5px;
   margin: auto; }
+
+.right-box {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 50px; }
+
+.action-controls {
+  padding-left: 20px;
+  padding-top: 50px; }
+  .action-controls p {
+    border: solid 1px;
+    margin-left: 30px;
+    padding: 5px; }
+  .action-controls input {
+    border: solid 1px;
+    padding: 5px; }
+
+.event-table img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 180px;
+  height: 90px;
+  margin: 5px; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 1em; }
