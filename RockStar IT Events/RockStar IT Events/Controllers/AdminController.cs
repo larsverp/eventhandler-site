@@ -47,38 +47,36 @@ namespace RockStar_IT_Events.Controllers
             return View(model);
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> EditEvent(EventModel model)
+        public async Task<IActionResult> EditEvent(EventModel e)
         {
             if (ModelState.IsValid)
             {
+                Event ev = new Event();
                 try
                 {
-                    Event e = new Event()
-                    {
-                        id = model.Id,
-                        title = model.Title,
-                        description = model.Description,
-                        date = model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
-                        hnum = model.HouseNumber,
-                        notification = model.SendNotifications,
-                        postal_code = model.PostalCode,
-                        seats = model.TotalSeats,
-                        thumbnail = model.Thumbnail
-                    };
-
+                    ev.title = e.Title;
+                    ev.description = e.Description;
+                    ev.date = e.StartDate.ToString("dd-MM-yyyy") + "00:00:00";
+                    ev.thumbnail = e.Thumbnail;
+                    ev.seats = e.TotalSeats;
+                    ev.postal_code = e.PostalCode;
+                    ev.hnum = e.HouseNumber;
+                    ev.notification = e.SendNotifications;
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
-                    await eventApi.Update(e, cookie);
-
+                    await eventApi.Update(ev, cookie);
                     return RedirectToAction("Index");
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    return Content(ex.Message);
                 }
             }
-
-            return View();
+            else
+            {
+                return View();
+            }
         }
 
         public async Task<IActionResult> DeleteEvent(string id)
@@ -137,6 +135,33 @@ namespace RockStar_IT_Events.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetPastEvents()
+        {
+            var AllEvents = eventApi.GetAllEvents();
+            List<EventModel> PastEventModels = new List<EventModel>();
+            foreach (var Event in AllEvents)
+            {
+                if(DateTime.Now > Convert.ToDateTime(Event.date)){
+                    EventModel model = new EventModel
+                    {
+                        Id = Event.id,
+                        Description = Event.description,
+                        EndDate = DateTime.Parse(Event.date),
+                        StartDate = DateTime.Parse(Event.date),
+                        HouseNumber = Event.hnum,
+                        PostalCode = Event.postal_code,
+                        SendNotifications = Event.notification,
+                        Thumbnail = Event.thumbnail,
+                        Title = Event.title,
+                        TotalSeats = Event.seats
+                    };
+                    PastEventModels.Add(model);
+                }
+            }
+            return View(PastEventModels);
         }
     }
 }
