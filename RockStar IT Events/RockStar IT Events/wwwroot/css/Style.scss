@@ -97,6 +97,15 @@ nav{
         padding: 10px;
     }
 
+    textarea {
+        border: none;
+        margin-bottom: 20px;
+        border-radius: 0px;
+        box-shadow: rgba(0,0,0,.3) 0 1px;
+        background: $sub-white;
+        padding: 10px;
+    }
+
     h1 {
         padding: 50px 0 20px 0;
         font-weight: normal;
@@ -106,7 +115,7 @@ nav{
         margin: auto;
     }
 
-    .bottom-text a{
+    .bottom-text a {
         color: $rockstar-dark-gray;
         text-decoration: underline;
     }
@@ -121,6 +130,17 @@ nav{
         margin: auto;
     }
 
+    .input-box {
+        border: 2px dashed rgba(0,0,0,.3);
+        text-decoration: underline;
+        color: rgba(0,0,0,.5);
+        margin-bottom: 15px;
+        text-align: center;
+        background: none;
+        cursor: pointer;
+        padding: 30px;
+    }
+
 
     input:not(:placeholder-shown) {
         background: $sub-white !important;
@@ -133,13 +153,24 @@ nav{
     .form-control:focus {
         box-shadow: none;
     }
+
+    .create-btn {
+        margin-bottom: 40px;
+    }
 }
 
 .login-container {
+    box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
+    background: $rockstar-white;
+    margin-bottom: 16vh;
+    border-radius: 5px;
+    margin-top: 16vh;
+    margin: auto;
+}
+
+.create-container {
+    box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
     background: $rockstar-white;
     border-radius: 5px;
     margin: auto;
-    margin-top: 16vh;
-    margin-bottom: 16vh;
-    box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
 }
