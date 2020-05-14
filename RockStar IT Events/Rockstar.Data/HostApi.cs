@@ -14,7 +14,7 @@ namespace Rockstar.Data
 
         public Host GetHost(string id)
         {
-            webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/hosts");
+            webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/hosts/" + id);
 
             webResponse = webRequest.GetResponse();
             streamReader = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8);

@@ -1,13 +1,13 @@
-﻿@model Rockstar.Models.Event
+﻿@model RockStar_IT_Events.ViewModels.IndividualEventModel
 
 <div class="row bg-white">
     <div class="col-sm p-0">
-        <img src="@Model.thumbnail" class="main-img-thumbnail" style="object-fit: cover"/>
+        <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover"/>
     </div>
     <div class="col-sm">
         @*<p>@DateTime.Parse(Model.date).Month</p>
         <p>@DateTime.Parse(Model.date).Day</p>*@
-        <h1>@Model.title</h1>
+        <h1>@Model.eEvent.title</h1>
         <p>by Richard Baaters</p>
         <a href="#" class="rockstar-btn d-inline-flex">
             <p class="align-self-center">Following</p>
@@ -32,19 +32,17 @@
     <div class="w-100"></div>
     <div class="col-sm">
         <h1>About this Event</h1>
+        <img src="@Model.Host.picture"/>
         <p>
-            @Model.description
+            @Model.eEvent.description
         </p>
         <h1>About this Host</h1>
         @*img*@
         <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
-            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-            type and scrambled it to make a type specimen book. It has survived not only five centuries, but also 
-            the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-            the release of Letraset. took a galley of type and scrambled it to make a type specimen book. It has survived 
-            not only five centuries, but also the leap into electronic typesetting, remaining essentially 
-            unchanged.
+            @Model.Host.first_name @Model.Host.last_name
+        </p>
+        <p>
+            @Model.Host.description
         </p>
     </div>
     <div class="col-sm">
