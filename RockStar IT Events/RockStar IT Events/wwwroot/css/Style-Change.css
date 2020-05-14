@@ -9,9 +9,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body {
-    background: #F7F7F7;
-}
+
 
 .wrapper .top_navbar {
     width: calc(100% - 20px);

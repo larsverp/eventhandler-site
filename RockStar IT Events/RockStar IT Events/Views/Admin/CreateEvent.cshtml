@@ -1,80 +1,80 @@
 ﻿@model RockStar_IT_Events.ViewModels.EventModel
-@{
-    //Layout = null;
-}
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_admin";
+}
 
 
-    <div class="col-md-12 create-container">
+<div class="col-md-10 create-container">
 
-        <form action="#type your action here" method="POST" enctype="multipart/form-data" class="rockstar-form" name="myForm">
+    <form action="#type your action here" method="POST" enctype="multipart/form-data" class="rockstar-form" name="myForm">
 
-            <h1 class="title col-md-12 text-center">
-                This is the start of something great
-            </h1>
+        <h1 class="title col-md-12 text-center">
+            This is the start of something great
+        </h1>
 
-            <div class="col-md-10">
+        <div class="col-md-10">
 
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Title" />
-                    </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Title" />
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <textarea class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"></textarea>
-                    </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <textarea class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"></textarea>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Speaker" />
-                    </div>
-
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Date of event" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Start time" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="End time" />
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-9">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Location" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Available seats" />
-                    </div>
-                </div>
-
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
-                        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <a class="rockstar-btn create-btn text-center col-md-12" href="#" type="submit">
-                            <p>Create this event</p>
-                        </a>
-                    </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Speaker" />
                 </div>
 
             </div>
-        </form>
-    </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Date of event" />
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Start time" />
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="End time" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-9">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Location" />
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control " id="defaultFormCardNameEx" placeholder="Available seats" />
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
+                    <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-row">
+                <div class="col-md-12">
+                    <a class="rockstar-btn create-btn text-center col-md-12" href="#" type="submit">
+                        <p>Create this event</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
 
 <script type="text/javascript" src="~/Scripts/file-display.js"></script>

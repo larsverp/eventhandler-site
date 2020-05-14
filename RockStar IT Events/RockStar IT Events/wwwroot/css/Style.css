@@ -59,6 +59,10 @@ h5 {
 p {
   font-size: 16px; }
 
+body {
+  background: #f4f4f4;
+  font-family: "Open Sans", sans-serif !important; }
+
 .icon {
   height: 25px;
   width: auto;
@@ -168,7 +172,9 @@ nav img {
   margin: auto; }
 
 .create-container {
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px; }
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  background: #ffffff;
+  margin: auto; }
 
 .right-box {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
@@ -179,14 +185,16 @@ nav img {
 
 .action-controls {
   padding-left: 20px;
-  padding-top: 50px; }
+  padding-top: 50px;
+  padding-bottom: 10px; }
   .action-controls p {
     border: solid 1px;
     margin-left: 30px;
-    padding: 5px; }
+    padding: 8px; }
   .action-controls input {
     border: solid 1px;
-    padding: 5px; }
+    padding: 5px;
+    margin-right: 100px; }
 
 .event-table img {
   object-fit: cover;
@@ -195,7 +203,6 @@ nav img {
   height: 90px;
   margin: 5px; }
 
-table {
-  border-collapse: separate;
-  border-spacing: 1em; }
-
+.top-text {
+  font-size: 80px;
+  text-align: center; }

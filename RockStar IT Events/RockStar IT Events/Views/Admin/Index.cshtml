@@ -5,49 +5,50 @@
 }
 
 <div class="right-box col-md-10">
-<div class="col-md-10 right-box">
-    <div class="top-text">
-        Lots of great things are gonna happen
-    </div>
-    <div class="row action-controls">
-        <div class="col-md-2">
-            <input type="text" placeholder="Search" />
+    <div class="col-md-10 offset">
+        <div class="top-text">
+            Lots of great things are gonna happen
         </div>
-        <div class="col-md-2">
-            <p>Actions</p>
+        <div class="row action-controls">
+            <div class="col-md-2">
+                <input type="text" placeholder="Search" />
+            </div>
+            <div class="col-md-2">
+                <p>Actions</p>
+            </div>
         </div>
-    </div>
-    <div class="event-table col-md-12">
-        <table class="table col-md-12 table-hover">
-            <thead>
-                <tr class="col-md-12">
-                    <th scope="col">Event</th>
-                    <th scope="col">Tickets sold</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var e in Model)
-                {
-                    <tr>
-                        <th scope="row">
-                            <div class="row">
-                                <img src="@e.thumbnail" alt="@e.title" />
-                                <div class="col">
-                                    <h5>@e.title</h5>
-                                    <p>by lorem</p>
-                                </div>
-                            </div>
-                        </th>
-                        <td>
-                            @e.seats
-                        </td>
-                        <td>@e.begin_date</td>
-                        <td>@e.postal_code</td>
+        <div class="event-table col-md-12">
+            <table class="table col-md-12 table-hover">
+                <thead>
+                    <tr class="col-md-12">
+                        <th scope="col">Event</th>
+                        <th scope="col">Tickets sold</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Location</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var e in Model)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <div class="row">
+                                    <img src="@e.thumbnail" alt="@e.title" />
+                                    <div class="col">
+                                        <h5>@e.title</h5>
+                                        <p>by lorem</p>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                @e.seats
+                            </td>
+                            <td>@e.begin_date</td>
+                            <td>@e.postal_code</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
