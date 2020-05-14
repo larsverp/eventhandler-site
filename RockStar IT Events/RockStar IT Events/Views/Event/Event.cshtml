@@ -56,12 +56,11 @@
             <p>Datum spul</p>
             @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
             <p>Share to:</p>
-            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex">Google Calendar</a>          
+            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar">Google Calendar</a>          
                 @*<img src="~/Images/Next.png" class="icon"/>*@
-                <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)" class="rockstar-btn d-inline-flex" title="linkedin">LinkedIn</a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex">Facebook</a> @*werkt wel maar niet voor localhost...*@
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="rockstar-btn d-inline-flex" data-text="I&#39;m going to this event!: @Context.Request.GetEncodedUrl()" data-hashtags="TeamRockstars" data-lang="en" data-show-count="false">Twitter</a>                
-
+                <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)" class="rockstar-btn d-inline-flex" title="Share to LinkedIn!">LinkedIn</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Facebook!">Facebook</a> @*werkt wel maar niet voor localhost...*@
+                <a href="https://twitter.com/intent/tweet?hashtags=TeamRockstars&text=@HttpUtility.UrlEncode("I\'m going to this event!: ")&url=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Tweet about it!">Twitter</a>            
         </div>
         <div>
             <h1>Location</h1>
