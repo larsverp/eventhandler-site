@@ -1,6 +1,8 @@
 ﻿@model RockStar_IT_Events.ViewModels.ErrorModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +22,9 @@
 <body>
     <div class="col-md-12 topLayer">
         <div class="row">
-            <div class="col-md-2 logo">
-                <img src="img/logo-rockstars@2x_2 1.png" alt="whoops">
-            </div>
 
-            <div class="col-md-8 topNumber">
+
+            <div class="col-md-12 topNumber">
                 @if (Model.StatusCode != null)
                 {
                     <p>
