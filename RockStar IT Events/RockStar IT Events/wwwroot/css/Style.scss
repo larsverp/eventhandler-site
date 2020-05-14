@@ -172,6 +172,8 @@ nav{
     }
 }
 
+//login
+
 .login-container {
     box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
     background: $rockstar-white;
@@ -181,11 +183,15 @@ nav{
     margin: auto;
 }
 
+//create-event
+
 .create-container {
     box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
     background: $rockstar-white;
     margin: auto;
 }
+
+//admin-panel
 
 .right-box {
     box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
@@ -213,7 +219,6 @@ nav{
     }
 }
 
-
 .event-table {
 
     img {
@@ -224,7 +229,6 @@ nav{
         margin: 5px;
     }
 }
-
 
 .top-text{
     font-size: 80px;
