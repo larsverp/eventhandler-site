@@ -230,3 +230,39 @@ nav{
     font-size: 80px;
     text-align: center;
 }
+
+
+//errorPage
+
+.topNumber {
+    font-weight: 900;
+    text-align: center;
+}
+
+.topNumber p {
+    font-size: 12vh;
+    padding: 0px;
+}
+
+.topText {
+    text-align: center;
+    font-weight: 800;
+    font-size: 18vh;
+    padding-bottom: 10vh;
+}
+
+.botText {
+    background-color: $rockstar-dark-gray;
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+    text-align: center;
+}
+
+.botText a {
+    color: $rockstar-yellow;
+    font-size: 7vh;
+    font-weight: 800;
+}
+.botText a:hover{
+    color: $rockstar-yellow-hover;
+}

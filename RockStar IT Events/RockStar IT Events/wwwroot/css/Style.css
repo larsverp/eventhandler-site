@@ -206,3 +206,31 @@ nav img {
 .top-text {
   font-size: 80px;
   text-align: center; }
+
+.topNumber {
+  font-weight: 900;
+  text-align: center; }
+
+.topNumber p {
+  font-size: 12vh;
+  padding: 0px; }
+
+.topText {
+  text-align: center;
+  font-weight: 800;
+  font-size: 18vh;
+  padding-bottom: 10vh; }
+
+.botText {
+  background-color: #232323;
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+  text-align: center; }
+
+.botText a {
+  color: #ffe000;
+  font-size: 7vh;
+  font-weight: 800; }
+
+.botText a:hover {
+  color: #f5d800; }
