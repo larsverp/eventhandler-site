@@ -4,31 +4,22 @@
     Layout = "_MainLayout";
 }
 
-    <div class="col-md-8 login-container">
-
-        <form asp-action="Login" class="rockstar-form">
-
-            <h1 class="title col-md-12 text-center">
-                Welcome back
-            </h1>
-
-            <div class="col-md-6">
-                <input class="form-control" id="defaultFormCardNameEx" placeholder="Email" />
-            </div>
-
-            <div class="col-md-6">
-                <input class="form-control" id="defaultFormCardNameEx" placeholder="Password" />
-            </div>
-
-            <div class="col-md-6">
-                <a class="rockstar-btn text-center col-md-12" href="#" type="submit">
-                    <p>Login</p>
-                </a>
-            </div>
-
-            <div class="row col-md-5 bottom-text">
-                <p>Not yet a member? <a asp-action="Register">Register here.</a></p>
-                
-            </div>
-        </form>
-    </div>
+<div class="col-md-8 login-container">
+    <form asp-action="Login" asp-controller="User" class="rockstar-form">
+        <h1 class="title col-md-12 text-center">
+            Welcome back
+        </h1>
+        <div class="col-md-6">
+            <input asp-for="username" class="form-control" id="defaultFormCardNameEx" placeholder="Email" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="password" class="form-control" id="defaultFormCardNameEx" placeholder="Password" />
+        </div>
+        <div class="col-sm-6">
+            <input class="rockstar-btn text-center col-md-12" type="submit" value="Login" />
+        </div>
+        <div class="row col-md-5 bottom-text">
+            <p>Not yet a member? <a asp-action="Register">Register here.</a></p>
+        </div>
+    </form>
+</div>
