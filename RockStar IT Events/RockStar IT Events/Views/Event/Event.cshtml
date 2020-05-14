@@ -1,4 +1,9 @@
 ﻿@model RockStar_IT_Events.ViewModels.IndividualEventModel
+@using System.Text;
+@using System.Web;
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Html;
+@using Microsoft.AspNetCore.Http.Extensions;
 
 <div class="row bg-white">
     <div class="col-sm p-0">
@@ -50,19 +55,23 @@
             <h1>Date and Time</h1>
             <p>Datum spul</p>
             @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
-            <a href="#" class="rockstar-btn d-inline-flex">
-                <p>add to calander</p>
-                <img src="~/Images/Next.png" class="icon"/>
-            </a>
+            <p>Share to:</p>
+            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex">Google Calendar</a>          
+                @*<img src="~/Images/Next.png" class="icon"/>*@
+                <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)" class="rockstar-btn d-inline-flex" title="linkedin">LinkedIn</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex">Facebook</a> @*werkt wel maar niet voor localhost...*@
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="rockstar-btn d-inline-flex" data-text="I&#39;m going to this event!: @Context.Request.GetEncodedUrl()" data-hashtags="TeamRockstars" data-lang="en" data-show-count="false">Twitter</a>                
+
         </div>
         <div>
-            <h1>location</h1>
+            <h1>Location</h1>
             <p>Oude kerk, 2</p>
             <p>
                 Alkmaar, The Netherlands
             </p>
             <a href="#" class="rockstar-btn d-inline-flex">
                 <p>plan route</p>
+
                 <img src="~/Images/Next.png" class="icon" />
             </a>
         </div>

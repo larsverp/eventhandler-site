@@ -49,7 +49,7 @@ namespace RockStar_IT_Events.Controllers
             DateTime eventStartDate = DateTime.Now;
             DateTime eventEndDate = DateTime.Now.AddDays(2);
 
-            string location = "Amsterdam";
+            //string location = "Amsterdam";
             string summary = "samenvatting";
             int eventDuration = 30; // event time in minutes
 
@@ -71,7 +71,7 @@ namespace RockStar_IT_Events.Controllers
             sb.AppendLine("CREATED:" + dateNow);
             sb.AppendLine("DESCRIPTION:" + @event.description);
             sb.AppendLine("LAST-MODIFIED:" + dateNow);
-            sb.AppendLine("LOCATION:" + location); //location here;
+            sb.AppendLine("LOCATION:" + @event.postal_code); //location here;
             sb.AppendLine("SEQUENCE:0");
             sb.AppendLine("STATUS:CONFIRMED");
             sb.AppendLine("SUMMARY:" + summary); //short summary?
