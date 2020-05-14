@@ -34,8 +34,8 @@ namespace RockStar_IT_Events.Controllers
             {
                 Id = e.id,
                 Description = e.description,
-                EndDate = DateTime.Parse(e.date),
-                StartDate = DateTime.Parse(e.date),
+                EndDate = DateTime.Parse(e.end_date),
+                StartDate = DateTime.Parse(e.begin_date),
                 HouseNumber = e.hnum,
                 PostalCode = e.postal_code,
                 SendNotifications = e.notification,
@@ -59,7 +59,8 @@ namespace RockStar_IT_Events.Controllers
                         id = model.Id,
                         title = model.Title,
                         description = model.Description,
-                        date = model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
+                        begin_date= model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
+                        end_date = model.EndDate.ToString("dd-MM-yyyy") + "00:00:00",
                         hnum = model.HouseNumber,
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
@@ -98,10 +99,10 @@ namespace RockStar_IT_Events.Controllers
         [HttpGet]
         public IActionResult CreateEvent()
         {
-            //if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
-            //{
-            //    return RedirectToAction("Login", "User");
-            //}
+            if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             return View();
         }
@@ -115,7 +116,8 @@ namespace RockStar_IT_Events.Controllers
                 {
                     title = model.Title,
                     description = model.Description,
-                    date = model.StartDate.ToString("dd-MM-yyyy") + "00:00:00",
+                    begin_date= model.StartDate.ToString("dd-MM-yyyy") + "00:00:00",
+                    end_date = model.EndDate.ToString("dd-MM-yyyy") + "00:00:00",
                     thumbnail = model.Thumbnail,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
