@@ -1,5 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
-* {
+﻿* {
   box-sizing: border-box; }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -166,5 +165,37 @@ nav img {
   margin-bottom: 16vh;
   border-radius: 5px;
   margin-top: 16vh;
-  margin-bottom: 16vh;
+  margin: auto; }
+
+.create-container {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px; }
+
+.right-box {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 50px;
+  margin: auto; }
+
+.action-controls {
+  padding-left: 20px;
+  padding-top: 50px; }
+  .action-controls p {
+    border: solid 1px;
+    margin-left: 30px;
+    padding: 5px; }
+  .action-controls input {
+    border: solid 1px;
+    padding: 5px; }
+
+.event-table img {
+  object-fit: cover;
+  object-position: 50% 30%;
+  width: 180px;
+  height: 90px;
+  margin: 5px; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 1em; }
+
