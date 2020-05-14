@@ -33,6 +33,11 @@ p {
     font-size: $rockstar-p-size;
 }
 
+body {
+    background: $sub-white;
+    font-family: $font-family !important;
+}
+
 .icon{
     height: $icon-size;
     width: auto;
@@ -178,6 +183,8 @@ nav{
 
 .create-container {
     box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
+    background: $rockstar-white;
+    margin: auto;
 }
 
 .right-box {
@@ -191,16 +198,18 @@ nav{
 .action-controls {
     padding-left: 20px;
     padding-top: 50px;
+    padding-bottom: 10px;
 
     p {
         border: solid 1px;
         margin-left: 30px;
-        padding: 5px;
+        padding: 8px;
     }
 
     input {
         border: solid 1px;
         padding: 5px;
+        margin-right:100px;
     }
 }
 
@@ -216,7 +225,44 @@ nav{
     }
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 1em;
+
+.top-text{
+    font-size: 80px;
+    text-align: center;
+}
+
+
+//errorPage
+
+.topNumber {
+    font-weight: 900;
+    text-align: center;
+}
+
+.topNumber p {
+    font-size: 12vh;
+    padding: 0px;
+}
+
+.topText {
+    text-align: center;
+    font-weight: 800;
+    font-size: 18vh;
+    padding-bottom: 10vh;
+}
+
+.botText {
+    background-color: $rockstar-dark-gray;
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+    text-align: center;
+}
+
+.botText a {
+    color: $rockstar-yellow;
+    font-size: 7vh;
+    font-weight: 800;
+}
+.botText a:hover{
+    color: $rockstar-yellow-hover;
 }

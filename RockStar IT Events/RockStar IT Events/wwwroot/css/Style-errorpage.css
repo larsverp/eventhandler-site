@@ -10,7 +10,6 @@ body {
 }
 
 html {
-    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -18,21 +17,21 @@ html {
     padding: 20px 0;
 }
 
-    .logo img {
-        width: 50%;
-    }
+.logo img {
+    width: 50%;
+}
 
 .topNumber {
-    font-size: 15vh;
     font-weight: 900;
     text-align: center;
     padding-top: 1%;
 }
 
-    .topNumber p {
-        padding: 0px;
-        margin: 0;
-    }
+.topNumber p {
+    font-size: 12vh;
+    padding: 0px;
+    margin: 0;
+}
 
 .topText {
     text-align: center;
@@ -43,16 +42,16 @@ html {
 
 .botText {
     background-color: #333333;
-    padding-bottom: 1000px;
     padding-top: 12vh;
+    padding-bottom: 12vh;
     text-align: center;
 }
 
-    .botText a {
-        color: #FFE000;
-        font-size: 7vh;
-        font-weight: 800;
-    }
+.botText a {
+    color: #FFE000;
+    font-size: 7vh;
+    font-weight: 800;
+}
 
 
 @media(max-width: 1200px) {
