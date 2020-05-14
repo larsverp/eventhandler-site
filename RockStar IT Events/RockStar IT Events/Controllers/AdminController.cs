@@ -98,10 +98,10 @@ namespace RockStar_IT_Events.Controllers
         [HttpGet]
         public IActionResult CreateEvent()
         {
-            if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
-            {
-                return RedirectToAction("Login", "User");
-            }
+            //if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            //{
+            //    return RedirectToAction("Login", "User");
+            //}
 
             return View();
         }
