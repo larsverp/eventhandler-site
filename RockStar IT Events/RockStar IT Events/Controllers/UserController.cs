@@ -77,5 +77,14 @@ namespace RockStar_IT_Events.Controllers
 
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            if (HttpContext.Request.Cookies["BearerToken"] != null)
+            {
+                Response.Cookies.Delete("BearerToken");
+            }
+            return RedirectToAction("", "Event");
+        }
     }
 }
