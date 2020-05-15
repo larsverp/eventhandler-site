@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Rockstar.Models;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -30,6 +32,7 @@ namespace Rockstar.Data
 
             string result = response.Content.ReadAsStringAsync().Result;
             string token = JsonConvert.DeserializeObject<Token>(result).access_token;
+            
             return token;
         }
 
@@ -48,5 +51,24 @@ namespace Rockstar.Data
 
             string result = response.Content.ReadAsStringAsync().Result;
         }
+
+        public async Task<string> GetRole(string token)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/users/role";
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync(url);
+            string result = response.Content.ReadAsStringAsync().Result;
+            string role = JsonConvert.DeserializeObject<Role>(result).role;
+            return role;
+        }
+    }
+
+    class Role
+    {
+        public string role { get; set; }
     }
 }

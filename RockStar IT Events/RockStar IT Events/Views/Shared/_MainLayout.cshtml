@@ -1,4 +1,5 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link text-light" href="#">Event overview</a>
+                <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" href="#">My Favorite Events</a>
@@ -35,6 +36,12 @@
             <li class="nav-item">
                 <a class="nav-link text-light" href="#">Update Interests</a>
             </li>
+            @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-controller="Admin">Admin panel</a>
+                </li>
+            }
             @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
             {
                 <li class="nav-item">
@@ -49,7 +56,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">My Account Settings</a>
-                        <a class="dropdown-item" href="#">Log out</a>
+                        <a class="dropdown-item" asp-action="Logout" asp-controller="User">Log out</a>
                     </div>
                 </li>
             }
