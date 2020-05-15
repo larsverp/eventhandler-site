@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,15 +35,24 @@
             <li class="nav-item">
                 <a class="nav-link text-light" href="#">Update Interests</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">My Account Settings</a>
-                    <a class="dropdown-item" href="#">Log out</a>
-                </div>
-            </li>
+            @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-controller="User" asp-action="Login">Log in</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">My Account Settings</a>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </li>
+            }
         </ul>
     </div>
 </nav>
