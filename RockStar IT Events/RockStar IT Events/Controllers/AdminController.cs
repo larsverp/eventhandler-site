@@ -140,5 +140,15 @@ namespace RockStar_IT_Events.Controllers
 
             return View();
         }
+
+        public IActionResult GetUsers()
+        {
+            List<User> users = new List<User>();
+            users.Add(new Rockstar.Models.User { email = "test", first_name = "jan", last_name = "jansen", postal_code= "1244AB"}); ;
+            users.Add(new Rockstar.Models.User { email = "test2", first_name = "jan", last_name = "jansen",  postal_code = "1244AB" }); ;
+            users.Add(new Rockstar.Models.User { email = "test3", first_name = "jan", last_name = "jansen", insertion="van de", postal_code = "1244AB" }); ;
+
+            return View(users);
+        }
     }
 }
