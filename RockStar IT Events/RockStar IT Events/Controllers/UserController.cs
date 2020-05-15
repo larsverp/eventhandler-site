@@ -27,7 +27,7 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                string token = await userApi.Login(model.username, model.password);
+                var token = await userApi.Login(model.username, model.password);
                 if (token == null)
                 {
                     ModelState.AddModelError("", "Incorrect username-password combination");
@@ -41,6 +41,9 @@ namespace RockStar_IT_Events.Controllers
 
                 Response.Cookies.Append("BearerToken", token, options);
 
+                var role = await userApi.GetRole(token);
+
+                HttpContext.Session.SetString("Role", role);
                 return RedirectToAction("Index", "Event");
             }
 
@@ -84,6 +87,7 @@ namespace RockStar_IT_Events.Controllers
             {
                 Response.Cookies.Delete("BearerToken");
             }
+            HttpContext.Session.Clear();
             return RedirectToAction("", "Event");
         }
     }
