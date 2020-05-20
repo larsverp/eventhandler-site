@@ -178,5 +178,15 @@ namespace RockStar_IT_Events.Controllers
         {
             return View(new Rockstar.Models.User { email = "test3", first_name = "jan", last_name = "jansen", postal_code = "1244AB" });
         }
+
+        public IActionResult Tickets()
+        {
+            return View();
+        }
+
+        public IActionResult MailingList()
+        {
+            return View();
+        }
     }
 }
