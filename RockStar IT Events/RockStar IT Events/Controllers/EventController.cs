@@ -49,12 +49,14 @@ namespace RockStar_IT_Events.Controllers
         public async Task<IActionResult> AddEventToFavorites(string id)
         {
             await eventApi.AddEventToFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            return RedirectToAction("Event", "Event", new { id = id.ToString()});
             return RedirectToAction("FavoriteEvents");
         }
 
         public async Task<IActionResult> RemoveEventFromFavorites(string id)
         {
             await eventApi.RemoveEventFromFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            return RedirectToAction("Event", "Event", new { id = id.ToString() });
             return RedirectToAction("FavoriteEvents");
         }
     }

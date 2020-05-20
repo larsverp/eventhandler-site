@@ -3,7 +3,10 @@
 @using System.Web;
 @using Microsoft.AspNetCore.Mvc;
 @using Microsoft.AspNetCore.Html;
+@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Extensions;
+@using RockStar_IT_Events
+@inject IHttpContextAccessor ContextAccessor;
 
 <div class="row bg-white">
     <div class="col-sm p-0">
@@ -28,9 +31,18 @@
         <div class="align-self-center text-right">
             <div class="float-right">
                 <img src="~/Images/Share.png" class="icon mx-2"/>
-                <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
-                    <img src="~/Images/Heart.png" class="icon mx-2" />
-                </a>
+                @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                {
+                    <a asp-action="RemoveEventFromFavorites" asp-route-id="@Model.eEvent.id">
+                        <img src="~/Images/Heart_Filled.png" class="icon mx-2" />
+                    </a>
+                }
+                else
+                {
+                    <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
+                        <img src="~/Images/Heart.png" class="icon mx-2" />
+                    </a>
+                }
             </div>
         </div>
     </div>
