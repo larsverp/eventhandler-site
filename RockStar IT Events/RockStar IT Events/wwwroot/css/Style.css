@@ -32,7 +32,8 @@ q:before, q:after {
 
 table {
   border-collapse: collapse;
-  border-spacing: 0; }
+  border-spacing: 0;
+  margin: auto; }
 
 * {
   margin: 0;
@@ -152,16 +153,25 @@ nav img {
   padding: 30px; }
 
 .rockstar-form input:not(:placeholder-shown) {
-  background: #f4f4f4 !important; }
+  background: #f4f4f4; }
 
 .rockstar-form input:placeholder-shown {
-  background: #f4f4f4 !important; }
+  background: #f4f4f4; }
+
+.rockstar-form textarea:not(:placeholder-shown) {
+  background: #f4f4f4; }
+
+.rockstar-form textarea:placeholder-shown {
+  background: #f4f4f4; }
 
 .rockstar-form .form-control:focus {
   box-shadow: none; }
 
 .rockstar-form .create-btn {
   margin-bottom: 40px; }
+
+.rockstar-form input[type=submit] {
+  background: #ffe000; }
 
 .login-container {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
