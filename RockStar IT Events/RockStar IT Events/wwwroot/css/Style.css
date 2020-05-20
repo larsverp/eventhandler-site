@@ -32,8 +32,7 @@ q:before, q:after {
 
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-  margin: auto; }
+  border-spacing: 0; }
 
 * {
   margin: 0;
@@ -196,14 +195,14 @@ nav img {
 .action-controls {
   padding-left: 20px;
   padding-bottom: 10px; }
-  .action-controls p {
-    border: solid 1px;
-    margin-left: 30px;
-    padding: 8px; }
   .action-controls input {
     border: solid 1px;
     padding: 5px;
-    margin-right: 100px; }
+    margin-right: .5vw; }
+  .action-controls p {
+    border: solid 1px;
+    padding: 8px;
+    padding-right: 12vw; }
 
 .event-table img {
   object-fit: cover;
