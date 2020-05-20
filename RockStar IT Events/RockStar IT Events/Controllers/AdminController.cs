@@ -14,12 +14,14 @@ namespace RockStar_IT_Events.Controllers
     {
         private readonly EventApi eventApi;
         private readonly HostApi hostApi;
+        private readonly UserApi userApi;
         private readonly IHttpContextAccessor contextAccessor;
 
         public AdminController(IHttpContextAccessor contextAccessor)
         {
             eventApi = new EventApi();
             hostApi = new HostApi();
+            userApi = new UserApi();
             this.contextAccessor = contextAccessor;
         }
 
@@ -164,14 +166,24 @@ namespace RockStar_IT_Events.Controllers
             return View(model);
         }
 
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            List<User> users = new List<User>();
-            users.Add(new Rockstar.Models.User { email = "test", first_name = "jan", last_name = "jansen", postal_code= "1244AB"}); ;
-            users.Add(new Rockstar.Models.User { email = "test2", first_name = "jan", last_name = "jansen",  postal_code = "1244AB" }); ;
-            users.Add(new Rockstar.Models.User { email = "test3", first_name = "jan", last_name = "jansen", insertion="van de", postal_code = "1244AB" }); ;
+            var users = await userApi.ReturnAllUsers(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
 
             return View(users);
+        }
+
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            try
+            {
+                await userApi.RemoveUser(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+                return RedirectToAction("GetUsers");
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
         }
 
         public IActionResult EditUser()
