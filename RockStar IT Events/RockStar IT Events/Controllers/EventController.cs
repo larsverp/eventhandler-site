@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using RockStar_IT_Events.ViewModels;
 using Event = Rockstar.Models;
 
@@ -36,6 +37,27 @@ namespace RockStar_IT_Events.Controllers
                 Host = host
             };
             return View(model);
+        }
+
+        public async Task<IActionResult> FavoriteEvents()
+        {
+            var events = await eventApi.ReturnAllFavoriteEvents(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+
+            return View(events);
+        }
+
+        public async Task<IActionResult> AddEventToFavorites(string id)
+        {
+            await eventApi.AddEventToFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            return RedirectToAction("Event", "Event", new { id = id.ToString()});
+            return RedirectToAction("FavoriteEvents");
+        }
+
+        public async Task<IActionResult> RemoveEventFromFavorites(string id)
+        {
+            await eventApi.RemoveEventFromFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            return RedirectToAction("Event", "Event", new { id = id.ToString() });
+            return RedirectToAction("FavoriteEvents");
         }
     }
 }
