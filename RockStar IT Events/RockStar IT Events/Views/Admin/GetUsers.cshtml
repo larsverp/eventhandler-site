@@ -31,14 +31,14 @@
                                         <p>&nbsp; @e.first_name </p>
                                         @if (e.insertion != null || e.insertion != "")
                                         {
-                                    <p>@e.insertion&nbsp; </p>
+                                            <p>@e.insertion&nbsp; </p>
                                         }
                                     <p>@e.last_name</p>
                                     </div>
                                 </th>
                                 <td>@e.email</td>
                                 <td>@e.postal_code</td>
-                                <td><a href="#">Edit User</a></td>
+                                <td><a asp-action="EditUser">Edit User</a></td>
                                 <td><a href="#">Remove User</a></td>
                             </tr>
                         }
