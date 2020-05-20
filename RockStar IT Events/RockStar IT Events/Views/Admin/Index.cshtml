@@ -47,7 +47,7 @@
                         </td>
                         <td>@e.begin_date</td>
                         <td>@e.postal_code</td>
-                        <td><a href="#">Update</a></td>
+                        <td><a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
                         <td><a href="#">Remove</a></td>
 
                     </tr>

@@ -30,21 +30,24 @@ namespace RockStar_IT_Events.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditEvent(string id)
+        public async Task<IActionResult> EditEvent(string id)
         {
             Event e = eventApi.GetEvent(id);
+            var hosts = await hostApi.GetAllHosts();
             EventModel model = new EventModel
             {
                 Id = e.id,
+                Title = e.title,
                 Description = e.description,
                 EndDate = DateTime.Parse(e.end_date),
                 StartDate = DateTime.Parse(e.begin_date),
-                HouseNumber = e.hnum,
-                PostalCode = e.postal_code,
-                SendNotifications = e.notification,
                 Thumbnail = e.thumbnail,
-                Title = e.title,
-                TotalSeats = e.seats
+                TotalSeats = e.seats,
+                PostalCode = e.postal_code,
+                HouseNumber = e.hnum,
+                SendNotifications = e.notification,
+                SpeakerId = e.host_id,
+                Speakers = hosts.ToList()
             };
 
             return View(model);
@@ -57,18 +60,20 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
-                    Event e = new Event()
+                    Event e = new Event
                     {
                         id = model.Id,
                         title = model.Title,
                         description = model.Description,
-                        begin_date= model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
-                        end_date = model.EndDate.ToString("dd-MM-yyyy") + "00:00:00",
+                        begin_date= model.StartDate.ToString("dd-MM-yyyy hh:mm:ss"),
+                        end_date = model.EndDate.ToString("dd-MM-yyyy hh:mm:ss"),
                         hnum = model.HouseNumber,
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
                         seats = model.TotalSeats,
-                        thumbnail = model.Thumbnail
+                        thumbnail = "https://images.unsplash.com/photo-1588615419957-bf66d53c6b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                        host_id = model.SpeakerId,
+                        categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" }
                     };
 
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
@@ -82,7 +87,7 @@ namespace RockStar_IT_Events.Controllers
                 }
             }
 
-            return View();
+            return View(model);
         }
 
         public async Task<IActionResult> DeleteEvent(string id)
@@ -107,7 +112,7 @@ namespace RockStar_IT_Events.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            var hosts = hostApi.GetAllHosts();
+            var hosts = await hostApi.GetAllHosts();
             EventModel model = new EventModel
             {
                 Speakers = hosts.ToList()
@@ -150,7 +155,7 @@ namespace RockStar_IT_Events.Controllers
                 }
             }
 
-            var hosts = hostApi.GetAllHosts();
+            var hosts = await hostApi.GetAllHosts();
             model = new EventModel
             {
                 Speakers = hosts.ToList()
@@ -172,13 +177,13 @@ namespace RockStar_IT_Events.Controllers
         public IActionResult EditUser()
         {
             return View(new Rockstar.Models.User { email = "test3", first_name = "jan", last_name = "jansen", postal_code = "1244AB" });
-        } 
-        
+        }
+
         public IActionResult Tickets()
         {
             return View();
-        }  
-        
+        }
+
         public IActionResult MailingList()
         {
             return View();

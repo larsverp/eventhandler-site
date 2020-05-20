@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Rockstar.Models;
 
@@ -26,7 +27,7 @@ namespace Rockstar.Data
             return output;
         }
 
-        public IEnumerable<Host> GetAllHosts()
+        public async Task<IEnumerable<Host>> GetAllHosts()
         {
             webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/hosts");
 
