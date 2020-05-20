@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Rockstar.Models.Event>
+@{
+    ViewData["Title"] = "FavoriteEvents";
+}
+
+<h1>FavoriteEvents</h1>
+
+@foreach (var e in Model)
+{
+    <p>@e.title</p>
+
+    <a asp-action="RemoveEventFromFavorites" asp-route-id="@e.id">Remove</a>
+
+    <p>@e.id</p>
+    <hr/>
+}

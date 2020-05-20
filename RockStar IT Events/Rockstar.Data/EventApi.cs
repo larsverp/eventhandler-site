@@ -106,9 +106,10 @@ namespace Rockstar.Data
             }
         }
 
-        public async Task AddEventToFavorites(string eventId, string cookieValue)
+        public async Task AddEventToFavorites(string event_id, string cookieValue)
         {
-            var data = new StringContent(eventId, Encoding.UTF8, "application/json");
+            string json = JsonConvert.SerializeObject(new EventIdClass{event_id = event_id});
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             var url = "https://eventhandler-api.herokuapp.com/api/favorites";
             var client = new HttpClient();
@@ -141,5 +142,10 @@ namespace Rockstar.Data
             }
             throw new ArgumentException($"Something went wrong : {(int)code}");
         }
+    }
+
+    public class EventIdClass
+    {
+        public string event_id { get; set; }
     }
 }
