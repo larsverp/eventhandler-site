@@ -65,6 +65,39 @@ namespace Rockstar.Data
             string role = JsonConvert.DeserializeObject<Role>(result).role;
             return role;
         }
+
+        public async Task RemoveUser(string userId, string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/users/" + userId;
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            var response = await client.DeleteAsync(url);
+        }
+
+        public async Task<List<User>> ReturnAllUsers(string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/users";
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            try
+            {
+                var response = await client.GetStringAsync(url);
+                List<User> users = JsonConvert.DeserializeObject<List<User>>(response);
+
+                return users;
+            }
+            catch
+            {
+                return new List<User>();
+            }
+            
+        }
     }
 
     class Role
