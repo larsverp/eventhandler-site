@@ -156,11 +156,19 @@ nav{
 
 
     input:not(:placeholder-shown) {
-        background: $sub-white !important;
+        background: $sub-white;
     }
 
     input:placeholder-shown {
-        background: $sub-white !important;
+        background: $sub-white;
+    }
+
+    textarea:not(:placeholder-shown) {
+        background: $sub-white;
+    }
+
+    textarea:placeholder-shown {
+        background: $sub-white;
     }
 
     .form-control:focus {
@@ -169,6 +177,10 @@ nav{
 
     .create-btn {
         margin-bottom: 40px;
+    }
+
+    input[type=submit] {
+        background: $rockstar-yellow;
     }
 }
 
