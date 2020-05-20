@@ -217,16 +217,17 @@ nav{
     padding-left: 20px;
     padding-bottom: 10px;
 
-    p {
-        border: solid 1px;
-        margin-left: 30px;
-        padding: 8px;
-    }
 
     input {
         border: solid 1px;
         padding: 5px;
-        margin-right:100px;
+        margin-right: .5vw;
+    }
+
+    p {
+        border: solid 1px;
+        padding: 8px;
+        padding-right: 12vw;
     }
 }
 
