@@ -10,67 +10,62 @@
 </head>
 <body>
     <h1>EditEvent</h1>
-
-    <h4>EventModel</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="EditEvent">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Title" class="text-white"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+    <form asp-controller="Admin" asp-action="EditEvent">
+        <h4>EventModel</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <input asp-for="Title" class="form-control " id="defaultFormCardNameEx" placeholder="Title" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="text-white"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <input asp-for="Description" class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="StartDate" class="text-white control-label"></label>
-                    <input asp-for="StartDate" class="form-control" />
-                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <select asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
+                            <option value="" selected disabled>Select host</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="EndDate" class="text-white control-label"></label>
-                    <input asp-for="EndDate" class="form-control" />
-                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <input asp-for="StartDate" class="form-control " id="defaultFormCardNameEx" placeholder="Start date" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="EndDate" class="form-control " id="defaultFormCardNameEx" placeholder="End time" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="TotalSeats" class="form-control " id="defaultFormCardNameEx" placeholder="Available seats" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Thumbnail" class="text-white control-label"></label>
-                    <input asp-for="Thumbnail" class="form-control" />
-                    <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-9">
+                        <input asp-for="PostalCode" class="form-control " id="defaultFormCardNameEx" placeholder="Location" />
+                    </div>
+                    <div class="col-md-3">
+                        <input asp-for="HouseNumber" class="form-control" placeholder="House number" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="TotalSeats" class="text-white control-label"></label>
-                    <input asp-for="TotalSeats" class="form-control" />
-                    <span asp-validation-for="TotalSeats" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
+                        <div style='height: 0px; width: 0px; overflow: hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="PostalCode" class="text-white control-label"></label>
-                    <input asp-for="PostalCode" class="form-control" />
-                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <input type="submit" value="Create this event" class="col-md-12 rockstar-btn create-btn text-center" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="HouseNumber" class="text-white control-label"></label>
-                    <input asp-for="HouseNumber" class="form-control" />
-                    <span asp-validation-for="HouseNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="SendNotifications" /> @Html.DisplayNameFor(model => model.SendNotifications)
-                    </label>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
 </body>
