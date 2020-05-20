@@ -1,4 +1,6 @@
-﻿namespace Rockstar.Models
+﻿using System.Collections.Generic;
+
+namespace Rockstar.Models
 {
     public class Event
     {
@@ -14,5 +16,6 @@
         public string hnum { get; set; }
         public bool notification { get; set; }
         public bool rockstar { get; set;}
+        public List<string> categories { get; set; }
     }
 }
