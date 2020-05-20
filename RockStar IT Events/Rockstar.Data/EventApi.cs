@@ -85,6 +85,54 @@ namespace Rockstar.Data
             checkResponse(response.StatusCode);
         }
 
+        public async Task<List<Event>> ReturnAllFavoriteEvents(string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/favorites";
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            try
+            {
+                var response = await client.GetStringAsync(url);
+                List<Event> events = JsonConvert.DeserializeObject<List<Event>>(response);
+
+                return events;
+            }
+            catch
+            {
+                return new List<Event>();
+            }
+        }
+
+        public async Task AddEventToFavorites(string eventId, string cookieValue)
+        {
+            var data = new StringContent(eventId, Encoding.UTF8, "application/json");
+
+            var url = "https://eventhandler-api.herokuapp.com/api/favorites";
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            var response = await client.PostAsync(url, data);
+            checkResponse(response.StatusCode);
+        }
+
+        public async Task RemoveEventFromFavorites(string eventId, string cookieValue)
+        {
+
+            var url = "https://eventhandler-api.herokuapp.com/api/favorites/" + eventId;
+            var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+            var response = await client.DeleteAsync(url);
+            checkResponse(response.StatusCode);
+        }
+
         private void checkResponse(HttpStatusCode code)
         {
             if (code == HttpStatusCode.OK || code == HttpStatusCode.Created)
