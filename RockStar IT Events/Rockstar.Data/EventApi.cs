@@ -133,36 +133,6 @@ namespace Rockstar.Data
             checkResponse(response.StatusCode);
         }
 
-        public async Task SubscribeForEvent(string eventId, string cookieValue)
-        {
-            string json = JsonConvert.SerializeObject(new EventIdClass {event_id = eventId});
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var url = "https://eventhandler-api.herokuapp.com/api/tickets";
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
-
-                var response = await client.PostAsync(url, data);
-                checkResponse(response.StatusCode);
-            }
-        }
-
-        public async Task UnsubscribeForEvent(string eventId, string cookieValue)
-        {
-            //TODO: ADD REASON
-            var url = "https://eventhandler-api.herokuapp.com/api/tickets/" + eventId;
-            using (var client = new HttpClient()) 
-            {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
-
-                var response = await client.DeleteAsync(url);
-                checkResponse(response.StatusCode);
-            }
-        }
-
         private void checkResponse(HttpStatusCode code)
         {
             if (code == HttpStatusCode.OK || code == HttpStatusCode.Created)
