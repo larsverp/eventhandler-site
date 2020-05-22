@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using Rockstar.Models;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using RockStar_IT_Events.ViewModels;
 
@@ -16,12 +18,15 @@ namespace RockStar_IT_Events.Controllers
         private readonly HostApi hostApi;
         private readonly UserApi userApi;
         private readonly IHttpContextAccessor contextAccessor;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public AdminController(IHttpContextAccessor contextAccessor)
+
+        public AdminController(IHttpContextAccessor contextAccessor, IWebHostEnvironment e)
         {
             eventApi = new EventApi();
             hostApi = new HostApi();
             userApi = new UserApi();
+            webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
         }
 
@@ -128,13 +133,16 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
+                string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
+                var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
+                model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
                 var e = new Event
                 {
                     title = model.Title,
                     description = model.Description,
                     begin_date= model.StartDate.ToString("dd-MM-yyyy hh:mm:ss"),
                     end_date = model.EndDate.ToString("dd-MM-yyyy hh:mm:ss"),
-                    thumbnail = "https://images.unsplash.com/photo-1588615419957-bf66d53c6b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                    thumbnail = "https://localhost:44324/" + uniqueImageName,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
                     hnum = model.HouseNumber,

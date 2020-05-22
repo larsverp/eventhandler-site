@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using Rockstar.Models;
 
 namespace RockStar_IT_Events.ViewModels
@@ -52,5 +53,8 @@ namespace RockStar_IT_Events.ViewModels
         public string SpeakerId { get; set; }
 
         public List<Host> Speakers { get; set; }
+
+        public IFormFile Picture { get; set; }
+
     }
 }
