@@ -123,7 +123,6 @@ namespace Rockstar.Data
 
         public async Task RemoveEventFromFavorites(string eventId, string cookieValue)
         {
-
             var url = "https://eventhandler-api.herokuapp.com/api/favorites/" + eventId;
             var client = new HttpClient();
 

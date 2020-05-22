@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Rockstar.Models;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -23,7 +22,6 @@ namespace Rockstar.Data
             string json = JsonConvert.SerializeObject(userDetails);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-
             string url = "https://eventhandler-api.herokuapp.com/api/users/login";
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -42,14 +40,15 @@ namespace Rockstar.Data
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             string url = "https://eventhandler-api.herokuapp.com/api/users/register";
-            var client = new HttpClient();
-            
-            client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = await client.PostAsync(url, data);
+                var response = await client.PostAsync(url, data);
 
-            string result = response.Content.ReadAsStringAsync().Result;
+                string result = response.Content.ReadAsStringAsync().Result;
+            }
         }
 
         public async Task<string> GetRole(string token)
@@ -96,7 +95,46 @@ namespace Rockstar.Data
             {
                 return new List<User>();
             }
-            
+        }
+
+        public async Task UpdateUser(User updatedUser, string cookieValue)
+        {
+            var json = JsonConvert.SerializeObject(updatedUser);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = "https://eventhandler-api.herokuapp.com/api/users/" + updatedUser.Id;
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var response = await client.PutAsync(url, data);
+                if (response.IsSuccessStatusCode == false)
+                    throw new ArgumentException("Something went wrong");
+            }
+        }
+
+        public async Task ValidateUser(string email, string token)
+        {
+            var userDetails = new Dictionary<string, string>()
+            {
+                { "email", email },
+                { "token", token}
+            };
+
+            string json = JsonConvert.SerializeObject(userDetails);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = "https://eventhandler-api.herokuapp.com/api/users/validation";
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await client.PostAsync(url, data);
+                if(response.IsSuccessStatusCode == false)
+                    throw new ArgumentException("Something went wrong");
+            }
         }
     }
 
