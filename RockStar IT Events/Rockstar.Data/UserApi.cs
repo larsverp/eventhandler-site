@@ -97,6 +97,23 @@ namespace Rockstar.Data
             }
         }
 
+        public async Task UpdateUser(User updatedUser, string cookieValue)
+        {
+            var json = JsonConvert.SerializeObject(updatedUser);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = "https://eventhandler-api.herokuapp.com/api/users/" + updatedUser.Id;
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var response = await client.PutAsync(url, data);
+                if (response.IsSuccessStatusCode == false)
+                    throw new ArgumentException("Something went wrong");
+            }
+        }
+
         public async Task ValidateUser(string email, string token)
         {
             var userDetails = new Dictionary<string, string>()
