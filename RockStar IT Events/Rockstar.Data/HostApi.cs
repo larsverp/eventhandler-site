@@ -85,7 +85,7 @@ namespace Rockstar.Data
 
                 var response = await client.DeleteAsync(url);
                 if (response.IsSuccessStatusCode == false)
-                    throw new ArgumentException("Something went wrong");
+                    throw new ArgumentException("Something went wrong");    
             }
         }
     }
