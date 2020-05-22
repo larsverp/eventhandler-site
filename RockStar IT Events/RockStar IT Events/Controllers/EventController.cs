@@ -70,7 +70,7 @@ namespace RockStar_IT_Events.Controllers
 
         public async Task<IActionResult> UnsubscribeForEvent(string id)
         {
-            await ticketsApi.UnsubscribeForEvent(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await ticketsApi.UnsubscribeForEvent(id,"", contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
             return RedirectToAction("Event", "Event", new { id = id });
         }
     }

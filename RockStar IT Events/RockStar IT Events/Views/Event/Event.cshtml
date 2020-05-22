@@ -1,8 +1,5 @@
 ﻿@model RockStar_IT_Events.ViewModels.IndividualEventModel
-@using System.Text;
 @using System.Web;
-@using Microsoft.AspNetCore.Mvc;
-@using Microsoft.AspNetCore.Html;
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Extensions;
 @using RockStar_IT_Events
@@ -24,23 +21,33 @@
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-        <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-            <p class="align-self-center">tickets</p>
-            <img class="align-self-center" src="~/Images/Next.png"/>
-        </a>
+        @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+        {
+            <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                <p class="align-self-center">Schrijf jezelf uit</p>
+                <img class="align-self-center" src="~/Images/Next.png"/>
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                <p class="align-self-center">Schrijf jezelf in</p>
+                <img class="align-self-center" src="~/Images/Next.png"/>
+            </a>
+        }
         <div class="align-self-center text-right">
             <div class="float-right">
                 <img src="~/Images/Share.png" class="icon mx-2"/>
                 @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
                 {
                     <a asp-action="RemoveEventFromFavorites" asp-route-id="@Model.eEvent.id">
-                        <img src="~/Images/Heart_Filled.png" class="icon mx-2" />
+                        <img src="~/Images/Heart_Filled.png" class="icon mx-2"/>
                     </a>
                 }
                 else
                 {
                     <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
-                        <img src="~/Images/Heart.png" class="icon mx-2" />
+                        <img src="~/Images/Heart.png" class="icon mx-2"/>
                     </a>
                 }
             </div>
