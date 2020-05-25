@@ -13,7 +13,7 @@ namespace Rockstar.Data
     {
         public async Task<List<Category>> GetAllCategories()
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/users/categories";
+            var url = "https://eventhandler-api.herokuapp.com/api/categories";
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

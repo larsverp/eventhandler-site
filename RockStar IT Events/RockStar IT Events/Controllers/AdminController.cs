@@ -17,6 +17,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly EventApi eventApi;
         private readonly HostApi hostApi;
         private readonly UserApi userApi;
+        private readonly CategoryApi categoryApi;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
 
@@ -26,13 +27,14 @@ namespace RockStar_IT_Events.Controllers
             eventApi = new EventApi();
             hostApi = new HostApi();
             userApi = new UserApi();
+            categoryApi = new CategoryApi();
             webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event> events = eventApi.GetAllEvents();
+            List<Event> events = await eventApi.GetAllEvents();
             return View(events);
         }
 
@@ -124,9 +126,11 @@ namespace RockStar_IT_Events.Controllers
             }
 
             var hosts = await hostApi.GetAllHosts();
+            var categories = await categoryApi.GetAllCategories();
             EventModel model = new EventModel
             {
-                Speakers = hosts.ToList()
+                Speakers = hosts.ToList(),
+                Categories = categories
             };
 
             return View(model);
@@ -152,7 +156,7 @@ namespace RockStar_IT_Events.Controllers
                     hnum = model.HouseNumber,
                     notification = model.SendNotifications,
                     host_id = model.SpeakerId,
-                    categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" },
+                    categories = model.CategoryId,
                     
                 };
 

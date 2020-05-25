@@ -25,9 +25,9 @@ namespace RockStar_IT_Events.Controllers
             categoryApi = new CategoryApi();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event.Event> events = eventApi.GetAllEvents();
+            List<Event.Event> events = await eventApi.GetAllEvents();
 
             return View(events);
         }

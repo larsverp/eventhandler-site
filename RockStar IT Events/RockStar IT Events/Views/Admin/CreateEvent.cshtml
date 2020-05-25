@@ -55,6 +55,13 @@
                 </div>
             </div>
             <div class="form-row">
+                @foreach (var cat in Model.Categories)
+                {
+                    <input type="checkbox" name="CategoryId" value="@cat.id"/>
+                    <label>@cat.name</label>
+                }
+            </div>
+            <div class="form-row">
                 <div class="col-md-12">
                     <input type="submit" value="Create this event" class="col-md-12 rockstar-btn create-btn text-center"/>
                 </div>
