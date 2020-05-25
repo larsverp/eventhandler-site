@@ -67,6 +67,10 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
+                    string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
+                    var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
+                    model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
+
                     Event e = new Event
                     {
                         id = model.Id,
@@ -78,7 +82,7 @@ namespace RockStar_IT_Events.Controllers
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
                         seats = model.TotalSeats,
-                        thumbnail = "https://images.unsplash.com/photo-1588615419957-bf66d53c6b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                        thumbnail = "https://localhost:44324/" + uniqueImageName,
                         host_id = model.SpeakerId,
                         categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" }
                     };
