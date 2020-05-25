@@ -59,23 +59,26 @@ namespace RockStar_IT_Events.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                Rockstar.Models.User user = new User()
+                try
                 {
-                    first_name = model.FirstName,
-                    email = model.EmailAddress,
-                    insertion = model.Insertion,
-                    last_name = model.LastName,
-                    password = model.Password,
-                    postal_code = model.PostalCode
-                };
-                await userApi.Signup(user);
-                return RedirectToAction("Login");
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("", e.Message);
+                    Rockstar.Models.User user = new User()
+                    {
+                        first_name = model.FirstName,
+                        email = model.EmailAddress,
+                        insertion = model.Insertion,
+                        last_name = model.LastName,
+                        password = model.Password,
+                        postal_code = model.PostalCode
+                    };
+                    await userApi.Signup(user);
+                    return RedirectToAction("Validate", "User", new {email = user.email});
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
             }
 
             return View();
@@ -89,6 +92,37 @@ namespace RockStar_IT_Events.Controllers
             }
             HttpContext.Session.Clear();
             return RedirectToAction("", "Event");
+        }
+
+        [HttpGet]
+        public IActionResult Validate(string email)
+        {
+            ValidateViewModel model = new ValidateViewModel
+            {
+                Email = email
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Validate(ValidateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await userApi.ValidateUser(model.Email, model.Code.ToString());
+
+                    return RedirectToAction("Login");
+                }
+                catch(Exception e)
+                {
+                    ModelState.AddModelError("", "Onjuiste combinatie");
+                }
+            }
+
+            return View();
         }
     }
 }
