@@ -20,9 +20,9 @@
                     <input asp-for="Description" class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"/>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row mb-3">
                 <div class="col-md-12">
-                    <select asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
+                    <select class="form-control" asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
                         <option value="" selected disabled>Select host</option>
                     </select>
                 </div>
@@ -50,10 +50,9 @@
                 <div class="col-md-12">
                     <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
                     <div style='height: 0px; width: 0px; overflow: hidden;'>
-                        <input id="upfile" type="file" name="picture" value="upload" onchange="sub(this)"/>
+                        <input id="upfile" asp-for="Picture" onchange="sub(this)"/>
                     </div>
                 </div>
-                <input asp-for="Picture"/>
             </div>
             <div class="form-row">
                 <div class="col-md-12">
