@@ -43,6 +43,7 @@ namespace RockStar_IT_Events.Controllers
         {
             Event e = eventApi.GetEvent(id);
             var hosts = await hostApi.GetAllHosts();
+            var cats = await categoryApi.GetAllCategories();
             EventModel model = new EventModel
             {
                 Id = e.id,
@@ -56,7 +57,8 @@ namespace RockStar_IT_Events.Controllers
                 HouseNumber = e.hnum,
                 SendNotifications = e.notification,
                 SpeakerId = e.host_id,
-                Speakers = hosts.ToList()
+                Speakers = hosts.ToList(),
+                Categories = cats
             };
 
             return View(model);
@@ -86,7 +88,7 @@ namespace RockStar_IT_Events.Controllers
                         seats = model.TotalSeats,
                         thumbnail = "https://localhost:44324/" + uniqueImageName,
                         host_id = model.SpeakerId,
-                        categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" }
+                        categories = model.CategoryId
                     };
 
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
