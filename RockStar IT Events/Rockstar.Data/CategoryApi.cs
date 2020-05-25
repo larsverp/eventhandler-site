@@ -27,7 +27,7 @@ namespace Rockstar.Data
 
         public async Task<List<Category>> GetAllCategoriesFromEvent(string eventId)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/users/categories/" + eventId;
+            var url = "https://eventhandler-api.herokuapp.com/api/categories/event/" + eventId;
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

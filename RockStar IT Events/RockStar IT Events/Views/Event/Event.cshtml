@@ -11,45 +11,70 @@
     </div>
     <div class="col-sm">
         <h1>@Model.eEvent.title</h1>
-        <p>by Richard Baaters</p>
+        <p>by @Model.Host.first_name @Model.Host.last_name</p>
         <a href="#" class="rockstar-btn d-inline-flex">
             <p class="align-self-center">Following</p>
             <img class="align-self-center" src="~/Images/Check.png" />
         </a>
-        <p>25/50 seats available</p>
-        <p>PHP | Unit Testing | Python</p>
+        <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
+        <p>@{
+               for (int i = 0; i < Model.Categories.Count(); i++)
+               {
+                   <span>@Model.Categories[i].name</span>
+                    @if (i + 1 < Model.Categories.Count())
+                    {
+                        <span> | </span>
+                    }
+               }
+           }</p>
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-        @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
-        {
-            <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                <p class="align-self-center">Schrijf jezelf uit</p>
-                <img class="align-self-center" src="~/Images/Next.png"/>
-            </a>
-        }
-        else
-        {
-            <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                <p class="align-self-center">Schrijf jezelf in</p>
-                <img class="align-self-center" src="~/Images/Next.png"/>
-            </a>
-        }
+        @try
+        {@if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+            {
+                <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                    <p class="align-self-center">Schrijf jezelf uit</p>
+                    <img class="align-self-center" src="~/Images/Next.png" />
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                    <p class="align-self-center">Schrijf jezelf in</p>
+                    <img class="align-self-center" src="~/Images/Next.png" />
+                </a>
+            }
+
+            }
+            catch
+            {
+
+            }
+
         <div class="align-self-center text-right">
             <div class="float-right">
-                <img src="~/Images/Share.png" class="icon mx-2"/>
-                @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                <img src="~/Images/Share.png" class="icon mx-2" />
+                @try
                 {
-                    <a asp-action="RemoveEventFromFavorites" asp-route-id="@Model.eEvent.id">
-                        <img src="~/Images/Heart_Filled.png" class="icon mx-2"/>
-                    </a>
+                    @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                    {
+                        <a asp-action="RemoveEventFromFavorites" asp-route-id="@Model.eEvent.id">
+                            <img src="~/Images/Heart_Filled.png" class="icon mx-2" />
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
+                            <img src="~/Images/Heart.png" class="icon mx-2" />
+                        </a>
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
-                        <img src="~/Images/Heart.png" class="icon mx-2"/>
-                    </a>
+
                 }
+
             </div>
         </div>
     </div>
@@ -80,9 +105,9 @@
         </div>
         <div>
             <h1>Location</h1>
-            <p>Oude kerk, 2</p>
+            <p>@Model.eEvent.street, @Model.eEvent.hnum</p>
             <p>
-                Alkmaar, The Netherlands
+                @Model.eEvent.city, The Netherlands
             </p>
             <a href="#" class="rockstar-btn d-inline-flex">
                 <p>plan route</p>
