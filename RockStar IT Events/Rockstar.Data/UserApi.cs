@@ -102,7 +102,7 @@ namespace Rockstar.Data
             }
         }
 
-        public async Task UpdateUser(User updatedUser, string cookieValue)
+        public async Task UpdateUser(UserWithoutPassword updatedUser, string cookieValue)
         {
             var json = JsonConvert.SerializeObject(updatedUser);
             var data = new StringContent(json, Encoding.UTF8, "application/json");

@@ -209,17 +209,25 @@ namespace RockStar_IT_Events.Controllers
         {
             var users = await userApi.ReturnAllUsers(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
             var user = users.FirstOrDefault(u => u.Id == id);
-            return View(user);
+            var model = new UserWithoutPassword
+            {
+                email = user.email,
+                first_name = user.first_name,
+                Id = user.Id,
+                insertion = user.insertion,
+                last_name = user.last_name,
+                postal_code = user.postal_code
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(User model)
+        public async Task<IActionResult> EditUser(UserWithoutPassword model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.password = "p";
                     await userApi.UpdateUser(model, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
                     return RedirectToAction("GetUsers", "Admin");
                 }
