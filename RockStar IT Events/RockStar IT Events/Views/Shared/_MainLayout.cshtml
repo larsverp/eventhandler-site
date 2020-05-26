@@ -32,7 +32,7 @@
                 <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" asp-action="FavoriteEvents">My Favorite Events</a>
+                <a class="nav-link text-light" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" href="#">Update Interests</a>
@@ -40,7 +40,7 @@
             @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
             {
                 <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="Admin">Admin panel</a>
+                    <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Admin panel</a>
                 </li>
             }
             @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)

@@ -30,27 +30,22 @@
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-        @try
-        {@if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+        @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
         {
-
-            <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                <p class="align-self-center">Schrijf jezelf uit</p>
-                <img class="align-self-center" src="~/Images/Next.png" />
-            </a>
-        }
-        else
-        {
-            <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                <p class="align-self-center">Schrijf jezelf in</p>
-                <img class="align-self-center" src="~/Images/Next.png" />
-            </a>
-        }
-
-        }
-        catch
-        {
-
+            @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+            {
+                <div class="sign-up-button rockstar-btn d-inline-flex">
+                    <p class="align-self-center ">Sign out</p>
+                    <img class="align-self-center" src="~/Images/Next.png"/>
+                </div>
+            }
+            else
+            {
+                <div class="sign-out-button rockstar-btn d-inline-flex">
+                    <p class="align-self-center">Sign up</p>
+                    <img class="align-self-center" src="~/Images/Next.png"/>
+                </div>
+            }
         }
 
         <div class="align-self-center text-right">
@@ -110,7 +105,28 @@
 </div>
 
 <script>
-    
+
+    $("div.sign-up-button").on('click',
+        function () {
+            $.post("/Event/UnsubscribeForEvent",
+                {
+                    id: "@Model.eEvent.id"
+                });
+
+            $("div.sign-up-button p").text('Sign in');
+            $("div.sign-up-button").toggleClass("sign-up-button").toggleClass("sign-out-button");
+        });
+
+    $("div.sign-out-button").on('click',
+        function () {
+            $.post("/Event/SubscribeForEvent",
+                {
+                    id: "@Model.eEvent.id"
+                });
+            $("div.sign-out-button p").text('Sign out');
+            $("div.sign-out-button").toggleClass("sign-out-button").toggleClass("sign-up-button");
+        });
+
     $("i.like").on('click', function () {
         $.post("/Event/AddEventToFavorites",
             {
