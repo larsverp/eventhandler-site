@@ -30,25 +30,26 @@
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-        @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
-        {
-            @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+        <div>
+            @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
             {
-                <div class="sign-up-button rockstar-btn d-inline-flex">
-                    <p class="align-self-center ">Sign out</p>
-                    <img class="align-self-center" src="~/Images/Next.png"/>
-                </div>
+                @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                {
+                    <div class="sign-up-button rockstar-btn d-inline-flex">
+                        <p class="align-self-center ">Sign out</p>
+                        <img class="align-self-center" src="~/Images/Next.png"/>
+                    </div>
+                }
+                else
+                {
+                    <div class="sign-out-button rockstar-btn d-inline-flex">
+                        <p class="align-self-center">Sign up</p>
+                        <img class="align-self-center" src="~/Images/Next.png"/>
+                    </div>
+                }
             }
-            else
-            {
-                <div class="sign-out-button rockstar-btn d-inline-flex">
-                    <p class="align-self-center">Sign up</p>
-                    <img class="align-self-center" src="~/Images/Next.png"/>
-                </div>
-            }
-        }
-
-        <div class="align-self-center text-right">
+        </div>
+        <div class="align-self-center ml-auto">
             <div class="float-right">
                 <i class="fa fa-share-alt fa-2x"></i>
                 @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
