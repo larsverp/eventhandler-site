@@ -102,7 +102,7 @@ namespace Rockstar.Data
             }
         }
 
-        public async Task UpdateUser(User updatedUser, string cookieValue)
+        public async Task UpdateUser(UserWithoutPassword updatedUser, string cookieValue)
         {
             var json = JsonConvert.SerializeObject(updatedUser);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
@@ -114,6 +114,7 @@ namespace Rockstar.Data
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
 
                 var response = await client.PutAsync(url, data);
+                string x = response.Content.ReadAsStringAsync().Result;
                 if (response.IsSuccessStatusCode == false)
                     throw new ArgumentException("Something went wrong");
             }
