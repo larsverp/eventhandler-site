@@ -8,7 +8,6 @@ namespace RockStar_IT_Events.ViewModels
         [StringLength(maximumLength:191, MinimumLength = 1, ErrorMessage = "Enter max. 191 characters")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Enter a insertion")]
         [StringLength(maximumLength: 191, MinimumLength = 1, ErrorMessage = "Enter max. 191 characters")]
         public string Insertion { get; set; }
 

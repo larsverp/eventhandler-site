@@ -14,6 +14,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly EventApi eventApi;
         private readonly HostApi hostApi;
         private readonly TicketsApi ticketsApi;
+        private readonly CategoryApi categoryApi;
 
         public EventController(IHttpContextAccessor contextAccessor)
         {
@@ -21,24 +22,27 @@ namespace RockStar_IT_Events.Controllers
             eventApi = new EventApi();
             hostApi = new HostApi();
             ticketsApi = new TicketsApi();
+            categoryApi = new CategoryApi();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event.Event> events = eventApi.GetAllEvents();
+            List<Event.Event> events = await eventApi.GetAllEvents();
 
             return View(events);
         }
 
-        public IActionResult Event(string id)
+        public async Task<IActionResult> Event(string id)
         {
             var e = eventApi.GetEvent(id);
             var host = hostApi.GetHost(e.host_id);
+            var category = await categoryApi.GetAllCategoriesFromEvent(id);
 
             var model = new IndividualEventModel
             {
                 eEvent = e,
-                Host = host
+                Host = host,
+                Categories = category
             };
             return View(model);
         }

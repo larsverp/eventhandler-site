@@ -17,7 +17,7 @@ namespace Rockstar.Data
         private WebResponse webResponse;
         private StreamReader streamReader;
 
-        public List<Event> GetAllEvents()
+        public async Task <List<Event>> GetAllEvents()
         {
             webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/events/preview");
 

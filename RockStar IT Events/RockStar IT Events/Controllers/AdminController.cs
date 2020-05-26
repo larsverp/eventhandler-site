@@ -17,6 +17,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly EventApi eventApi;
         private readonly HostApi hostApi;
         private readonly UserApi userApi;
+        private readonly CategoryApi categoryApi;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
 
@@ -26,13 +27,14 @@ namespace RockStar_IT_Events.Controllers
             eventApi = new EventApi();
             hostApi = new HostApi();
             userApi = new UserApi();
+            categoryApi = new CategoryApi();
             webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Event> events = eventApi.GetAllEvents();
+            List<Event> events = await eventApi.GetAllEvents();
             return View(events);
         }
 
@@ -41,6 +43,7 @@ namespace RockStar_IT_Events.Controllers
         {
             Event e = eventApi.GetEvent(id);
             var hosts = await hostApi.GetAllHosts();
+            var cats = await categoryApi.GetAllCategories();
             EventModel model = new EventModel
             {
                 Id = e.id,
@@ -54,7 +57,8 @@ namespace RockStar_IT_Events.Controllers
                 HouseNumber = e.hnum,
                 SendNotifications = e.notification,
                 SpeakerId = e.host_id,
-                Speakers = hosts.ToList()
+                Speakers = hosts.ToList(),
+                Categories = cats
             };
 
             return View(model);
@@ -67,6 +71,10 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
+                    string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
+                    var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
+                    model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
+
                     Event e = new Event
                     {
                         id = model.Id,
@@ -78,9 +86,9 @@ namespace RockStar_IT_Events.Controllers
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
                         seats = model.TotalSeats,
-                        thumbnail = "https://images.unsplash.com/photo-1588615419957-bf66d53c6b49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+                        thumbnail = "https://localhost:44324/" + uniqueImageName,
                         host_id = model.SpeakerId,
-                        categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" }
+                        categories = model.CategoryId
                     };
 
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
@@ -120,9 +128,11 @@ namespace RockStar_IT_Events.Controllers
             }
 
             var hosts = await hostApi.GetAllHosts();
+            var categories = await categoryApi.GetAllCategories();
             EventModel model = new EventModel
             {
-                Speakers = hosts.ToList()
+                Speakers = hosts.ToList(),
+                Categories = categories
             };
 
             return View(model);
@@ -148,7 +158,7 @@ namespace RockStar_IT_Events.Controllers
                     hnum = model.HouseNumber,
                     notification = model.SendNotifications,
                     host_id = model.SpeakerId,
-                    categories = new List<string> { "452f25f4-3339-4791-bc87-f157e913c771" },
+                    categories = model.CategoryId,
                     
                 };
 
