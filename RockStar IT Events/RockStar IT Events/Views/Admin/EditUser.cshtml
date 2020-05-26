@@ -5,42 +5,42 @@
     Layout = "_admin";
 }
 
-    <div class="col-md-10 create-container">
+<div class="col-md-10 create-container">
 
-        <form action="#type your action here" method="POST" enctype="multipart/form-data" class="rockstar-form" name="myForm">
+    <form asp-controller="Admin" asp-action="EditUser" class="rockstar-form">
 
-            <h1 class="title col-md-12 text-center">
-                Edit User: @Model.first_name @Model.last_name
-            </h1>
+        <h1 class="title col-md-12 text-center">
+            Edit User: @Model.first_name @Model.last_name
+        </h1>
 
-            <div class="col-md-10">
-                <div class="form-row">
-                    <div class="col-md-5">
-                        <input class="form-control" asp-for="first_name" placeholder="Firstname"/>
-                    </div>
-                    <div class="col-md-2">
-
-                        <input class="form-control" asp-for="insertion" placeholder="Insertion" />
-                    </div>
-                    <div class="col-md-5">
-                        <input class="form-control " asp-for="last_name" placeholder="Lastname"/>
-                    </div>
+        <div class="col-md-10">
+            <div class="form-row">
+                <div class="col-md-5">
+                    <input class="form-control" asp-for="first_name" placeholder="Firstname"/>
                 </div>
+                <div class="col-md-2">
 
-                <div class="form-row">
-                    <div class="col-md-8">
-                        <input class="form-control " asp-for="email" placeholder="Email"/>
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control " asp-for="postal_code" placeholder="Postal Code" />
-                    </div>
+                    <input class="form-control" asp-for="insertion" placeholder="Insertion" />
                 </div>
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <input class="rockstar-btn text-center col-md-12" type="submit" value="Save Changes" />
-                    </div>
+                <div class="col-md-5">
+                    <input class="form-control " asp-for="last_name" placeholder="Lastname"/>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <div class="form-row">
+                <div class="col-md-8">
+                    <input class="form-control " asp-for="email" placeholder="Email"/>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control " asp-for="postal_code" placeholder="Postal Code" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input class="rockstar-btn text-center col-md-12" type="submit" value="Save Changes" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

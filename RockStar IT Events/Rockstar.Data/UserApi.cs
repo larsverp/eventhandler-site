@@ -114,6 +114,7 @@ namespace Rockstar.Data
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
 
                 var response = await client.PutAsync(url, data);
+                string x = response.Content.ReadAsStringAsync().Result;
                 if (response.IsSuccessStatusCode == false)
                     throw new ArgumentException("Something went wrong");
             }

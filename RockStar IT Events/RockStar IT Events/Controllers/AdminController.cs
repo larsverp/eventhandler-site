@@ -204,9 +204,33 @@ namespace RockStar_IT_Events.Controllers
             }
         }
 
-        public IActionResult EditUser()
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
         {
-            return View(new Rockstar.Models.User { email = "test3", first_name = "jan", last_name = "jansen", postal_code = "1244AB" });
+            var users = await userApi.ReturnAllUsers(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            var user = users.FirstOrDefault(u => u.Id == id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.password = "p";
+                    await userApi.UpdateUser(model, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+                    return RedirectToAction("GetUsers", "Admin");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            var users = await userApi.ReturnAllUsers(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            var user = users.FirstOrDefault(u => u.Id == model.Id);
+            return View(user);
         }
 
         public IActionResult Tickets()
