@@ -71,9 +71,19 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
-                    string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
-                    var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
-                    model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
+                    string pathName;
+                    if (model.Picture != null)
+                    {
+                        string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
+                        var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
+                        model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
+                        pathName = "https://localhost:44324/" + uniqueImageName;
+                    }
+                    else
+                    {
+                        var events = await eventApi.GetAllEvents();
+                        pathName = events.FirstOrDefault(e => e.id == model.Id).thumbnail;
+                    }
 
                     Event e = new Event
                     {
@@ -86,7 +96,7 @@ namespace RockStar_IT_Events.Controllers
                         notification = model.SendNotifications,
                         postal_code = model.PostalCode,
                         seats = model.TotalSeats,
-                        thumbnail = "https://localhost:44324/" + uniqueImageName,
+                        thumbnail = pathName,
                         host_id = model.SpeakerId,
                         categories = model.CategoryId
                     };
@@ -102,7 +112,27 @@ namespace RockStar_IT_Events.Controllers
                 }
             }
 
-            return View(model);
+            Event ev = eventApi.GetEvent(model.Id);
+            var hosts = await hostApi.GetAllHosts();
+            var cats = await categoryApi.GetAllCategories();
+            EventModel m = new EventModel
+            {
+                Id = ev.id,
+                Title = ev.title,
+                Description = ev.description,
+                EndDate = DateTime.Parse(ev.end_date),
+                StartDate = DateTime.Parse(ev.begin_date),
+                Thumbnail = ev.thumbnail,
+                TotalSeats = ev.seats,
+                PostalCode = ev.postal_code,
+                HouseNumber = ev.hnum,
+                SendNotifications = ev.notification,
+                SpeakerId = ev.host_id,
+                Speakers = hosts.ToList(),
+                Categories = cats
+            };
+
+            return View(m);
         }
 
         public async Task<IActionResult> DeleteEvent(string id)
