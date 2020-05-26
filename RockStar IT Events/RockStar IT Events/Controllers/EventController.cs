@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RockStar_IT_Events.ViewModels;
 using Event = Rockstar.Models;
@@ -73,14 +74,13 @@ namespace RockStar_IT_Events.Controllers
         {
             await ticketsApi.SubscribeForEvent(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
             return Ok();
-            return RedirectToAction("Event", "Event", new { id = id });
         }
 
         [HttpPost]
         public async Task<IActionResult> UnsubscribeForEvent(string id)
         {
             await ticketsApi.UnsubscribeForEvent(id,"", contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
-            return RedirectToAction("Event", "Event", new { id = id });
+            return Ok();
         }
     }
 }
