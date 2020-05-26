@@ -7,10 +7,23 @@
 
 @foreach (var e in Model)
 {
-    <p>@e.title</p>
+    <div class="@e.id">
+        <p>@e.title</p>
 
-    <a asp-action="RemoveEventFromFavorites" asp-route-id="@e.id">Remove</a>
+        <a onclick="RemoveFromFavorites('@e.id')">Remove</a>
 
-    <p>@e.id</p>
-    <hr/>
+        <p>@e.id</p>
+        <hr/>
+    </div>
 }
+
+<script>
+    function RemoveFromFavorites(eId) {
+        alert(eId);
+        $.post("/Event/RemoveEventFromFavorites",
+            {
+                id: eId
+            });
+        $("." + eId).remove();
+    }
+</script>

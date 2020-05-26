@@ -54,24 +54,29 @@ namespace RockStar_IT_Events.Controllers
             return View(events);
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddEventToFavorites(string id)
         {
             await eventApi.AddEventToFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
-            return RedirectToAction("Event", "Event", new { id = id.ToString()});
+            return Ok();
         }
 
+        [HttpPost]
         public async Task<IActionResult> RemoveEventFromFavorites(string id)
         {
             await eventApi.RemoveEventFromFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
-            return RedirectToAction("Event", "Event", new { id = id });
+            return Ok();
         }
 
+        [HttpPost]
         public async Task<IActionResult> SubscribeForEvent(string id)
         {
             await ticketsApi.SubscribeForEvent(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            return Ok();
             return RedirectToAction("Event", "Event", new { id = id });
         }
 
+        [HttpPost]
         public async Task<IActionResult> UnsubscribeForEvent(string id)
         {
             await ticketsApi.UnsubscribeForEvent(id,"", contextAccessor.HttpContext.Request.Cookies["BearerToken"]);

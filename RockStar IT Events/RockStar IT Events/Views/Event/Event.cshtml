@@ -4,7 +4,7 @@
 @using Microsoft.AspNetCore.Http.Extensions;
 @using RockStar_IT_Events
 @inject IHttpContextAccessor ContextAccessor;
-
+    
 <div class="row bg-white">
     <div class="col-sm p-0">
         <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover"/>
@@ -21,10 +21,10 @@
                for (int i = 0; i < Model.Categories.Count(); i++)
                {
                    <span>@Model.Categories[i].name</span>
-                    @if (i + 1 < Model.Categories.Count())
-                    {
-                        <span> | </span>
-                    }
+                   @if (i + 1 < Model.Categories.Count())
+                   {
+                       <span> | </span>
+                   }
                }
            }</p>
     </div>
@@ -32,49 +32,41 @@
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
         @try
         {@if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
-            {
-                <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                    <p class="align-self-center">Schrijf jezelf uit</p>
-                    <img class="align-self-center" src="~/Images/Next.png" />
-                </a>
-            }
-            else
-            {
-                <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-                    <p class="align-self-center">Schrijf jezelf in</p>
-                    <img class="align-self-center" src="~/Images/Next.png" />
-                </a>
-            }
+        {
 
-            }
-            catch
-            {
+            <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                <p class="align-self-center">Schrijf jezelf uit</p>
+                <img class="align-self-center" src="~/Images/Next.png" />
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Event" asp-action="SubscribeForEvent" asp-route-id="@Model.eEvent.id" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
+                <p class="align-self-center">Schrijf jezelf in</p>
+                <img class="align-self-center" src="~/Images/Next.png" />
+            </a>
+        }
 
-            }
+        }
+        catch
+        {
+
+        }
 
         <div class="align-self-center text-right">
             <div class="float-right">
-                <img src="~/Images/Share.png" class="icon mx-2" />
-                @try
+                <i class="fa fa-share-alt fa-2x"></i>
+                @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
                 {
                     @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
                     {
-                        <a asp-action="RemoveEventFromFavorites" asp-route-id="@Model.eEvent.id">
-                            <img src="~/Images/Heart_Filled.png" class="icon mx-2" />
-                        </a>
+                        <i class="fa fa-heart fa-2x text-danger unlike"></i>
                     }
                     else
                     {
-                        <a asp-action="AddEventToFavorites" asp-route-id="@Model.eEvent.id">
-                            <img src="~/Images/Heart.png" class="icon mx-2" />
-                        </a>
+                        <i class="fa fa-heart-o fa-2x text-danger like"></i>
                     }
                 }
-                catch (Exception e)
-                {
-
-                }
-
             </div>
         </div>
     </div>
@@ -116,3 +108,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+    $("i.like").on('click', function () {
+        $.post("/Event/AddEventToFavorites",
+            {
+                id: "@Model.eEvent.id"
+            });
+        $(this).toggleClass("fa-heart").toggleClass("fa-heart-o");
+        $("i.like").toggleClass("like").toggleClass("unlike");
+
+    });
+
+    $("i.unlike").on('click', function () {
+        $.post("/Event/RemoveEventFromFavorites",
+            {
+                id: "@Model.eEvent.id"
+            });
+        $(this).toggleClass("fa-heart-o").toggleClass("fa-heart");
+        $("i.unlike").toggleClass("unlike").toggleClass("like");
+    });
+</script>
