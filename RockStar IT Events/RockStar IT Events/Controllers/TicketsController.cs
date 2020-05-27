@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +33,14 @@ namespace RockStar_IT_Events.Controllers
             });
 
             return View(models);
+        }
+
+        public async Task<IActionResult> DownloadPdf(string id)
+        {
+            await ticketsApi.GetPdf(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            //var stream = new FileStream(@url, FileMode.Open);
+            return Ok();
+            //return new FileStreamResult(stream, "application/pdf");
         }
     }
 }

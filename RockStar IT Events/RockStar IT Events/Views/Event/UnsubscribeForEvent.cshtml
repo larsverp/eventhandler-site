@@ -1,0 +1,17 @@
+﻿@model RockStar_IT_Events.ViewModels.UnsubscribeEvent
+@{
+    ViewData["Title"] = "UnsubscribeForEvent";
+}
+
+<h1>Unsubscribe for @Model.Event.title</h1>
+
+<form asp-action="UnsubscribeForEvent" asp-controller="Event">
+    <input asp-for="Event.id" hidden/>
+    <div class="form-group">
+        <label asp-for="Reason"></label>
+        <input asp-for="Reason"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Unsubscribe"/>
+    </div>
+</form>
