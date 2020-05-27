@@ -34,8 +34,8 @@ namespace RockStar_IT_Events.Controllers
             {
                 Id = e.id,
                 Description = e.description,
-                EndDate = DateTime.Parse(e.date),
-                StartDate = DateTime.Parse(e.date),
+                EndDate = DateTime.Parse(e.end_date),
+                StartDate = DateTime.Parse(e.begin_date),
                 HouseNumber = e.hnum,
                 PostalCode = e.postal_code,
                 SendNotifications = e.notification,
@@ -56,6 +56,7 @@ namespace RockStar_IT_Events.Controllers
                 Event ev = new Event();
                 try
                 {
+<<<<<<< HEAD
                     ev.title = e.Title;
                     ev.description = e.Description;
                     ev.date = e.StartDate.ToString("dd-MM-yyyy") + "00:00:00";
@@ -64,6 +65,22 @@ namespace RockStar_IT_Events.Controllers
                     ev.postal_code = e.PostalCode;
                     ev.hnum = e.HouseNumber;
                     ev.notification = e.SendNotifications;
+=======
+                    Event e = new Event()
+                    {
+                        id = model.Id,
+                        title = model.Title,
+                        description = model.Description,
+                        begin_date= model.StartDate.ToString("dd-MM-yyyy")+ "00:00:00",
+                        end_date = model.EndDate.ToString("dd-MM-yyyy") + "00:00:00",
+                        hnum = model.HouseNumber,
+                        notification = model.SendNotifications,
+                        postal_code = model.PostalCode,
+                        seats = model.TotalSeats,
+                        thumbnail = model.Thumbnail
+                    };
+
+>>>>>>> 09432a88c91ce4f4b49649bf11433ae1027e6793
                     string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
                     await eventApi.Update(ev, cookie);
                     return RedirectToAction("Index");
@@ -96,10 +113,10 @@ namespace RockStar_IT_Events.Controllers
         [HttpGet]
         public IActionResult CreateEvent()
         {
-            //if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
-            //{
-            //    return RedirectToAction("Login", "User");
-            //}
+            if (contextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
             return View();
         }
@@ -113,7 +130,8 @@ namespace RockStar_IT_Events.Controllers
                 {
                     title = model.Title,
                     description = model.Description,
-                    date = model.StartDate.ToString("dd-MM-yyyy") + "00:00:00",
+                    begin_date= model.StartDate.ToString("dd-MM-yyyy") + "00:00:00",
+                    end_date = model.EndDate.ToString("dd-MM-yyyy") + "00:00:00",
                     thumbnail = model.Thumbnail,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
