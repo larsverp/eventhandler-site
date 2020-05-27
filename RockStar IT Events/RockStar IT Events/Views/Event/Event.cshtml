@@ -36,7 +36,7 @@
                 @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
                 {
                     <div class="sign-up-button rockstar-btn d-inline-flex">
-                        <p class="align-self-center ">Sign out</p>
+                        <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="align-self-center ">Sign out</a>
                         <img class="align-self-center" src="~/Images/Next.png"/>
                     </div>
                 }
@@ -106,18 +106,6 @@
 </div>
 
 <script>
-
-    $("div.sign-up-button").on('click',
-        function () {
-            $.post("/Event/UnsubscribeForEvent",
-                {
-                    id: "@Model.eEvent.id"
-                });
-
-            $("div.sign-up-button p").text('Sign in');
-            $("div.sign-up-button").toggleClass("sign-up-button").toggleClass("sign-out-button");
-        });
-
     $("div.sign-out-button").on('click',
         function () {
             $.post("/Event/SubscribeForEvent",
