@@ -1,0 +1,12 @@
+﻿@model RockStar_IT_Events.ViewModels.ValidateViewModel
+@{
+    ViewData["Title"] = "Validate";
+}
+
+<h1>Hey @Model.Email! Verify your account so we can start your adventure</h1>
+
+<form asp-controller="User" asp-action="Validate">
+    <input asp-for="Email" hidden/>
+    <input asp-for="Code"/>
+    <input type="submit" value="Verify your account"/>
+</form>

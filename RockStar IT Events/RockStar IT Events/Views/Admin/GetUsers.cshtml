@@ -38,8 +38,8 @@
                                 </th>
                                 <td>@e.email</td>
                                 <td>@e.postal_code</td>
-                                <td><a asp-action="EditUser">Edit User</a></td>
-                                <td><a href="#">Remove User</a></td>
+                                <td><a asp-action="EditUser" asp-route-id="@e.Id">Edit User</a></td>
+                                <td><a asp-action="DeleteUser" asp-route-id="@e.Id">Remove User</a></td>
                             </tr>
                         }
                     </tbody>

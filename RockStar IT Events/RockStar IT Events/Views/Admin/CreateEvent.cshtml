@@ -4,7 +4,7 @@
 }
 
 <div class="col-md-10 create-container">
-    <form asp-controller="Admin" asp-action="CreateEvent" class="rockstar-form" name="myForm">
+    <form asp-controller="Admin" asp-action="CreateEvent" class="rockstar-form" name="myForm" enctype="multipart/form-data">
         <div asp-validation-summary="All"></div>
         <h1 class="title col-md-12 text-center">
             This is the start of something great
@@ -20,9 +20,9 @@
                     <input asp-for="Description" class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"/>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row mb-3">
                 <div class="col-md-12">
-                    <select asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
+                    <select class="form-control" asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
                         <option value="" selected disabled>Select host</option>
                     </select>
                 </div>
@@ -49,8 +49,17 @@
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
-                    <div style='height: 0px; width: 0px; overflow: hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)"/></div>
+                    <div style='height: 0px; width: 0px; overflow: hidden;'>
+                        <input id="upfile" asp-for="Picture" onchange="sub(this)"/>
+                    </div>
                 </div>
+            </div>
+            <div class="form-row">
+                @foreach (var cat in Model.Categories)
+                {
+                    <input type="checkbox" name="CategoryId" value="@cat.id"/>
+                    <label>@cat.name</label>
+                }
             </div>
             <div class="form-row">
                 <div class="col-md-12">

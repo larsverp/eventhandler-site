@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Rockstar.Models.Event>
+﻿@using RockStar_IT_Events
+@model IEnumerable<Rockstar.Models.Event>
 <link href="~/css/StyleSheet - Copy.css" type="text/css" rel="stylesheet" />
 
 <div class="row bg-white">
@@ -48,9 +49,8 @@
                                 @e.title
                             </h2>
                         }
-                        <p class="p-0 m-0">Thursday, May 7, 2020</p>
-                        <p class="p-0 m-0">8:00 AM - 10:30 AM</p>
-                        <p class="p-0 m-0">32 Seats available</p>
+                        <p class="p-0 m-0">@DateTime.Parse(e.begin_date).ConvertToSimpleDate() - @DateTime.Parse(e.end_date).ConvertToSimpleDate()</p>
+                        <p class="p-0 m-0">@e.available_seats / @e.seats seats</p>
                     </div>
                 </div>
             </a>

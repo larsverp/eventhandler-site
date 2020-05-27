@@ -1,48 +1,79 @@
 ﻿@model RockStar_IT_Events.ViewModels.IndividualEventModel
-@using System.Text;
 @using System.Web;
-@using Microsoft.AspNetCore.Mvc;
-@using Microsoft.AspNetCore.Html;
+@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Extensions;
-
+@using RockStar_IT_Events
+@inject IHttpContextAccessor ContextAccessor;
+    
 <div class="row bg-white">
     <div class="col-sm p-0">
         <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover"/>
     </div>
     <div class="col-sm">
-        @*<p>@DateTime.Parse(Model.date).Month</p>
-        <p>@DateTime.Parse(Model.date).Day</p>*@
         <h1>@Model.eEvent.title</h1>
-        <p>by Richard Baaters</p>
+        <p>by @Model.Host.first_name @Model.Host.last_name</p>
         <a href="#" class="rockstar-btn d-inline-flex">
             <p class="align-self-center">Following</p>
             <img class="align-self-center" src="~/Images/Check.png" />
         </a>
-        <p>25/50 seats available</p>
-        <p>PHP | Unit Testing | Python</p>
+        <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
+        <p>@{
+               for (int i = 0; i < Model.Categories.Count(); i++)
+               {
+                   <span>@Model.Categories[i].name</span>
+                   @if (i + 1 < Model.Categories.Count())
+                   {
+                       <span> | </span>
+                   }
+               }
+           }</p>
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-        <a href="#" class="rockstar-btn d-inline-flex mr-auto mt-2 mt-sm-0">
-            <p class="align-self-center">tickets</p>
-            <img class="align-self-center" src="~/Images/Next.png"/>
-        </a>
-        <div class="align-self-center text-right">
+        <div>
+            @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
+            {
+                @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                {
+                    <div class="sign-up-button rockstar-btn d-inline-flex">
+                        <p class="align-self-center ">Sign out</p>
+                        <img class="align-self-center" src="~/Images/Next.png"/>
+                    </div>
+                }
+                else
+                {
+                    <div class="sign-out-button rockstar-btn d-inline-flex">
+                        <p class="align-self-center">Sign up</p>
+                        <img class="align-self-center" src="~/Images/Next.png"/>
+                    </div>
+                }
+            }
+        </div>
+        <div class="align-self-center ml-auto">
             <div class="float-right">
-                <img src="~/Images/Share.png" class="icon mx-2"/>
-                <img src="~/Images/Heart.png" class="icon mx-2"/>
+                <i class="fa fa-share-alt fa-2x"></i>
+                @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
+                {
+                    @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                    {
+                        <i class="fa fa-heart fa-2x text-danger unlike"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-heart-o fa-2x text-danger like"></i>
+                    }
+                }
             </div>
         </div>
     </div>
     <div class="w-100"></div>
     <div class="col-sm">
         <h1>About this Event</h1>
-        <img src="@Model.Host.picture"/>
         <p>
             @Model.eEvent.description
         </p>
         <h1>About this Host</h1>
-        @*img*@
+        <img src="@Model.Host.picture"/>
         <p>
             @Model.Host.first_name @Model.Host.last_name
         </p>
@@ -53,26 +84,66 @@
     <div class="col-sm">
         <div>
             <h1>Date and Time</h1>
-            <p>Datum spul</p>
-            @*<p>@DateTime.Parse(Model.date).Day, @DateTime.Parse(Model.date).Month, @DateTime.Parse(Model.date).Year</p>*@
+            <p>@Model.eEvent.begin_date - @Model.eEvent.end_date</p>
             <p>Share to:</p>
-            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar!">Google Calendar</a>          
-            @*<img src="~/Images/Next.png" class="icon"/>*@
+            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar!">Google Calendar</a>
             <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)" class="rockstar-btn d-inline-flex" title="Share to LinkedIn!">LinkedIn</a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Facebook!">Facebook</a> @*werkt wel maar niet voor localhost...*@
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Facebook!">Facebook</a>
             <a href="https://twitter.com/intent/tweet?hashtags=TeamRockstars&text=@HttpUtility.UrlEncode("I\'m going to this event!: ")&url=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Twitter!">Twitter</a>            
         </div>
         <div>
             <h1>Location</h1>
-            <p>Oude kerk, 2</p>
+            <p>@Model.eEvent.street, @Model.eEvent.hnum</p>
             <p>
-                Alkmaar, The Netherlands
+                @Model.eEvent.city, The Netherlands
             </p>
             <a href="#" class="rockstar-btn d-inline-flex">
                 <p>plan route</p>
-
                 <img src="~/Images/Next.png" class="icon" />
             </a>
         </div>
     </div>
 </div>
+
+<script>
+
+    $("div.sign-up-button").on('click',
+        function () {
+            $.post("/Event/UnsubscribeForEvent",
+                {
+                    id: "@Model.eEvent.id"
+                });
+
+            $("div.sign-up-button p").text('Sign in');
+            $("div.sign-up-button").toggleClass("sign-up-button").toggleClass("sign-out-button");
+        });
+
+    $("div.sign-out-button").on('click',
+        function () {
+            $.post("/Event/SubscribeForEvent",
+                {
+                    id: "@Model.eEvent.id"
+                });
+            $("div.sign-out-button p").text('Sign out');
+            $("div.sign-out-button").toggleClass("sign-out-button").toggleClass("sign-up-button");
+        });
+
+    $("i.like").on('click', function () {
+        $.post("/Event/AddEventToFavorites",
+            {
+                id: "@Model.eEvent.id"
+            });
+        $(this).toggleClass("fa-heart").toggleClass("fa-heart-o");
+        $("i.like").toggleClass("like").toggleClass("unlike");
+
+    });
+
+    $("i.unlike").on('click', function () {
+        $.post("/Event/RemoveEventFromFavorites",
+            {
+                id: "@Model.eEvent.id"
+            });
+        $(this).toggleClass("fa-heart-o").toggleClass("fa-heart");
+        $("i.unlike").toggleClass("unlike").toggleClass("like");
+    });
+</script>

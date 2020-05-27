@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using Rockstar.Models;
 
 namespace RockStar_IT_Events.ViewModels
@@ -48,9 +49,10 @@ namespace RockStar_IT_Events.ViewModels
         [Display(Name = "Send notifications")]
         [Required(ErrorMessage = "Notifications must be entered")]
         public bool SendNotifications { get; set; }
-
         public string SpeakerId { get; set; }
-
         public List<Host> Speakers { get; set; }
+        public List<Category> Categories{ get; set; }
+        public List<string> CategoryId { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }

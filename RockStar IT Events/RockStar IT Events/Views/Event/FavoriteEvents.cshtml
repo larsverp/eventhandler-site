@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Rockstar.Models.Event>
+@{
+    ViewData["Title"] = "FavoriteEvents";
+}
+
+<h1>FavoriteEvents</h1>
+
+@foreach (var e in Model)
+{
+    <div class="@e.id">
+        <p>@e.title</p>
+
+        <a onclick="RemoveFromFavorites('@e.id')">Remove</a>
+
+        <p>@e.id</p>
+        <hr/>
+    </div>
+}
+
+<script>
+    function RemoveFromFavorites(eId) {
+        alert(eId);
+        $.post("/Event/RemoveEventFromFavorites",
+            {
+                id: eId
+            });
+        $("." + eId).remove();
+    }
+</script>
