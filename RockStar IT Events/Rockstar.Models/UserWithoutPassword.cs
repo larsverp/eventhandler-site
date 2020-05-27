@@ -8,5 +8,6 @@
         public string last_name { get; set; }
         public string email { get; set; }
         public string postal_code { get; set; }
+        public string role { get; set; }
     }
 }
