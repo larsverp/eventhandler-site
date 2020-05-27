@@ -283,3 +283,36 @@ nav{
 .botText a:hover{
     color: $rockstar-yellow-hover;
 }
+
+//EventPage
+
+.dateTime{
+
+    h1 {
+        padding-top: 20px;
+    }
+}
+
+.shareBtn{
+    a{
+        margin:5px;
+    }
+}
+
+.host {
+    h4{
+        padding: 10px 0px 0 0;
+    }
+}
+
+.imgWrapper {
+    width: 100%;
+    height: 350px;
+
+    img {
+        object-fit: cover;
+        object-position: 50% 50%;
+        width: 100%;
+        height: 350px;
+    }
+}
