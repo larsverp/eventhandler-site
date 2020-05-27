@@ -286,8 +286,19 @@ nav{
 
 //EventPage
 
-.infoBox{
-    padding-top: 20px;
+.infoBox {
+    padding: 30px;
+    padding-top: 50px;
+
+    h2{
+        font-weight:bold;
+    }
+}
+
+.dateTime {
+    a {
+        font-weight: bold;
+    }
 }
 
 .infoWrapper {
@@ -297,15 +308,17 @@ nav{
 }
 
 
-.shareBtn{
-    a{
-        margin:5px;
+.shareBtn {
+    a {
+        margin: 5px;
+        font-weight: bold;
     }
 }
 
 .host {
-    h4{
+    h4 {
         padding: 10px 0px 0 0;
+        font-weight: bold;
     }
 }
 
@@ -318,5 +331,19 @@ nav{
         object-position: 50% 50%;
         width: 100%;
         height: 350px;
+    }
+}
+
+.locationBox {
+    p {
+        padding: 5px;
+        margin: 0px;
+    }
+
+    a {
+        margin-top: 20px;
+        p {
+            font-weight: bold;
+        }
     }
 }

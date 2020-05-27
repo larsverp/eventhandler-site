@@ -5,15 +5,16 @@
 @using RockStar_IT_Events
 @inject IHttpContextAccessor ContextAccessor;
     
-    <div class="row bg-white">
-        <div class="col-sm p-0">
-            <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover" />
+    <div class="row bg-white border-bottom">
+        <div class="col-sm-7 p-0 h-100">
+            <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover; object-position: 50% 50%" />
         </div>
-        <div class="col-sm">
+
+        <div class="col-sm-5">
             <h1>@Model.eEvent.title</h1>
             <p>by @Model.Host.first_name @Model.Host.last_name</p>
             <a href="#" class="rockstar-btn d-inline-flex">
-                <p class="align-self-center">Following</p>
+                <p class="align-self-center font-weight-bold">Following</p>
                 <img class="align-self-center" src="~/Images/Check.png" />
             </a>
             <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
@@ -27,43 +28,44 @@
                             <span> | </span>
                         }
                     }
-            }
-        </p>
-        </div>
-        <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
-            <div>
-                @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
-                {
-                    @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
-                    {
-                        <div class="sign-up-button rockstar-btn d-inline-flex">
-                            <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="align-self-center ">Sign out</a>
-                            <img class="align-self-center" src="~/Images/Next.png" />
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="sign-out-button rockstar-btn d-inline-flex">
-                            <p class="align-self-center">Sign up</p>
-                            <img class="align-self-center" src="~/Images/Next.png" />
-                        </div>
-                    }
                 }
-            </div>
-            <div class="align-self-center ml-auto">
-                <div class="float-right">
-                    <i class="fa fa-share-alt fa-2x"></i>
+            </p>
+
+            <div class="row p-3">
+                <div>
                     @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
                     {
-                        @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                        @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
                         {
-                            <i class="fa fa-heart fa-2x text-danger unlike"></i>
+                            <div class="sign-up-button rockstar-btn d-inline-flex">
+                                <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="align-self-center font-weight-bold text-reset">Sign out</a>
+                                <img class="align-self-center" src="~/Images/Next.png" />
+                            </div>
                         }
                         else
                         {
-                            <i class="fa fa-heart-o fa-2x text-danger like"></i>
+                            <div class="sign-out-button rockstar-btn d-inline-flex">
+                                <p class="align-self-center font-weight-bold">Sign up</p>
+                                <img class="align-self-center" src="~/Images/Next.png" />
+                            </div>
                         }
                     }
+                </div>
+                <div class="align-self-center ml-auto">
+                    <div class="float-right">
+                        <i class="fa fa-share-alt fa-2x"></i>
+                        @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
+                        {
+                            @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                            {
+                                <i class="fa fa-heart fa-2x text-danger unlike p-2"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-heart-o fa-2x text-danger like p-2"></i>
+                            }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,15 +106,16 @@
                        class="rockstar-btn d-inline-flex" target="_blank" title="Share to Twitter!">Twitter</a>
                 </div>
             </div>
-            <div>
+            <div class="locationBox">
                 <h2>Location</h2>
                 <p>@Model.eEvent.street, @Model.eEvent.hnum</p>
                 <p>
                     @Model.eEvent.city, The Netherlands
                 </p>
                 <a href="#" class="rockstar-btn d-inline-flex">
-                    <p>plan route</p>
-                    <img src="~/Images/Next.png" class="icon" />
+                    <p>
+                        plan route  <img src="~/Images/Next.png" class="icon" />
+                    </p>
                 </a>
             </div>
         </div>
