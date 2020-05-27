@@ -10,7 +10,7 @@
             Lots of great things are gonna happen
         </div>
         <div class="row action-controls">
-                <input class="col-md-3" type="text" placeholder="Search"/>
+                <input class="col-md-3" id="Search" type="text" placeholder="Search"/>
                 <p class="col-md-3">Actions</p>
         </div>
         <div class="event-table col-md-12">
@@ -31,18 +31,18 @@
                     <tr>
                         <th scope="row">
                             <div class="row">
-                                <img src="@e.thumbnail" alt="@e.title" />
-                                <div class="col">
+                                <img class="Search" src="@e.thumbnail" alt="@e.title" />
+                                <div class="col Search">
                                     <h5>@e.title</h5>
                                     <p>by lorem</p>
                                 </div>
                             </div>
                         </th>
-                        <td>
+                        <td class="Search">
                             @e.seats
                         </td>
-                        <td>@e.begin_date</td>
-                        <td>@e.postal_code</td>
+                        <td class="Search">@e.begin_date</td>
+                        <td class="Search">@e.postal_code</td>
                         <td><a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
                         <td><a asp-controller="Admin" asp-action="DeleteEvent" asp-route-id="@e.id">Remove</a></td>
 
@@ -53,3 +53,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1) {
+                return true;
+            }
+        }
+
+        $("#Search").keyup(function() {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function() {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+        });
+    })
+</script>
