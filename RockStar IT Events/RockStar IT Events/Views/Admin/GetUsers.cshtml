@@ -18,6 +18,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">PostalCode</th>
+                            <th scope-col>Role</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Remove</th>
                         </tr>
@@ -38,6 +39,7 @@
                                 </th>
                                 <td>@e.email</td>
                                 <td>@e.postal_code</td>
+                                <td>@e.role</td>
                                 <td><a asp-action="EditUser" asp-route-id="@e.Id">Edit User</a></td>
                                 <td><a asp-action="DeleteUser" asp-route-id="@e.Id">Remove User</a></td>
                             </tr>

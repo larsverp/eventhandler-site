@@ -4,12 +4,12 @@
 @using Microsoft.AspNetCore.Http.Extensions;
 @using RockStar_IT_Events
 @inject IHttpContextAccessor ContextAccessor;
-
+    
 <div class="row bg-white">
-    <div class="col-sm-5 p-0">
-        <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover" />
+    <div class="col-sm p-0">
+        <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover"/>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm">
         <h1>@Model.eEvent.title</h1>
         <p>by @Model.Host.first_name @Model.Host.last_name</p>
         <a href="#" class="rockstar-btn d-inline-flex">
@@ -17,18 +17,16 @@
             <img class="align-self-center" src="~/Images/Check.png" />
         </a>
         <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
-        <p>
-            @{
-                for (int i = 0; i < Model.Categories.Count(); i++)
-                {
-                    <span>@Model.Categories[i].name</span>
-                    @if (i + 1 < Model.Categories.Count())
-                    {
-                        <span> | </span>
-                    }
-                }
-            }
-        </p>
+        <p>@{
+               for (int i = 0; i < Model.Categories.Count(); i++)
+               {
+                   <span>@Model.Categories[i].name</span>
+                   @if (i + 1 < Model.Categories.Count())
+                   {
+                       <span> | </span>
+                   }
+               }
+           }</p>
     </div>
     <div class="w-100"></div>
     <div class="col-sm border-top border-bottom sub-info-div d-inline-flex">
@@ -38,15 +36,15 @@
                 @if (await EventHelperClass.EventIsInTickets(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
                 {
                     <div class="sign-up-button rockstar-btn d-inline-flex">
-                        <p class="align-self-center ">Sign out</p>
-                        <img class="align-self-center" src="~/Images/Next.png" />
+                        <a asp-controller="Event" asp-action="UnsubscribeForEvent" asp-route-id="@Model.eEvent.id" class="align-self-center ">Sign out</a>
+                        <img class="align-self-center" src="~/Images/Next.png"/>
                     </div>
                 }
                 else
                 {
                     <div class="sign-out-button rockstar-btn d-inline-flex">
                         <p class="align-self-center">Sign up</p>
-                        <img class="align-self-center" src="~/Images/Next.png" />
+                        <img class="align-self-center" src="~/Images/Next.png"/>
                     </div>
                 }
             }
@@ -68,50 +66,33 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="row bg-white">
-    <div class="col-sm-9 host">
-        <h2>About this Event</h2>
+    <div class="w-100"></div>
+    <div class="col-sm">
+        <h1>About this Event</h1>
         <p>
             @Model.eEvent.description
         </p>
-        <h2>About this Host</h2>
-
-        <div class="imgWrapper">
-            <img src="@Model.Host.picture" />
-        </div>
-
-        <h4>
+        <h1>About this Host</h1>
+        <img src="@Model.Host.picture"/>
+        <p>
             @Model.Host.first_name @Model.Host.last_name
-        </h4>
+        </p>
         <p>
             @Model.Host.description
         </p>
     </div>
-
-
-    <div class="col-sm-3">
-        <div class="dateTime">
-            <h2>Date and Time</h2>
+    <div class="col-sm">
+        <div>
+            <h1>Date and Time</h1>
             <p>@Model.eEvent.begin_date - @Model.eEvent.end_date</p>
+            <p>Share to:</p>
+            <a href= "https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml" class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar!">Google Calendar</a>
+            <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)" class="rockstar-btn d-inline-flex" title="Share to LinkedIn!">LinkedIn</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Facebook!">Facebook</a>
+            <a href="https://twitter.com/intent/tweet?hashtags=TeamRockstars&text=@HttpUtility.UrlEncode("I\'m going to this event!: ")&url=@Context.Request.GetEncodedUrl()" class="rockstar-btn d-inline-flex" target="_blank" title="Share to Twitter!">Twitter</a>            
         </div>
-
-        <div class="shareBtn">
-            <h2>Share to:</h2>
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml"
-               class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar!">Google Calendar</a>
-            <a href="https://linkedin.com/shareArticle?mini=true&url=@Context.Request.GetDisplayUrl()&title=@HttpUtility.UrlEncode(Model.eEvent.title)"
-               class="rockstar-btn d-inline-flex" title="Share to LinkedIn!">LinkedIn</a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=@Context.Request.GetEncodedUrl()"
-               class="rockstar-btn d-inline-flex" target="_blank" title="Share to Facebook!">Facebook</a>
-            <a href="https://twitter.com/intent/tweet?hashtags=TeamRockstars&text=@HttpUtility.UrlEncode("I\'m going to this event!: ")&url=@Context.Request.GetEncodedUrl()"
-               class="rockstar-btn d-inline-flex" target="_blank" title="Share to Twitter!">Twitter</a>
-        </div>
-
-        <div class="location">
-            <h2>Location</h2>
+        <div>
+            <h1>Location</h1>
             <p>@Model.eEvent.street, @Model.eEvent.hnum</p>
             <p>
                 @Model.eEvent.city, The Netherlands
@@ -125,18 +106,6 @@
 </div>
 
 <script>
-
-    $("div.sign-up-button").on('click',
-        function () {
-            $.post("/Event/UnsubscribeForEvent",
-                {
-                    id: "@Model.eEvent.id"
-                });
-
-            $("div.sign-up-button p").text('Sign in');
-            $("div.sign-up-button").toggleClass("sign-up-button").toggleClass("sign-out-button");
-        });
-
     $("div.sign-out-button").on('click',
         function () {
             $.post("/Event/SubscribeForEvent",

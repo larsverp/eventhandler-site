@@ -35,6 +35,15 @@
                     <input class="form-control " asp-for="postal_code" placeholder="Postal Code" />
                 </div>
             </div>
+            <div class="form-row">
+                <select class="form-control" asp-for="role" id="SpeakerId">
+                    <option value="" selected disabled>Select host</option>
+                    <option value="guest" selected>Guest</option>
+                    <option value="partner" selected>Partner</option>
+                    <option value="rockstar" selected>Rockstar</option>
+                    <option value="admin" selected>Admin</option>
+                </select>
+            </div>
 
             <div class="form-row">
                 <div class="col-md-12">

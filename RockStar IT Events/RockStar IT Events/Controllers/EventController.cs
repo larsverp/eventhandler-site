@@ -76,11 +76,34 @@ namespace RockStar_IT_Events.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> UnsubscribeForEvent(string id)
         {
-            await ticketsApi.UnsubscribeForEvent(id,"", contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
-            return Ok();
+            var eEvents = await eventApi.GetAllEvents();
+            var eEvent = eEvents.FirstOrDefault(e => e.id == id);
+            var model = new UnsubscribeEvent
+            {
+                Event = eEvent
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UnsubscribeForEvent(UnsubscribeEvent model)
+        {
+            if (ModelState.IsValid)
+            {
+                await ticketsApi.UnsubscribeForEvent(model.Event.id, model.Reason, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+                return RedirectToAction("Index", "Event");
+            }
+
+            var eEvent = eventApi.GetEvent(model.Event.id);
+            model = new UnsubscribeEvent
+            {
+                Event = eEvent
+            };
+
+            return View(model);
         }
     }
 }
