@@ -55,6 +55,10 @@ nav{
     }
 }
 
+.bg-shadow {
+    box-shadow: rgba(0,0,0,.2) 0px 0px 5px;
+}
+
 .rockstar-btn {
     background-color: $rockstar-yellow;
     padding: 10px;
@@ -82,9 +86,9 @@ nav{
 }
 
 .main-img-thumbnail{
-    height: 300px;
+    height: 375px;
     width: 100%;
-   
+   padding:0;
 }
 
 .sub-info-div{
@@ -117,6 +121,7 @@ nav{
         box-shadow: rgba(0,0,0,.3) 0 1px;
         background: $sub-white;
         padding: 10px;
+        width:100%;
     }
 
     h1 {
@@ -282,4 +287,74 @@ nav{
 }
 .botText a:hover{
     color: $rockstar-yellow-hover;
+}
+
+//EventPage
+
+.infoBox {
+    padding: 30px;
+    padding-top: 50px;
+
+    h2{
+        font-weight:bold;
+    }
+}
+
+.dateTime {
+    a {
+        margin-top:10px;
+        font-weight: bold;
+    }
+    p{
+        padding:0;
+        margin:0;
+    }
+}
+
+.infoWrapper {
+    h2 {
+        padding-top: 20px;
+    }
+}
+
+
+.shareBtn {
+    a {
+        margin: 5px;
+        font-weight: bold;
+    }
+}
+
+.host {
+    h4 {
+        padding: 10px 0px 0 0;
+        font-weight: bold;
+    }
+}
+
+.imgWrapper {
+    width: 100%;
+    height: 350px;
+
+    img {
+        object-fit: cover;
+        object-position: 50% 50%;
+        width: 100%;
+        height: 350px;
+    }
+}
+
+.locationBox {
+    p {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    a {
+        margin-top: 10px;
+
+        p {
+            font-weight: bold;
+        }
+    }
 }
