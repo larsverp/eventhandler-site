@@ -3,15 +3,19 @@
     ViewData["Title"] = "UnsubscribeForEvent";
 }
 
-<h1>Unsubscribe for @Model.Event.title</h1>
 
-<form asp-action="UnsubscribeForEvent" asp-controller="Event">
-    <input asp-for="Event.id" hidden/>
-    <div class="form-group">
-        <label asp-for="Reason"></label>
-        <input asp-for="Reason"/>
+    <div class="bg-white p-5 bg-shadow">
+
+        <h1 class="text-center">Unsubscribe for @Model.Event.title</h1>
+        <hr />
+        <form asp-action="UnsubscribeForEvent" asp-controller="Event" class="rockstar-form">
+            <input asp-for="Event.id" hidden />
+            <div class="form-group">
+                <textarea asp-for="Reason" class="boxsizingBorder" cols="50" rows="3" placeholder="Reason" ></textarea>
+            </div>
+            <div class="form-group d-flex justify-content-center p-0">
+                <input  type="submit" value="Unsubscribe" />
+            </div>
+        </form>
+
     </div>
-    <div class="form-group">
-        <input type="submit" value="Unsubscribe"/>
-    </div>
-</form>
