@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,15 +9,16 @@
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
-    <link href="~/css/Style.css" type="text/css" rel="stylesheet"/>
+    <link href="~/css/Style.css" type="text/css" rel="stylesheet" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="https://kit.fontawesome.com/a74e3114a9.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top px-4 m-0" id="navbar">
-    <a href="#">
+    <a asp-action="Index" asp-controller="Event">
         <img src="~/Images/RockstarLogo.svg" class="nav-height mr-auto" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,23 +29,38 @@
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link text-light" href="#">Event overview</a>
+                <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" href="#">My Favorite Events</a>
+                <a class="nav-link text-light" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" href="#">Update Interests</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My Account
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">My Account Settings</a>
-                    <a class="dropdown-item" href="#">Log out</a>
-                </div>
-            </li>
+            @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Admin panel</a>
+                </li>
+            }
+            @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" asp-controller="User" asp-action="Login">Log in</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">My Account Settings</a>
+                        <a class="dropdown-item" asp-action="Logout" asp-controller="User">Log out</a>
+                    </div>
+                </li>
+            }
         </ul>
     </div>
 </nav>

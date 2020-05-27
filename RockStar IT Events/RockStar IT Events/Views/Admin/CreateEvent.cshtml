@@ -1,80 +1,73 @@
 ﻿@model RockStar_IT_Events.ViewModels.EventModel
 @{
-    //Layout = null;
+    Layout = "_Admin";
 }
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-
-    <div class="col-md-12 create-container">
-
-        <form action="#type your action here" method="POST" enctype="multipart/form-data" class="rockstar-form" name="myForm">
-
-            <h1 class="title col-md-12 text-center">
-                This is the start of something great
-            </h1>
-
-            <div class="col-md-10">
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Title" />
-                    </div>
+<div class="col-md-10 create-container">
+    <form asp-controller="Admin" asp-action="CreateEvent" class="rockstar-form" name="myForm" enctype="multipart/form-data">
+        <div asp-validation-summary="All"></div>
+        <h1 class="title col-md-12 text-center">
+            This is the start of something great
+        </h1>
+        <div class="col-md-10">
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input asp-for="Title" class="form-control " id="defaultFormCardNameEx" placeholder="Title"/>
                 </div>
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <textarea class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Speaker" />
-                    </div>
-
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Date of event" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Start time" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="End time" />
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-9">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Location" />
-                    </div>
-                    <div class="col-md-3">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Available seats" />
-                    </div>
-                </div>
-
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
-                        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="upfile" type="file" value="upload" onchange="sub(this)" /></div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <a class="rockstar-btn create-btn text-center col-md-12" href="#" type="submit">
-                            <p>Create this event</p>
-                        </a>
-                    </div>
-                </div>
-
             </div>
-        </form>
-    </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input asp-for="Description" class="form-control " rows="4" id="defaultFormCardNameEx" placeholder="Description"/>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-md-12">
+                    <select class="form-control" asp-for="SpeakerId" id="SpeakerId" asp-items="@(new SelectList(Model.Speakers, "id", "first_name"))">
+                        <option value="" selected disabled>Select host</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input asp-for="StartDate" class="form-control " id="defaultFormCardNameEx" placeholder="Start date"/>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="EndDate" class="form-control " id="defaultFormCardNameEx" placeholder="End time"/>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="TotalSeats" class="form-control " id="defaultFormCardNameEx" placeholder="Available seats"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-9">
+                    <input asp-for="PostalCode" class="form-control " id="defaultFormCardNameEx" placeholder="Location"/>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="HouseNumber" class="form-control" placeholder="House number"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
+                    <div style='height: 0px; width: 0px; overflow: hidden;'>
+                        <input id="upfile" asp-for="Picture" onchange="sub(this)"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                @foreach (var cat in Model.Categories)
+                {
+                    <input type="checkbox" name="CategoryId" value="@cat.id"/>
+                    <label>@cat.name</label>
+                }
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input type="submit" value="Create this event" class="col-md-12 rockstar-btn create-btn text-center"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 <script type="text/javascript" src="~/Scripts/file-display.js"></script>

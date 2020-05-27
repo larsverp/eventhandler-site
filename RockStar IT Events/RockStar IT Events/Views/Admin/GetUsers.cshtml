@@ -1,0 +1,49 @@
+﻿@model List<Rockstar.Models.User>;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "GetUsers";
+    Layout = "_admin";
+}
+
+
+    <div class="right-box col-md-10">
+        <div class="col-md-10 offset-1">
+            <div class="top-text">
+                All Users
+            </div>
+            <div class="event-table col-md-12">
+                <table class="table col-md-12 table-hover">
+                    <thead>
+                        <tr class="col-md-12">
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">PostalCode</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    <div class="row">
+                                        <p>&nbsp; @e.first_name </p>
+                                        @if (e.insertion != null || e.insertion != "")
+                                        {
+                                            <p>@e.insertion&nbsp; </p>
+                                        }
+                                    <p>@e.last_name</p>
+                                    </div>
+                                </th>
+                                <td>@e.email</td>
+                                <td>@e.postal_code</td>
+                                <td><a asp-action="EditUser" asp-route-id="@e.Id">Edit User</a></td>
+                                <td><a asp-action="DeleteUser" asp-route-id="@e.Id">Remove User</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

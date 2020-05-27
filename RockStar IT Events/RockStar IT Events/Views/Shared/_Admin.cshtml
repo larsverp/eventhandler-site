@@ -2,16 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>@ViewBag.Title</title>
-<link rel="stylesheet" href="css/Style-Change.css">
-<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $(".burger").click(function(){
-            $(".wrapper").toggleClass("collapse");
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="~/css/Style-Change.css">
+    <link rel="stylesheet" href="~/css/Style.css">
+    <script>
+        $(document).ready(function () {
+            $(".burger").click(function () {
+                $(".wrapper").toggleClass("collapse");
+            });
         });
-    });
-</script>
+    </script>
 </head>
 <body>
 
@@ -25,25 +30,31 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a asp-action="CreateEvent">
                     <span class="icon"><i class="fas fa-book"></i></span>
                     <span class="title">Create event</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a asp-action="index">
+                    <span class="icon"><i class="fas fa-book"></i></span>
+                    <span class="title">All event</span>
+                </a>
+            </li>
+            <li>
+                <a asp-action="Tickets">
                     <span class="icon"><i class="fas fa-file-video"></i></span>
                     <span class="title">Tickets</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a asp-action="GetUsers">
                     <span class="icon"><i class="fas fa-volleyball-ball"></i></span>
                     <span class="title">Users</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="active">
+                <a asp-action="MailingList">
                     <span class="icon"><i class="fas fa-blog"></i></span>
                     <span class="title">Mailing list</span>
                 </a>
@@ -58,6 +69,12 @@
                 <a href="#">
                     <span class="icon"><i class="fas fa-leaf"></i></span>
                     <span class="title">Create Rockstar</span>
+                </a>
+            </li>
+            <li>
+                <a asp-action="Index" asp-controller="Event">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                    <span class="title">Homepage</span>
                 </a>
             </li>
         </ul>

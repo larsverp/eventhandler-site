@@ -1,57 +1,46 @@
 ﻿@model RockStar_IT_Events.ViewModels.UserRegisterModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-    <div class="col-md-10 login-container">
-
-        <form asp-action="Login" class="rockstar-form">
-
-            <h1 class="title col-md-12 text-center">
-                Welcome aboard
-            </h1>
-
-            <div class="col-md-10">
-                <div class="form-row">
-                    <div class="col-md-5">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Firstname" />
-                    </div>
-                    <div class="col-md-2">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Insertion" />
-                    </div>
-                    <div class="col-md-5">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Lastname" />
-                    </div>
+<div class="col-md-10 login-container">
+    <form asp-action="Register" class="rockstar-form">
+        <h1 class="title col-md-12 text-center">
+            Welcome aboard
+        </h1>
+        <div class="col-md-10">
+            <div class="form-row">
+                <div class="col-md-5">
+                    <input asp-for="FirstName" class="form-control " id="defaultFormCardNameEx" placeholder="Firstname" />
                 </div>
-
-                <div class="form-row">
-                    <div class="col-md-8">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Email" />
-                    </div>
-                    <div class="col-md-4">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Postal Code" />
-                    </div>
+                <div class="col-md-2">
+                    <input asp-for="Insertion" class="form-control " id="defaultFormCardNameEx" placeholder="Insertion" />
                 </div>
-
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Password" />
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control " id="defaultFormCardNameEx" placeholder="Repeat Password" />
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <a class="rockstar-btn text-center col-md-12" href="#" type="submit">
-                            <p>Sign up</p>
-                        </a>
-                    </div>
+                <div class="col-md-5">
+                    <input asp-for="LastName" class="form-control " id="defaultFormCardNameEx" placeholder="Lastname" />
                 </div>
             </div>
-
-            <div class="row col-md-4 bottom-text">
-                <p>already an account? <a asp-action="Login">Log in here.</a></p>
-
+            <div class="form-row">
+                <div class="col-md-8">
+                    <input asp-for="EmailAddress" class="form-control " id="defaultFormCardNameEx" placeholder="Email" />
+                </div>
+                <div class="col-md-4">
+                    <input asp-for="PostalCode" class="form-control " id="defaultFormCardNameEx" placeholder="Postal Code" />
+                </div>
             </div>
-        </form>
-    </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input asp-for="Password" class="form-control " id="defaultFormCardNameEx" placeholder="Password" />
+                </div>
+                <div class="col-md-6">
+                    <input asp-for="ConfirmedPassword" class="form-control " id="defaultFormCardNameEx" placeholder="Repeat Password" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <input class="rockstar-btn text-center col-md-12" type="submit" value="Sign up" />
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-4 bottom-text">
+            <p>already an account? <a asp-action="Login">Log in here.</a></p>
+        </div>
+    </form>
+</div>

@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using Rockstar.Models;
 
 namespace RockStar_IT_Events.ViewModels
 {
     public class EventModel
     {
         public string Id { get; set; }
+
         [Required(ErrorMessage = "Title must be entered")]
         [Display(Name = "Title")]
         [DataType(DataType.Text)]
@@ -18,16 +22,15 @@ namespace RockStar_IT_Events.ViewModels
 
         [Display(Name = "Start of the Event")]
         [Required(ErrorMessage = "Value for start of the event is invalid")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
         [Display(Name = "End of the Event")]
         [Required(ErrorMessage = "Value for end of the event is invalid")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Thumbnail")]
-        [Required(ErrorMessage = "Thumbnail must be entered")]
         [DataType(DataType.ImageUrl)]
         public string Thumbnail { get; set; }
 
@@ -41,11 +44,15 @@ namespace RockStar_IT_Events.ViewModels
         public string PostalCode { get; set; }
 
         [Display(Name = "House number")]
-        [Required(ErrorMessage = "House number must be entered")]
         public string HouseNumber { get; set; }
 
         [Display(Name = "Send notifications")]
         [Required(ErrorMessage = "Notifications must be entered")]
         public bool SendNotifications { get; set; }
+        public string SpeakerId { get; set; }
+        public List<Host> Speakers { get; set; }
+        public List<Category> Categories{ get; set; }
+        public List<string> CategoryId { get; set; }
+        public IFormFile Picture { get; set; }
     }
 }
