@@ -1,0 +1,11 @@
+﻿@model IEnumerable<RockStar_IT_Events.ViewModels.TicketsIndexModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@foreach (var ticket in Model)
+{
+    <p>Name: @ticket.Event.title</p>
+    <a asp-controller="Tickets" asp-action="DownloadPdf" asp-route-id="@ticket.Event.id">Download ticket</a>
+    <hr/>
+}

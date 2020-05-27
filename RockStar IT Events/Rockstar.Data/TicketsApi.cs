@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -32,7 +34,6 @@ namespace Rockstar.Data
 
         public async Task UnsubscribeForEvent(string eventId, string reason, string cookieValue)
         {
-            reason = "not implemented yet";
             var userDetails = new Dictionary<string, string>()
             {
                 { "reason", reason}
@@ -66,6 +67,25 @@ namespace Rockstar.Data
 
                 List<Ticket> tickets = JsonConvert.DeserializeObject<List<Ticket>>(response);
                 return tickets;
+            }
+        }
+
+        public async Task GetPdf(string eventId, string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/download/ticket/" + eventId;
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+            var response = await client.GetAsync(@url);
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            {
+                var fileInfo = new FileInfo("myPackage.pdf");
+                using (var fileStream = fileInfo.OpenWrite())
+                {
+                    await stream.CopyToAsync(fileStream);
+                }
             }
         }
     }
