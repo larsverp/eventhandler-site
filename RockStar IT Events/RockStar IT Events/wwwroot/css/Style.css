@@ -244,7 +244,10 @@ nav img {
 .botText a:hover {
   color: #f5d800; }
 
-.dateTime h1 {
+.infoBox {
+  padding-top: 20px; }
+
+.infoWrapper h2 {
   padding-top: 20px; }
 
 .shareBtn a {
