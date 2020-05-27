@@ -6,19 +6,19 @@
 @inject IHttpContextAccessor ContextAccessor;
     
     <div class="row bg-white border-bottom">
-        <div class="col-sm-7 p-0 h-100">
+        <div class="col-sm-7 p-0">
             <img src="@Model.eEvent.thumbnail" class="main-img-thumbnail" style="object-fit: cover; object-position: 50% 50%" />
         </div>
 
         <div class="col-sm-5">
-            <h1>@Model.eEvent.title</h1>
+            <h2 class="font-weight-bold">@Model.eEvent.title</h2>
             <p>by @Model.Host.first_name @Model.Host.last_name</p>
             <a href="#" class="rockstar-btn d-inline-flex">
                 <p class="align-self-center font-weight-bold">Following</p>
                 <img class="align-self-center" src="~/Images/Check.png" />
             </a>
             <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
-            <p>
+            <p class="p-0">
                 @{
                     for (int i = 0; i < Model.Categories.Count(); i++)
                     {
@@ -92,7 +92,8 @@
             <div>
                 <div class="dateTime">
                     <h2>Date and Time</h2>
-                    <p>@Model.eEvent.begin_date - @Model.eEvent.end_date</p>
+                    <p>From: @Model.eEvent.begin_date</p>
+                    <p>Till: @Model.eEvent.end_date</p>
                     <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=@Model.eEvent.title&dates=@Convert.ToDateTime(Model.eEvent.begin_date).ToString("o")/@Convert.ToDateTime(Model.eEvent.end_date).ToString("o")&details=@Model.eEvent.description&location=@Model.eEvent.postal_code&sf=true&output=xml"
                        class="rockstar-btn d-inline-flex" target="_blank" title="Add to Google Calendar!">Add to Google Calendar</a>
                 </div>
