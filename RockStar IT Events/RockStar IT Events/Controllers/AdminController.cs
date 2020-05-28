@@ -77,7 +77,7 @@ namespace RockStar_IT_Events.Controllers
                         string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
                         var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
                         model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
-                        pathName = "https://localhost:44324/" + uniqueImageName;
+                        pathName = "http://i436732core.venus.fhict.nl/" + uniqueImageName;
                     }
                     else
                     {
@@ -182,7 +182,7 @@ namespace RockStar_IT_Events.Controllers
                     description = model.Description,
                     begin_date= model.StartDate.ToString("dd-MM-yyyy hh:mm:ss"),
                     end_date = model.EndDate.ToString("dd-MM-yyyy hh:mm:ss"),
-                    thumbnail = "https://localhost:44324/" + uniqueImageName,
+                    thumbnail = "http://i436732core.venus.fhict.nl/" + uniqueImageName,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
                     hnum = model.HouseNumber,
