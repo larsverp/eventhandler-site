@@ -105,6 +105,7 @@ namespace RockStar_IT_Events.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Validate(ValidateViewModel model)
         {
@@ -122,6 +123,12 @@ namespace RockStar_IT_Events.Controllers
                 }
             }
 
+            return View();
+        }
+
+
+        public IActionResult MyHosts()
+        {
             return View();
         }
     }
