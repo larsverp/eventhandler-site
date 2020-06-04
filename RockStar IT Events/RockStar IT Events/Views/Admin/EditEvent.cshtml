@@ -48,17 +48,19 @@
             </div>
             <div class="form-row">
                 <div class="col-md-12">
-                    <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
+                    <div class="input-box p-5" id="yourBtn" onclick="getFile()">click to upload a file</div>
                     <div style='height: 0px; width: 0px; overflow: hidden;'>
                         <input id="upfile" asp-for="Picture" onchange="sub(this)" />
                     </div>
                 </div>
             </div>
             <div class="form-row">
-                @foreach (var cat in Model.Categories)
+                @for (int i = 0; i < Model.Categories.Count; i++)
                 {
-                    <input type="checkbox" name="CategoryId" value="@cat.id" />
-                    <label>@cat.name</label>
+                    <div class="d-flex justify-content-start p-2">
+                        <input type="checkbox" name="CategoryId" value="@Model.Categories[i].id" />
+                        <label>@Model.Categories[i].name</label>
+                    </div>
                 }
             </div>
             <div class="form-row">
