@@ -5,7 +5,7 @@
     Layout = "_admin";
 }
 
-<div class="col-md-10 create-container">
+<div class="col-md-8 create-container mt-3">
 
     <form asp-controller="Admin" asp-action="EditUser" class="rockstar-form">
 
@@ -35,19 +35,22 @@
                     <input class="form-control " asp-for="postal_code" placeholder="Postal Code" />
                 </div>
             </div>
+
             <div class="form-row">
-                <select class="form-control" asp-for="role" id="SpeakerId">
-                    <option value="" selected disabled>Select host</option>
-                    <option value="guest" selected>Guest</option>
-                    <option value="partner" selected>Partner</option>
-                    <option value="rockstar" selected>Rockstar</option>
-                    <option value="admin" selected>Admin</option>
-                </select>
+                <div class="col-md-12 pb-3">
+                    <select class="form-control" asp-for="role" id="SpeakerId">
+                        <option value="" selected disabled>Select host</option>
+                        <option value="guest" selected>Guest</option>
+                        <option value="partner" selected>Partner</option>
+                        <option value="rockstar" selected>Rockstar</option>
+                        <option value="admin" selected>Admin</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-12">
-                    <input class="rockstar-btn text-center col-md-12" type="submit" value="Save Changes" />
+                    <input class="rockstar-btn text-center col-md-12 mb-5" type="submit" value="Save Changes" />
                 </div>
             </div>
         </div>
