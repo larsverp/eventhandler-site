@@ -291,3 +291,7 @@ nav img {
   margin-top: 10px; }
   .locationBox a p {
     font-weight: bold; }
+
+.hostDescr {
+  max-height: 100px;
+  overflow: hidden; }
