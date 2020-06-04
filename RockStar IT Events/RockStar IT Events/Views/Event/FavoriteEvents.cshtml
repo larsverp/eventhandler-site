@@ -1,25 +1,53 @@
 ﻿@model IEnumerable<Rockstar.Models.Event>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "FavoriteEvents";
 }
 
 <h1>FavoriteEvents</h1>
 
-@foreach (var e in Model)
-{
-    <div class="@e.id">
-        <p>@e.title</p>
 
-        <a onclick="RemoveFromFavorites('@e.id')">Remove</a>
 
-        <p>@e.id</p>
-        <hr/>
-    </div>
-}
+<div class="event-table col-md-12">
+    <table class="table col-md-12 table-hover">
+        <thead>
+            <tr class="col-md-12">
+                <th scope="col">Event</th>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <th scope="row">
+                        <div class="row">
+                            <img class="Search" src="@e.thumbnail" alt="@e.title" />
+                            <div class="col Search">
+                                <h5>@e.title</h5>
+                                <p>by lorem</p>
+                            </div>
+                        </div>
+                    </th>
+                    <td class="Search">@e.begin_date</td>
+                    <td class="Search">@e.postal_code</td>
+                    <td>
+                        <div class="col-md-2">
+                            <a href="#">Read More</a>
+                            <a onclick="RemoveFromFavorites('@e.id')">Remove</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <script>
     function RemoveFromFavorites(eId) {
-        alert(eId);
+        //alert(eId);
         $.post("/Event/RemoveEventFromFavorites",
             {
                 id: eId
