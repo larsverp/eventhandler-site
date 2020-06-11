@@ -17,7 +17,7 @@ namespace Rockstar.Data
         private WebResponse webResponse;
         private StreamReader streamReader;
 
-        public Host GetHost(string id)
+        public async Task<Host> GetHost(string id)
         {
             webRequest = WebRequest.Create("https://eventhandler-api.herokuapp.com/api/hosts/" + id);
 
@@ -85,7 +85,58 @@ namespace Rockstar.Data
 
                 var response = await client.DeleteAsync(url);
                 if (response.IsSuccessStatusCode == false)
-                    throw new ArgumentException("Something went wrong");    
+                    throw new ArgumentException("Something went wrong");
+            }
+        }
+
+        public async Task<List<Host>> GetFollowingHosts(string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/users/following/hosts";
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var response = await client.GetAsync(url);
+                string result = response.Content.ReadAsStringAsync().Result;
+                var hosts = JsonConvert.DeserializeObject<List<Host>>(result);
+                return hosts;
+            }
+        }
+
+        public async Task FollowHost(string hostId, string cookieValue)
+        {
+            var host = new Dictionary<string, string>()
+            {
+                { "host_id", hostId}
+            };
+
+            var json = JsonConvert.SerializeObject(host);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = "https://eventhandler-api.herokuapp.com/api/hosts/follow";
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var response = await client.PostAsync(url, data);
+                if (response.IsSuccessStatusCode == false)
+                    throw new ArgumentException("Something went wrong");
+            }
+        }
+
+        public async Task UnfollowHost(string hostId, string cookieValue)
+        {
+            var url = "https://eventhandler-api.herokuapp.com/api/hosts/unfollow/" + hostId;
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+
+                var response = await client.DeleteAsync(url);
+                if (response.IsSuccessStatusCode == false)
+                    throw new ArgumentException("Something went wrong");
             }
         }
     }

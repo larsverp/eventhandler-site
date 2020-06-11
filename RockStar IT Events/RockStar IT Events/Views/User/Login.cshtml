@@ -1,8 +1,10 @@
 ﻿@model RockStar_IT_Events.ViewModels.UserModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{ 
+@{
     Layout = "_MainLayout";
 }
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="983967868260-k63n439kte80rlvd3locclj3phpmai5n.apps.googleusercontent.com">
 
 <div class="col-md-8 login-container">
     <form asp-action="Login" asp-controller="User" class="rockstar-form">
@@ -17,6 +19,16 @@
         </div>
         <div class="col-sm-6">
             <input class="rockstar-btn text-center col-md-12" type="submit" value="Login" />
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <script>
+                function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                }
+            </script>
         </div>
         <div class="row col-md-5 bottom-text">
             <p>Not yet a member? <a asp-action="Register">Register here.</a></p>
