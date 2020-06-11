@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<Rockstar.Models.Host>
+
+@{
+    ViewData["Title"] = "MyHosts";
+}
+
+<h1>MyHosts</h1>
+
+<div class="event-table col-md-12">
+
+    <table class="table col-md-12 table-hover">
+        <thead>
+            <tr class="col-md-12">
+                <th scope="col"><h4>Photo</h4> </th>
+                <th scope="col"><h4>Name</h4> </th>
+                <th scope="col"><h4>Description</h4></th>
+                <th scope="col"><h4>Options</h4></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <th scope="row">
+                            <img class="Search" src="@e.picture" alt="@e.first_name" />
+                    </th>
+                    <td>
+                            <h5>@e.first_name @e.last_name</h5>
+                    </td>
+                    <td>
+                        <div class="hostDescr">
+                            @e.description
+                        </div>
+                    </td>
+                    <td>
+                            <a href="#" class="pb-3">Unfollow</a>
+                            <a href="#">Read More</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+ </div>
+
