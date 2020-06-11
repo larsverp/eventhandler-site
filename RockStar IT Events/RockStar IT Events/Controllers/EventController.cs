@@ -36,7 +36,7 @@ namespace RockStar_IT_Events.Controllers
         public async Task<IActionResult> Event(string id)
         {
             var e = eventApi.GetEvent(id);
-            var host = hostApi.GetHost(e.host_id);
+            var host = await hostApi.GetHost(e.host_id);
             var category = await categoryApi.GetAllCategoriesFromEvent(id);
 
             var model = new IndividualEventModel
@@ -74,6 +74,22 @@ namespace RockStar_IT_Events.Controllers
         {
             await ticketsApi.SubscribeForEvent(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FollowHost(string id, string eventId)
+        {
+            await hostApi.FollowHost(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+
+            return RedirectToAction("Event", "Event", new { id = eventId });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFollowingHost(string id, string eventId)
+        {
+            await hostApi.UnfollowHost(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+
+            return RedirectToAction("Event", "Event", new { id = eventId });
         }
 
         [HttpGet]
