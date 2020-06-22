@@ -58,7 +58,6 @@ namespace RockStar_IT_Events.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-
             return View();
         }
 
@@ -92,7 +91,6 @@ namespace RockStar_IT_Events.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-
             return View();
         }
 
@@ -132,7 +130,6 @@ namespace RockStar_IT_Events.Controllers
                     ModelState.AddModelError("", "Onjuiste combinatie");
                 }
             }
-
             return View();
         }
 
