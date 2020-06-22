@@ -367,9 +367,27 @@ nav{
     overflow:hidden;
 }
 
-//rating page
 
-.rating-img img{
+//favorite events
+
+.readMore{
+    padding-bottom: 100px;
+}
+
+.removeBtn {
+    padding: 5px;
+    background-color: $rockstar-yellow;
+}
+
+.removeBtn:hover {
+    cursor: pointer;
+    background-color: $rockstar-yellow-hover;
+}
+
+
+
+//rating page
+.rating-img img {
     width: 100%;
 }
 
