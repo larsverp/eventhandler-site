@@ -5,6 +5,7 @@ using Rockstar.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,13 +22,15 @@ namespace RockStar_IT_Events.Controllers
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
 
-
-        public AdminController(IHttpContextAccessor contextAccessor, IWebHostEnvironment e)
+        public AdminController(
+            IHttpContextAccessor contextAccessor, 
+            IWebHostEnvironment e,
+            IHttpClientFactory clientFactory)
         {
-            eventApi = new EventApi();
-            hostApi = new HostApi();
-            userApi = new UserApi();
-            categoryApi = new CategoryApi();
+            eventApi = new EventApi(clientFactory.CreateClient("event-handler"));
+            hostApi = new HostApi(clientFactory.CreateClient("event-handler"));
+            userApi = new UserApi(clientFactory.CreateClient("event-handler"));
+            categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
         }
@@ -41,7 +44,7 @@ namespace RockStar_IT_Events.Controllers
         [HttpGet]
         public async Task<IActionResult> EditEvent(string id)
         {
-            Event e = eventApi.GetEvent(id);
+            Event e = await eventApi.GetEvent(id);
             var hosts = await hostApi.GetAllHosts();
             var cats = await categoryApi.GetAllCategories();
             EventModel model = new EventModel
@@ -112,7 +115,7 @@ namespace RockStar_IT_Events.Controllers
                 }
             }
 
-            Event ev = eventApi.GetEvent(model.Id);
+            Event ev = await eventApi.GetEvent(model.Id);
             var hosts = await hostApi.GetAllHosts();
             var cats = await categoryApi.GetAllCategories();
             EventModel m = new EventModel

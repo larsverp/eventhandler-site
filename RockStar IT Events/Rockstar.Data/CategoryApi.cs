@@ -82,7 +82,7 @@ namespace Rockstar.Data
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-            using (HttpResponseMessage response = await this.client.DeleteAsync($"categories/{categoryId}}"))
+            using (HttpResponseMessage response = await this.client.DeleteAsync($"categories/{categoryId}"))
             {
                 if (response.IsSuccessStatusCode)
                     return;
