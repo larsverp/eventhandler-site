@@ -280,5 +280,15 @@ namespace RockStar_IT_Events.Controllers
         {
             return View();
         }
+
+        public IActionResult AddCatagory()
+        {
+            return View();
+        }
+
+        public IActionResult AddHost()
+        {
+            return View();
+        }
     }
 }
