@@ -13,15 +13,15 @@ namespace RockStar_IT_Events
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddHttpClient("event-handler", c =>
-            {
-                c.BaseAddress = new Uri("eh-api.larsvanerp.com/api/");
-                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(24);
+            });
+            services.AddHttpClient("event-handler", c =>
+            {
+                c.BaseAddress = new Uri("https://eh-api.larsvanerp.com/api/");
+                c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
         }
 
