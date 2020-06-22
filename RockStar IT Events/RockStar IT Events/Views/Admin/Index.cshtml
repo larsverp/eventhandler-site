@@ -27,27 +27,27 @@
                 </thead>
                 <tbody>
                     @foreach (var e in Model)
-                    {
-                    <tr>
-                        <th scope="row">
-                            <div class="row">
-                                <img class="Search" src="@e.thumbnail" alt="@e.title" />
-                                <div class="col Search">
-                                    <h5>@e.title</h5>
-                                    <p>by lorem</p>
+                     {
+                        <tr>
+                           <th scope="row">
+                                <div class="row">
+                                    <img class="Search" src="@e.thumbnail" alt="@e.title" />
+                                    <div class="col Search">
+                                        <h5>@e.title</h5>
+                                        <p>by lorem</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                        <td class="Search">
-                            @e.seats
-                        </td>
-                        <td class="Search">@e.begin_date</td>
-                        <td class="Search">@e.postal_code</td>
-                        <td><a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
-                        <td><a asp-controller="Admin" asp-action="DeleteEvent" asp-route-id="@e.id">Remove</a></td>
+                            </th>
+                            <td class="Search">
+                                @e.seats
+                            </td>
+                            <td class="Search">@e.begin_date</td>
+                            <td class="Search">@e.postal_code</td>
+                            <td><a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
+                            <td><a asp-controller="Admin" asp-action="DeleteEvent" asp-route-id="@e.id">Remove</a></td>
 
-                    </tr>
-                    }
+                        </tr>
+                     }
                 </tbody>
             </table>
         </div>
