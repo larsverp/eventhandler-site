@@ -33,10 +33,10 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
-                    var token = await userApi.Login(model.username, model.password);
+                    var token = await userApi.Login(model.EmailAddress, model.Password);
                     if (token == null)
                     {
-                        ModelState.AddModelError("", "Incorrect username-password combination");
+                        ModelState.AddModelError("", "Incorrect EmailAddress-Password combination");
                         return View();
                     }
 
