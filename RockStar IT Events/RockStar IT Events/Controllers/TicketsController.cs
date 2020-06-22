@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using RockStar_IT_Events.ViewModels;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
