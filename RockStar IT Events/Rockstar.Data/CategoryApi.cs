@@ -11,92 +11,83 @@ namespace Rockstar.Data
 {
     public class CategoryApi
     {
+        private readonly HttpClient client;
+
+        public CategoryApi(HttpClient httpClient)
+        {
+            client = httpClient;
+        }
+
         public async Task<List<Category>> GetAllCategories()
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/categories";
-            using (var client = new HttpClient())
+            using (HttpResponseMessage response = await client.GetAsync("categories"))
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync(url);
-                string result = response.Content.ReadAsStringAsync().Result;
-                var categories = JsonConvert.DeserializeObject<List<Category>>(result);
-                return categories;
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadAsAsync<List<Category>>();
+                throw new ArgumentException(response.ReasonPhrase);
             }
         }
 
         public async Task<List<Category>> GetAllCategoriesFromEvent(string eventId)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/categories/event/" + eventId;
-            using (var client = new HttpClient())
+            using (HttpResponseMessage response = await client.GetAsync($"categories/event/{eventId}"))
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync(url);
-                string result = response.Content.ReadAsStringAsync().Result;
-                var categories = JsonConvert.DeserializeObject<List<Category>>(result);
-                return categories;
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadAsAsync<List<Category>>();
+                throw new ArgumentException(response.ReasonPhrase);
             }
         }
 
         public async Task<Category> GetCategory(string categoryId)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/users/categories/" + categoryId;
-            using (var client = new HttpClient())
+            using (HttpResponseMessage response = await client.GetAsync($"users/categories/{categoryId}"))
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = await client.GetAsync(url);
-                string result = response.Content.ReadAsStringAsync().Result;
-                var category = JsonConvert.DeserializeObject<Category>(result);
-                return category;
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadAsAsync<Category>();
+                throw new ArgumentException(response.ReasonPhrase);
             }
         }
 
-        public async Task CreateCategory(Category category, string cookieValue)
+        public async Task CreateCategory(Category category, string bearerToken)
         {
             string json = JsonConvert.SerializeObject(category);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            string url = "https://eventhandler-api.herokuapp.com/api/categories";
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-                var response = await client.PostAsync(url, data);
-                if (response.IsSuccessStatusCode == false)
-                    throw new ArgumentException("Something went wrong");
+            using (HttpResponseMessage response = await client.PostAsync("categories", data))
+            {
+                if (response.IsSuccessStatusCode)
+                    return;
+                throw new ArgumentException(response.ReasonPhrase);
             }
         }
 
-        public async Task UpdateCategory(Category updatedCategory, string cookieValue)
+        public async Task UpdateCategory(Category updatedCategory, string bearerToken)
         {
             var json = JsonConvert.SerializeObject(updatedCategory);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var url = "https://eventhandler-api.herokuapp.com/api/categories/" + updatedCategory.id;
-            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
-
-            var response = await client.PutAsync(url, data);
-
-            if(response.IsSuccessStatusCode == false)
-                throw new ArgumentException("Something went wrong");
+            using (HttpResponseMessage response = await this.client.PutAsync($"categories/{updatedCategory.id}", data))
+            {
+                if (response.IsSuccessStatusCode)
+                    return;
+                throw new ArgumentException(response.ReasonPhrase);
+            }
         }
 
-        public async Task RemoveCategory(string categoryId, string cookieValue)
+        public async Task RemoveCategory(string categoryId, string bearerToken)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/categories/" + categoryId;
-            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
 
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cookieValue);
-
-            var response = await client.DeleteAsync(url);
+            using (HttpResponseMessage response = await this.client.DeleteAsync($"categories/{categoryId}}"))
+            {
+                if (response.IsSuccessStatusCode)
+                    return;
+                throw new ArgumentException(response.ReasonPhrase);
+            }
         }
     }
 }
