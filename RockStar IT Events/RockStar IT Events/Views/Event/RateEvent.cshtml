@@ -1,0 +1,36 @@
+﻿@model Rockstar.Models.Event
+@{
+    ViewData["Title"] = "RateEvent";
+}
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="row col-md-10">
+
+    <div class="col-md-4 rating-img">
+        <img src="@Model.thumbnail" alt="oopsie didnt work" />
+    </div>
+
+    <div class="col-md-4">
+        <h1>@Model.title</h1>
+        <p>by lorem</p>
+    </div>
+
+    <div class=" col-md-4">
+        <div class="rating row">
+            <input type="radio" name="star" id="star1" /><label for="star1">
+            </label>
+            <input type="radio" name="star" id="star2" /><label for="star2">
+            </label>
+            <input type="radio" name="star" id="star3" /><label for="star3">
+            </label>
+            <input type="radio" name="star" id="star4" /><label for="star4">
+            </label>
+            <input type="radio" name="star" id="star5" /><label for="star5">
+            </label>
+        </div>
+    </div>
+   
+</div>
+
+
+
