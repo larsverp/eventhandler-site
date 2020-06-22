@@ -35,8 +35,8 @@
                     <td class="Search">@e.postal_code</td>
                     <td>
                         <div class="col-md-2">
-                            <a href="#">Read More</a>
-                            <a onclick="RemoveFromFavorites('@e.id')">Remove</a>
+                            <a class="readMore" href="#">Read More</a>
+                            <a class="removeBtn" onclick="RemoveFromFavorites('@e.id')">Remove</a>
                         </div>
                     </td>
                 </tr>
@@ -47,11 +47,11 @@
 
 <script>
     function RemoveFromFavorites(eId) {
-        //alert(eId);
         $.post("/Event/RemoveEventFromFavorites",
             {
                 id: eId
             });
         $("." + eId).remove();
+        window.location.reload(false); 
     }
 </script>

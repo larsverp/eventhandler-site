@@ -66,6 +66,21 @@
                             }
                         }
                     </div>
+                    <div class="align-self-center ml-auto">
+                        <div class="float-right">
+                            @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
+                            {
+                                @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                                {
+                                    <i class="fa fa-heart fa-2x text-danger unlike p-2"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-heart-o fa-2x text-danger like p-2"></i>
+                                }
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

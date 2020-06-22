@@ -296,6 +296,17 @@ nav img {
   max-height: 100px;
   overflow: hidden; }
 
+.readMore {
+  padding-bottom: 100px; }
+
+.removeBtn {
+  padding: 5px;
+  background-color: #ffe000; }
+
+.removeBtn:hover {
+  cursor: pointer;
+  background-color: #f5d800; }
+
 .rating-img img {
   width: 100%; }
 
