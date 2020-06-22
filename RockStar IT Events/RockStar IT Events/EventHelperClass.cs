@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 using Rockstar.Data;
 
@@ -19,7 +20,13 @@ namespace RockStar_IT_Events
             var tickets = await api.GetAllTickets(cookieValue);
             tickets = tickets.Where(t => t.unsubscribe == false).ToList();
             return tickets.FirstOrDefault(t => t.event_id == eventId) != null;
+        }
 
+        public static async Task<bool> IsFollowingHost(string hostId, string cookieValue)
+        {
+            HostApi api = new HostApi();
+            var hosts = await api.GetFollowingHosts(cookieValue);
+            return hosts.FirstOrDefault(h => h.id == hostId) != null;
         }
     }
 }

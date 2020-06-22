@@ -16,10 +16,22 @@
                 <br />
                 <h2 class="font-weight-bold">@Model.eEvent.title</h2>
                 <p>by @Model.Host.first_name @Model.Host.last_name</p>
-                <a href="#" class="rockstar-btn d-inline-flex">
-                    <p class="align-self-center font-weight-bold">Following</p>
-                    <img class="align-self-center" src="~/Images/Check.png" />
-                </a>
+                @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
+                {
+                    @if (await EventHelperClass.IsFollowingHost(Model.Host.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
+                    {
+                        <a class="rockstar-btn d-inline-flex unfollow-host">
+                            <p class="align-self-center font-weight-bold">Following</p>
+                        </a>
+                    }
+                    else
+                    {
+
+                        <a class="rockstar-btn d-inline-flex follow-host">
+                            <p class="align-self-center font-weight-bold">Click to follow!</p>
+                        </a>
+                    }
+                }
                 <p>@Model.eEvent.available_seats/@Model.eEvent.seats seats available</p>
                 <p class="p-0">
                     @{
@@ -126,7 +138,7 @@
         </div>
     </div>
 
-<script>
+    <script>
     $("div.sign-out-button").on('click',
         function () {
             $.post("/Event/SubscribeForEvent",
@@ -155,4 +167,30 @@
         $(this).toggleClass("fa-heart-o").toggleClass("fa-heart");
         $("i.unlike").toggleClass("unlike").toggleClass("like");
     });
-</script>
+
+    $("a.follow-host").on('click',
+        function() {
+            $.post("/Event/FollowHost",
+                {
+                    id: "@Model.Host.id",
+                    eventId : "@Model.eEvent.id"
+                });
+            $("a.follow-host p").text('Following');
+            $(this).addClass('unfollow-host');
+            $(this).removeClass('follow-host');
+            console.log("follow");
+        });
+
+    $("a.unfollow-host").on('click',
+        function() {
+            $.post("/Event/RemoveFollowingHost",
+                {
+                    id: "@Model.Host.id",
+                    eventId : "@Model.eEvent.id"
+                });
+            $("a.unfollow-host p").text('Click to follow');
+            $(this).addClass('follow-host');
+            $(this).removeClass('unfollow-host');
+            console.log("unfollow");
+        });
+    </script>

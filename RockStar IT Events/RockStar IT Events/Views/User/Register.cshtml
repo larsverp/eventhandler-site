@@ -1,7 +1,7 @@
 ﻿@model RockStar_IT_Events.ViewModels.UserRegisterModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <div class="col-md-10 login-container">
-    <form asp-action="Register" class="rockstar-form">
+    <form asp-action="Register" asp-controller="User" class="rockstar-form">
         <h1 class="title col-md-12 text-center">
             Welcome aboard
         </h1>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="row col-md-4 bottom-text">
-            <p>already an account? <a asp-action="Login">Log in here.</a></p>
+            <p>already an account? <a asp-action="Register" asp-controller="User">Log in here.</a></p>
         </div>
     </form>
 </div>
