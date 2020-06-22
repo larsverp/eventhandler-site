@@ -1,6 +1,6 @@
 ﻿@model Rockstar.Models.Category
 @{
-    ViewData["Title"] = "Create Catagory";
+    ViewData["Title"] = "Create category";
     Layout = "_Admin";
 }
 
@@ -9,19 +9,19 @@
     <form class="rockstar-form">
 
         <h1 class="title col-md-12 text-center">
-            Create a new Catagory
+            Create a new category
         </h1>
 
         <div class="col-md-10">
             <div class="form-row">
                 <div class="col-md-12">
-                    <input class="form-control" asp-for="name" placeholder="name of catagory" />
+                    <input class="form-control" asp-for="name" placeholder="name of category" />
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-12">
-                    <textarea name="description" asp-for="description" placeholder="Describe your catagory here..." cols="4" rows="20"></textarea>
+                    <textarea name="description" asp-for="description" placeholder="Describe your category here..." cols="4" rows="20"></textarea>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
 
             <div class="form-row">
                 <div class="col-md-12">
-                    <input class="rockstar-btn text-center col-md-12 mb-5" type="submit" value="Save Catagory" />
+                    <input class="rockstar-btn text-center col-md-12 mb-5" type="submit" value="Save category" />
                 </div>
             </div>
         </div>
