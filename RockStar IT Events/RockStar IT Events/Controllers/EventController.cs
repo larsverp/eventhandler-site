@@ -33,7 +33,6 @@ namespace RockStar_IT_Events.Controllers
         public async Task<IActionResult> Index()
         {
             List<Event.Event> events = await eventApi.GetAllEvents();
-
             return View(events);
         }
 
