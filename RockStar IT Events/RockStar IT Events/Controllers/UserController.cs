@@ -5,6 +5,7 @@ using Rockstar.Models;
 using RockStar_IT_Events.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
@@ -12,9 +13,10 @@ namespace RockStar_IT_Events.Controllers
     public class UserController : Controller
     {
         private readonly UserApi userApi;
-        public UserController()
+
+        public UserController(IHttpClientFactory clientFactory)
         {
-            userApi = new UserApi();    
+            userApi = new UserApi(clientFactory.CreateClient("event-handler"));    
         }
 
         [HttpGet]
@@ -28,24 +30,32 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                var token = await userApi.Login(model.username, model.password);
-                if (token == null)
+                try
                 {
-                    ModelState.AddModelError("", "Incorrect username-password combination");
-                    return View();
+                    var token = await userApi.Login(model.username, model.password);
+                    if (token == null)
+                    {
+                        ModelState.AddModelError("", "Incorrect username-password combination");
+                        return View();
+                    }
+
+                    CookieOptions options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(1),
+                        Secure = true,
+                        HttpOnly = true,
+                        IsEssential = true
+                    };
+
+                    Response.Cookies.Append("BearerToken", token, options);
+                    var role = await userApi.GetRole(token);
+                    HttpContext.Session.SetString("Role", role);
+                    return RedirectToAction("Index", "Event");
                 }
-                CookieOptions options = new CookieOptions();
-                options.Expires = DateTime.Now.AddDays(1);
-                options.Secure = true;
-                options.HttpOnly = true;
-                options.IsEssential = true;
-
-                Response.Cookies.Append("BearerToken", token, options);
-
-                var role = await userApi.GetRole(token);
-
-                HttpContext.Session.SetString("Role", role);
-                return RedirectToAction("Index", "Event");
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
             }
 
             return View();
@@ -64,7 +74,7 @@ namespace RockStar_IT_Events.Controllers
             {
                 try
                 {
-                    Rockstar.Models.User user = new User()
+                    User user = new User
                     {
                         first_name = model.FirstName,
                         email = model.EmailAddress,
