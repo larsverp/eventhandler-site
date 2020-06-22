@@ -68,7 +68,6 @@
                     </div>
                     <div class="align-self-center ml-auto">
                         <div class="float-right">
-                            <i class="fa fa-share-alt fa-2x"></i>
                             @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
                             {
                                 @if (await EventHelperClass.EventIsFavorited(Model.eEvent.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))

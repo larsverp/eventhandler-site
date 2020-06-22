@@ -366,3 +366,70 @@ nav{
     max-height: 100px;
     overflow:hidden;
 }
+
+
+//favorite events
+
+.readMore{
+    padding-bottom: 100px;
+}
+
+.removeBtn {
+    padding: 5px;
+    background-color: $rockstar-yellow;
+}
+
+.removeBtn:hover {
+    cursor: pointer;
+    background-color: $rockstar-yellow-hover;
+}
+
+
+
+//rating page
+.rating-img img {
+    width: 100%;
+}
+
+.rating {
+    flex-direction: row-reverse;
+}
+
+.rating input{
+    display: none;
+}
+
+.rating label{
+    display: block;
+    cursor: pointer;
+    width: 50px;
+}
+
+.rating label:before {
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    font-size: 50px;
+    color: $rockstar-dark-gray;
+}
+
+.rating label:after{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    font-size: 50px;
+    color: $rockstar-yellow;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+}
+
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after 
+{
+    opacity: 1;
+}
