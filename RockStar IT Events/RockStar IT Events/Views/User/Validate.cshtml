@@ -3,10 +3,26 @@
     ViewData["Title"] = "Validate";
 }
 
-<h1>Hey @Model.Email! Verify your account so we can start your adventure</h1>
+<div class="p-5"></div>
+<div class="col-md-12 create-container p-5">
+    <h1 class="">Welcome @Model.Email! Verify your account so we can start your adventure</h1>
+    <br />
+    <form class="rockstar-form" asp-controller="User" asp-action="Validate">
+        <input asp-for="Email" hidden />
 
-<form asp-controller="User" asp-action="Validate">
-    <input asp-for="Email" hidden/>
-    <input asp-for="Code"/>
-    <input type="submit" value="Verify your account"/>
-</form>
+        <div class="form-row">
+            <div class="col-md-12">
+                <input class="form-control" asp-for="Code" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-12">
+                <input type="submit" class="form-control" value="Verify your account" />
+            </div>
+        </div>
+    </form>
+</div>
+<div class="p-5"></div>
+
+
