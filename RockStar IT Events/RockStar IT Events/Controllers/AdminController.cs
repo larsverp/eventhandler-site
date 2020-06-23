@@ -284,7 +284,7 @@ namespace RockStar_IT_Events.Controllers
             return View();
         }
 
-        public IActionResult AddCatagory()
+        public IActionResult AddCategory()
         {
             return View();
         }
