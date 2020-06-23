@@ -1,41 +1,48 @@
 ﻿@model RockStar_IT_Events.ViewModels.UserRegisterModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <div class="col-md-10 login-container">
+    <h1 class="title col-md-12 text-center">
+        Welcome aboard
+    </h1>
     <form asp-action="Register" asp-controller="User" class="rockstar-form">
-        <h1 class="title col-md-12 text-center">
-            Welcome aboard
-        </h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-md-10">
             <div class="form-row">
                 <div class="col-md-5">
-                    <input asp-for="FirstName" class="form-control " id="defaultFormCardNameEx" placeholder="Firstname" />
+                    <input asp-for="FirstName" class="form-control " id="defaultFormCardNameEx" placeholder="Firstname"/>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="col-md-2">
-                    <input asp-for="Insertion" class="form-control " id="defaultFormCardNameEx" placeholder="Insertion" />
+                    <input asp-for="Insertion" class="form-control " id="defaultFormCardNameEx" placeholder="Insertion"/>
+                    <span asp-validation-for="Insertion" class="text-danger"></span>
                 </div>
                 <div class="col-md-5">
-                    <input asp-for="LastName" class="form-control " id="defaultFormCardNameEx" placeholder="Lastname" />
+                    <input asp-for="LastName" class="form-control " id="defaultFormCardNameEx" placeholder="Lastname"/>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-8">
-                    <input asp-for="EmailAddress" class="form-control " id="defaultFormCardNameEx" placeholder="Email" />
+                    <input asp-for="EmailAddress" class="form-control " id="defaultFormCardNameEx" placeholder="Email"/>
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
                 </div>
                 <div class="col-md-4">
-                    <input asp-for="PostalCode" class="form-control " id="defaultFormCardNameEx" placeholder="Postal Code" />
+                    <input asp-for="PostalCode" class="form-control " id="defaultFormCardNameEx" placeholder="Postal Code"/>
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6">
-                    <input asp-for="Password" class="form-control " id="defaultFormCardNameEx" placeholder="Password" />
+                    <input asp-for="Password" class="form-control " id="defaultFormCardNameEx" placeholder="Password"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input asp-for="ConfirmedPassword" class="form-control " id="defaultFormCardNameEx" placeholder="Repeat Password" />
+                    <input asp-for="ConfirmedPassword" class="form-control " id="defaultFormCardNameEx" placeholder="Repeat Password"/>
+                    <span asp-validation-for="ConfirmedPassword" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12">
-                    <input class="rockstar-btn text-center col-md-12" type="submit" value="Sign up" />
+                    <input class="rockstar-btn text-center col-md-12" type="submit" value="Sign up"/>
                 </div>
             </div>
         </div>

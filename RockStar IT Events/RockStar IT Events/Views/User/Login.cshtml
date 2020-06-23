@@ -1,24 +1,25 @@
 ﻿@model RockStar_IT_Events.ViewModels.UserModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_MainLayout";
 }
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id" content="983967868260-k63n439kte80rlvd3locclj3phpmai5n.apps.googleusercontent.com">
-
 <div class="col-md-8 login-container">
     <form asp-action="Login" asp-controller="User" class="rockstar-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <h1 class="title col-md-12 text-center">
             Welcome back
         </h1>
         <div class="col-md-6">
-            <input asp-for="username" class="form-control" id="defaultFormCardNameEx" placeholder="Email" />
+            <input asp-for="EmailAddress" class="form-control" id="defaultFormCardNameEx" placeholder="Email"/>
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
         </div>
         <div class="col-md-6">
-            <input asp-for="password" class="form-control" id="defaultFormCardNameEx" placeholder="Password" />
+            <input asp-for="Password" class="form-control" id="defaultFormCardNameEx" placeholder="Password"/>
+            <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="col-sm-6">
-            <input class="rockstar-btn text-center col-md-12" type="submit" value="Login" />
+            <input class="rockstar-btn text-center col-md-12" type="submit" value="Login"/>
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
             <script>
                 function onSignIn(googleUser) {
