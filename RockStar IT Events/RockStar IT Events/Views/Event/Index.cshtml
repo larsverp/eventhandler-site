@@ -33,7 +33,7 @@
     {
         <div class="col-lg-4 pt-5">
             <a asp-action="Event" asp-route-id="@e.id" class="text-decoration-none">
-                <div class="card text-dark" style="height: 500px; box-shadow: rgba(0,0,0,.2) 0px 0px 5px">
+                <div class="card text-dark" style="height: 500px; box-shadow: #000000 0 0 5px; box-shadow: rgba(0,0,0,.2) 0 0 5px">
                     <img class="card-img-top" src="@e.thumbnail" style="height: 250px; width: 100%; margin: 0; object-fit: cover"/>
                     <hr class="m-0"/>
                     <div class="px-3" style="height: 250px">
@@ -49,7 +49,7 @@
                                 @e.title
                             </h2>
                         }
-                        <p class="p-0 m-0">@DateTime.Parse(e.begin_date).ConvertToSimpleDate() - @DateTime.Parse(e.end_date).ConvertToSimpleDate()</p>
+                        <p class="p-0 m-0">@e.begin_date.ConvertToSimpleDate() - @e.end_date.ConvertToSimpleDate()</p>
                         <p class="p-0 m-0">@e.available_seats / @e.seats seats</p>
                     </div>
                 </div>

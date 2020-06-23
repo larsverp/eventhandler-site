@@ -53,7 +53,6 @@ namespace RockStar_IT_Events.Controllers
         public async Task<IActionResult> FavoriteEvents()
         {
             var events = await eventApi.ReturnAllFavoriteEvents(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
-
             return View(events);
         }
 
