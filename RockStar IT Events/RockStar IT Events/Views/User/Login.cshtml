@@ -20,16 +20,7 @@
         </div>
         <div class="col-sm-6">
             <input class="rockstar-btn text-center col-md-12" type="submit" value="Login"/>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-            <script>
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                    console.log('Name: ' + profile.getName());
-                    console.log('Image URL: ' + profile.getImageUrl());
-                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                }
-            </script>
+
         </div>
         <div class="row col-md-5 bottom-text">
             <p>Not yet a member? <a asp-action="Register">Register here.</a></p>
