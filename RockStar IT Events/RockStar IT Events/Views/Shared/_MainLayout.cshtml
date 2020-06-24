@@ -17,60 +17,63 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top px-4 m-0" id="navbar">
-    <a asp-action="Index" asp-controller="Event">
-        <img src="~/Images/RockstarLogo.svg" class="nav-height mr-auto" />
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse mr-xl-5 pr-xl-3" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto mt-2 mt-sm-0">
-        </ul>
-        <ul class="navbar-nav mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="#">Update Interests</a>
-            </li>
-            @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
-            {
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Admin panel</a>
-                </li>
-            }
-            @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
-            {
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="User" asp-action="Login">Log in</a>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        My Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
-                        <a class="dropdown-item" asp-action="MyHosts" asp-controller="User">My Hosts</a>
-                        <a class="dropdown-item" asp-action="Logout" asp-controller="User">Log out</a>
-                    </div>
-                </li>
-            }
-        </ul>
-    </div>
-</nav>
-<div class="container-fluid bg-subwhite">
-    <div class="container main-padding">
-        @RenderBody()
-    </div>
-</div>
-<footer class="d-flex justify-content-around bg-dark" style="line-height: 100px">
-    <span class="text-white d-inline-block">© Copyright Team EventHandler 2020</span>
-</footer>
+    <div class="container-all">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top px-4 m-0" id="navbar">
+            <a asp-action="Index" asp-controller="Event">
+                <img src="~/Images/RockstarLogo.svg" class="nav-height mr-auto" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mr-xl-5 pr-xl-3" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto mt-2 mt-sm-0">
+                </ul>
+                <ul class="navbar-nav mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Update Interests</a>
+                    </li>
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="Admin" asp-action="Index">Admin panel</a>
+                        </li>
+                    }
+                    @if (HttpContextAccessor.HttpContext.Request.Cookies["BearerToken"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="User" asp-action="Login">Log in</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                My Account
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
+                                <a class="dropdown-item" asp-action="MyHosts" asp-controller="User">My Hosts</a>
+                                <a class="dropdown-item" asp-action="Logout" asp-controller="User">Log out</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid bg-subwhite">
+            <div class="container main-padding">
+                @RenderBody()
+            </div>
+        </div>
 
-<script src="~/Scripts/ScrollDown.js"></script>
+        <footer class="d-flex justify-content-around bg-dark" style="line-height: 100px">
+            <span class="text-white d-inline-block">© Copyright Team EventHandler 2020</span>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/ScrollDown.js"></script>
 </body>
 </html>

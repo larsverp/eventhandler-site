@@ -61,7 +61,22 @@ p {
 
 body {
   background: #f4f4f4;
-  font-family: "Open Sans", sans-serif !important; }
+  font-family: "Open Sans", sans-serif !important;
+  height: 100%; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  /* Height of the footer */ }
+
+.container-all {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 100px;
+  /* Height of the footer */
+  background: #f4f4f4; }
 
 .icon {
   height: 25px;
