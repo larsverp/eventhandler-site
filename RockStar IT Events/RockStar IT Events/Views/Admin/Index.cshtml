@@ -27,21 +27,21 @@
                 <tbody>
                     @foreach (var e in Model)
                      {
-                        <tr>
+                        <tr class="Search">
                            <th scope="row">
                                 <div class="row">
-                                    <img class="Search" src="@e.thumbnail" alt="@e.title" />
-                                    <div class="col Search">
+                                    <img src="@e.thumbnail" alt="@e.title" />
+                                    <div class="col">
                                         <h5>@e.title</h5>
                                         <p>by lorem</p>
                                     </div>
                                 </div>
                             </th>
-                            <td class="Search">
+                            <td>
                                 @e.seats
                             </td>
-                            <td class="Search">@e.begin_date</td>
-                            <td class="Search">@e.postal_code</td>
+                            <td>@e.begin_date</td>
+                            <td>@e.postal_code</td>
                             <td><a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@e.id">Update</a></td>
                             <td><a asp-controller="Admin" asp-action="DeleteEvent" asp-route-id="@e.id">Remove</a></td>
 
