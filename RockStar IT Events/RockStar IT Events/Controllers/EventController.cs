@@ -60,8 +60,8 @@ namespace RockStar_IT_Events.Controllers
                 eEvent = e,
                 Host = host,
                 Categories = category,
-                Reviews = await reviewApi.GetAllReviewsFromEvent(id, bearerTokenInCookie)
             };
+
             return View(model);
         }
 

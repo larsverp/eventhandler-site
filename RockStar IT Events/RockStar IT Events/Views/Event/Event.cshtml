@@ -133,30 +133,6 @@
                     </a>
                 </div>
             </div>
-            <div class="w-100">
-                <h3>Reviews</h3>
-                <table class="table col-md-12 table-hover">
-                    <thead>
-                    <tr class="col-md-12">
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Rating</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var e in Model.Reviews)
-                    {
-                        <tr class="Search">
-                            <td>
-                                @e.title
-                            </td>
-                            <td>@e.description</td>
-                            <td>@e.rating</td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 
