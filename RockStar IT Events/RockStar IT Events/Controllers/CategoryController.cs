@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
+    [AdminCheckFilter]
     public class CategoryController : Controller
     {
         private readonly string BearerTokenInCookie;

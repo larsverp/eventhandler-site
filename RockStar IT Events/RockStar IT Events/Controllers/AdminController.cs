@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace RockStar_IT_Events.Controllers
 {
+    [AdminCheckFilter]
     public class AdminController : Controller
     {
         private readonly EventApi eventApi;

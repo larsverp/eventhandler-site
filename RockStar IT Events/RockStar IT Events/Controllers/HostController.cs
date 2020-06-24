@@ -13,6 +13,7 @@ using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
 {
+    [AdminCheckFilter]
     public class HostController : Controller
     {
         private readonly HostApi hostApi;
