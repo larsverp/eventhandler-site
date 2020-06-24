@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using Rockstar.Models;
+using RockStar_IT_Events.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -23,6 +21,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly CategoryApi categoryApi;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
+        private readonly string BearerTokenInCookie;
 
         public AdminController(
             IHttpContextAccessor contextAccessor, 
@@ -35,6 +34,7 @@ namespace RockStar_IT_Events.Controllers
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
+            BearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
         }
 
         public async Task<IActionResult> Index()
@@ -82,7 +82,7 @@ namespace RockStar_IT_Events.Controllers
                         string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
                         var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
                         model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
-                        pathName = "http://i436732core.venus.fhict.nl/" + uniqueImageName;
+                        pathName = "https://teameventhandler.azurewebsites.net/" + uniqueImageName;
                     }
                     else
                     {
@@ -276,23 +276,38 @@ namespace RockStar_IT_Events.Controllers
             return View(user);
         }
 
-        public IActionResult Tickets()
-        {
-            return View();
-        }
-
-        public IActionResult MailingList()
-        {
-            return View();
-        }
-
+        [HttpGet]
         public IActionResult AddCategory()
         {
             return View();
         }
 
-        public IActionResult AddHost()
+        [HttpPost]
+        public async Task<IActionResult> AddCategory(CategoryCreateViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Thumbnail.FileName)}";
+                    var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
+                    model.Thumbnail.CopyTo(new FileStream(fileName, FileMode.Create));
+
+                    Category category = new Category
+                    {
+                        name = model.Name,
+                        description = model.Description,
+                        thumbnail = "https://teameventhandler.azurewebsites.net/" + uniqueImageName,
+                    };
+                    await categoryApi.CreateCategory(category, BearerTokenInCookie);
+                    return RedirectToAction("Index", "Admin");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+
             return View();
         }
     }

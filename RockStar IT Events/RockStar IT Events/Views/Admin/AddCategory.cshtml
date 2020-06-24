@@ -1,12 +1,12 @@
-﻿@model Rockstar.Models.Category
+﻿@model RockStar_IT_Events.ViewModels.CategoryCreateViewModel
 @{
     Layout = "_Admin";
 }
 
 <div class="col-md-10 create-container">
 
-    <form class="rockstar-form" name="myForm" enctype="multipart/form-data">
-
+    <form asp-controller="Admin" asp-action="AddCategory" class="rockstar-form" name="myForm" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <h1 class="title col-md-12 text-center">
             Create a new category
         </h1>
@@ -14,13 +14,15 @@
         <div class="col-md-10">
             <div class="form-row">
                 <div class="col-md-12">
-                    <input class="form-control" asp-for="name" placeholder="name of category" />
+                    <input class="form-control" asp-for="Name" placeholder="name of category" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-12">
-                    <textarea name="description" asp-for="description" placeholder="Describe your category here..." cols="4" rows="20"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <textarea name="description" asp-for="Description" placeholder="Describe your category here..." cols="4" rows="20"></textarea>
                 </div>
             </div>
 
@@ -28,7 +30,8 @@
                 <div class="col-md-12">
                     <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
                     <div style='height: 0px; width: 0px; overflow: hidden;'>
-                        <input type="file" id="upfile" asp-for="thumbnail" onchange="sub(this)"/>
+                        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                        <input type="file" id="upfile" asp-for="Thumbnail" onchange="sub(this)"/>
                     </div>
                 </div>
             </div>
