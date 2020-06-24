@@ -276,22 +276,17 @@ namespace RockStar_IT_Events.Controllers
             return View(user);
         }
 
-        public IActionResult Tickets()
-        {
-            return View();
-        }
-
-        public IActionResult MailingList()
-        {
-            return View();
-        }
-
         public IActionResult AddCategory()
         {
             return View();
         }
 
         public IActionResult AddHost()
+        {
+            return View();
+        }
+
+        public IActionResult hosts()
         {
             return View();
         }
