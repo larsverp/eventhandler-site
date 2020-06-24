@@ -15,7 +15,7 @@
             <div class="col-sm-5">
                 <br />
                 <h2 class="font-weight-bold">@Model.eEvent.title</h2>
-                <p>by @Model.Host.first_name @Model.Host.last_name</p>
+                <p>by <a asp-controller="Host" asp-action="Details" asp-route-id="@Model.Host.id">@Model.Host.first_name @Model.Host.last_name</a></p>
                 @if (ContextAccessor.HttpContext.Request.Cookies["BearerToken"] != null)
                 {
                     @if (await EventHelperClass.IsFollowingHost(Model.Host.id, ContextAccessor.HttpContext.Request.Cookies["BearerToken"]))
