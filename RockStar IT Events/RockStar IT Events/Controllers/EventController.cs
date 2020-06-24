@@ -41,7 +41,7 @@ namespace RockStar_IT_Events.Controllers
                     events = await eventApi.GetAllEvents();
                 return View(events);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return RedirectToAction("Logout", "User");
             }

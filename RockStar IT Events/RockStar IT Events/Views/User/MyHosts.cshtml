@@ -36,7 +36,7 @@
                     </td>
                     <td>
                             <a asp-controller="Event" asp-action="RemoveFollowingHost" asp-route-id="@e.id" class="pb-3">Unfollow</a>
-                            <a href="#">Read More</a>
+                            <a asp-controller="Host" asp-action="Details" asp-route-id="@e.id">Read More</a>
                     </td>
                 </tr>
             }
