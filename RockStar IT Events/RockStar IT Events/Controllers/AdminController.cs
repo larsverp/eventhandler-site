@@ -9,7 +9,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Newtonsoft.Json.Linq;
 
 namespace RockStar_IT_Events.Controllers
 {
@@ -22,7 +25,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly CategoryApi categoryApi;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
-
+        private readonly string bearerTokenInCookie;
 
         public AdminController(
             IWebHostEnvironment e,
@@ -35,11 +38,12 @@ namespace RockStar_IT_Events.Controllers
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             webHostEnvironment = e;
             this.contextAccessor = contextAccessor;
+            bearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
         }
 
         public async Task<IActionResult> Index()
         {
-            List<Event> events = await eventApi.GetAllEvents();
+            List<Event> events = await eventApi.GetAllEventsForRockstarAccount(bearerTokenInCookie);
             return View(events);
         }
 
