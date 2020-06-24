@@ -35,7 +35,7 @@
                     <td class="Search">@e.postal_code</td>
                     <td>
                         <div class="col-md-2">
-                            <a class="readMore" href="#">Read More</a>
+                            <a class="readMore" asp-controller="Event" asp-action="Event" asp-route-id="@e.id">Read More</a>
                             <a class="removeBtn" onclick="RemoveFromFavorites('@e.id')">Remove</a>
                         </div>
                     </td>
