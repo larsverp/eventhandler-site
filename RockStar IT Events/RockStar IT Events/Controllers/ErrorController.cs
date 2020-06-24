@@ -22,5 +22,10 @@ namespace RockStar_IT_Events.Controllers
             }
             return View(model);
         }
+
+        public IActionResult NoPermission()
+        {
+            return View();
+        }
     }
 }

@@ -20,11 +20,11 @@ namespace Rockstar.Data
 
         public async Task<string> Login(string username, string password)
         {
-            string t = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMzA5NzYwMjQ1NjkxZjZjNTcxOWJiYWYyOTE1ZmFiMDU2NzM3N2U2ZTU3MjBhNjBhYWIwZmIzMjc4Y2Y1YjVkN2U3NGFkNjU0NDIxZTU0NWMiLCJpYXQiOjE1OTA2NTAwMTksIm5iZiI6MTU5MDY1MDAxOSwiZXhwIjoxNjIyMTg2MDE5LCJzdWIiOiIiLCJzY29wZXMiOlsiZ3Vlc3QiXX0.MKWRFv7Y8QbneJab2-3EVSb1edhWNC_u3KBnIZlYCAYlpF3M34Q_TX2Eu5rH-XlOqk1yiucxYo7WKJ6ojgCkPZO_-kkeGFRmc5hgEab1d7EaKABHC7GsrB6LvxPsc6BT3aWJsdSji-RC0WgEVuz7XQYOj-2p9X2uef65ILCcBIzxwG_Az__TyVn8KfqIOoZkQEAB67n94Lm2k5t87Gq4I02zwL4baFXYDrl6HAVaNmedY4OhnpsAIyCaBKJSU3-ql2T7P4i86GAEU7K45qr0xhhvZ7ktUsC60NQQAjAiSwKxwHFResgWcRhIZ42QqXIcPCsFDFtV6WsyPHIxlcUJv8XCWOwIrsDvrXAijQ0uIP9WSUecH3Fmb_jmmSWshjEFziRUeWXlUgAk4x6h_-H54YFT57Do1UTFt87aSYcs9UuwlcnMs--xiwZA34YgijFYCwLVKTFcCZa4H2CyfnPUUv7n8gKGhiQDvA6iNrmZXi0mj-DMjTNT4WzMtMuz7vNZo6JxXRkEJBwg9srvjUFDqWewFvEeM6rjv5CMBz7bhOy3Ok4kkE1NkY-Z6xNFiW1YMxV35XPIuG58AOG-hoG3MbMyofxQA_YASgyj_a2q-w8hk74Z4XbdOIFTLRPS6EixOkYzSktIAvpZQ5AjWfN0iRgJami39i1gRjBqS_FmChI";
+            string t = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMjI1ZDQ1YWRjMzIyNWU5ODIwYzBiZDJmZTNmMDg3YmE3MmVmYWE1YTg4YTEzNTAzM2RiMzllYzZkNzBhMGRjODE4M2M1YzU5Nzc1ZDJlYmIiLCJpYXQiOjE1OTI5OTgyNTgsIm5iZiI6MTU5Mjk5ODI1OCwiZXhwIjoxNjI0NTM0MjU4LCJzdWIiOiIiLCJzY29wZXMiOlsiZ3Vlc3QiXX0.gexHJdt6UIY7l8Y9E7sT3Eq-X4VJhnmwSmFsLJdVJ9vauWuXF3ixiP_E_QkDWjl2794VJl5thTPR5uulbwSA4y7qOW32XXC4t3ZXhBW8wb7XNYWb9Ugm-HGLdfQkeBlBhh_8a_NL2zbuEsPNVdH3jDDjfmssC3JxQPtExrVTp4lkWtHaxUVF16AR3GJVRUrdLAvdrp0ieOo7OUuSS_KK5T6XvwWLMf0pfVEIvnwesgFLqlXom8We5zxjOIyyJfvyj0TNM_TM9iUKimPsNTyNl3-toIAw6A8_5w4vCc538UVIYOBDvpiunZMFNmdZj7_d6wy__om_MdbiDjmuFxsyvl1jLg6GE_hNrD557fH75noCIAwZ3x9WHHgkvm2-tawBf6Ls3QVXIut2d6kx4sIunZwOhOQLH19kR5N7B-L5FfSTlQrjydXwSufxEkmXtrBc__CfApXmlGQR3LotLBB26tQeIOhIWxbLt14IHlQ-3pnmlBhiq-bteKBLbcIcdGIcZgvNhGSn8ngR-nzWxd-9N2erY49A8D8hOUYk3Dt8_ZiQDnDHDdkNgOsW2KJhC2CROtE5HlcKY3gUOnaye5k2JjAmTKNjSkEvfQRDSitse1nTs0C99EQgUzmGG1taUOLmZy-AEviO3jj3g4o4TwSe0CgV8f4XlHLxbaMjchemOb8";
 
             var userDetails = new Dictionary<string, string>
             {
-                { "username", username },
+                { "username", username.ToLower() },
                 { "password", password }
             };
 

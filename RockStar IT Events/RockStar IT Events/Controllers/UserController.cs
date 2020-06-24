@@ -99,6 +99,7 @@ namespace RockStar_IT_Events.Controllers
             if (HttpContext.Request.Cookies["BearerToken"] != null)
             {
                 Response.Cookies.Delete("BearerToken");
+                HttpContext.Session.Clear();
             }
             HttpContext.Session.Clear();
             return RedirectToAction("", "Event");

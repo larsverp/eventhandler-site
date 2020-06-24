@@ -24,13 +24,13 @@
     <div class="sidebar">
         <ul>
             <li>
-                <a asp-action="index">
+                <a asp-action="index" asp-controller="Admin">
                     <span class="icon"><i class="fas fa-calendar-alt"></i></span>
                     <span class="title">All event</span>
                 </a>
             </li>
             <li>
-                <a asp-action="GetUsers">
+                <a asp-action="GetUsers" asp-controller="Admin">
                     <span class="icon"><i class="fas fa-users"></i></span>
                     <span class="title">Users</span>
                 </a>
@@ -43,18 +43,19 @@
             </li>
             <li>
                 <a asp-action="CreateEvent">
+
                     <span class="icon"><i class="fas fa-plus-square"></i></span>
                     <span class="title">Create event</span>
                 </a>
             </li>
             <li>
-                <a asp-action="AddHost">
+                <a asp-action="Create" asp-controller="Host">
                     <span class="icon"><i class="fas fa-plus-square"></i></span>
                     <span class="title">Create Host</span>
                 </a>
             </li>
             <li>
-                <a asp-action="Addcategory">
+                <a asp-action="Addcategory" asp-controller="Category">
                     <span class="icon"><i class="fas fa-plus-square"></i></span>
                     <span class="title">Create category</span>
                 </a>

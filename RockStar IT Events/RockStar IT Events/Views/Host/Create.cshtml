@@ -1,4 +1,4 @@
-﻿@model Rockstar.Models.Host
+﻿@model RockStar_IT_Events.ViewModels.HostCreateViewModel
 @{
     ViewData["Title"] = "Create Host";
     Layout = "_Admin";
@@ -6,31 +6,30 @@
 
 <div class="col-md-10 create-container">
 
-    <form class="rockstar-form" asp-controller="Host" asp-action="Create" method="post" enctype="multipart/form-data">
+    <form asp-controller="Host" asp-action="Create" class="rockstar-form" name="myForm" enctype="multipart/form-data">
+
         <h1 class="title col-md-12 text-center">
             Create a new Host
         </h1>
         <div class="col-md-10">
             <div class="form-row">
                 <div class="col-md-6">
-                    <input class="form-control" asp-for="first_name" placeholder="Firstname" />
+                    <input class="form-control" asp-for="FirstName" placeholder="Firstname" />
                 </div>
                 <div class="col-md-6">
-                    <input class="form-control" asp-for="last_name" placeholder="Lastname" />
+                    <input class="form-control" asp-for="LastName" placeholder="Lastname" />
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="col-md-12">
-                    <textarea name="description" asp-for="description" placeholder="Describe your host here..." cols="4" rows="20"></textarea>
+                    <textarea name="description" asp-for="Description" placeholder="Describe your host here..." cols="4" rows="20"></textarea>
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="col-md-12">
                     <div class="input-box p-5" id="yourBtn" onclick="getFile()">click to upload a file</div>
                     <div style='height: 0px; width: 0px; overflow: hidden;'>
-                        <input type="file" id="upfile" asp-for="picture" onchange="sub(this)"/>
+                        <input type="file" id="upfile" asp-for="Picture" onchange="sub(this)"/>
                     </div>
                 </div>
             </div>

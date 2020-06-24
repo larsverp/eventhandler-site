@@ -1,20 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using Rockstar.Models;
+using RockStar_IT_Events.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using RockStar_IT_Events.ViewModels;
 
 namespace RockStar_IT_Events.Controllers
 {
+    [AdminCheckFilter]
     public class AdminController : Controller
     {
         private readonly EventApi eventApi;
@@ -24,10 +23,11 @@ namespace RockStar_IT_Events.Controllers
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
 
+
         public AdminController(
-            IHttpContextAccessor contextAccessor, 
             IWebHostEnvironment e,
-            IHttpClientFactory clientFactory)
+            IHttpClientFactory clientFactory,
+            IHttpContextAccessor contextAccessor)
         {
             eventApi = new EventApi(clientFactory.CreateClient("event-handler"));
             hostApi = new HostApi(clientFactory.CreateClient("event-handler"));
@@ -82,7 +82,7 @@ namespace RockStar_IT_Events.Controllers
                         string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Picture.FileName)}";
                         var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
                         model.Picture.CopyTo(new FileStream(fileName, FileMode.Create));
-                        pathName = "http://i436732core.venus.fhict.nl/" + uniqueImageName;
+                        pathName = "https://teameventhandler.azurewebsites.net/" + uniqueImageName;
                     }
                     else
                     {
@@ -194,7 +194,7 @@ namespace RockStar_IT_Events.Controllers
                     notification = model.SendNotifications,
                     host_id = model.SpeakerId,
                     categories = model.CategoryId,
-                    
+                    rockstar = model.Rockstar
                 };
 
                 string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
@@ -274,21 +274,6 @@ namespace RockStar_IT_Events.Controllers
             var users = await userApi.ReturnAllUsers(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
             var user = users.FirstOrDefault(u => u.Id == model.Id);
             return View(user);
-        }
-
-        public IActionResult AddCategory()
-        {
-            return View();
-        }
-
-        public IActionResult AddHost()
-        {
-            return View();
-        }
-
-        public IActionResult hosts()
-        {
-            return View();
         }
     }
 }

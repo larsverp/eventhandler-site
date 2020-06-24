@@ -49,7 +49,7 @@
                                 @e.title
                             </h2>
                         }
-                    <p class="p-0 m-0">@DateTime.Parse(e.begin_date).ToString("g") - @DateTime.Parse(e.end_date).ToString("g")</p>
+                    <p class="p-0 m-0">@(e.begin_date) - @(e.end_date)</p>
                         <p class="p-0 m-0">@e.available_seats / @e.seats seats</p>
                     </div>
                 </div>
