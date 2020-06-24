@@ -21,10 +21,9 @@ namespace RockStar_IT_Events.Controllers
         private readonly CategoryApi categoryApi;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IWebHostEnvironment webHostEnvironment;
-        private readonly string BearerTokenInCookie;
+
 
         public AdminController(
-            IHttpContextAccessor contextAccessor, 
             IWebHostEnvironment e,
             IHttpClientFactory clientFactory)
         {
@@ -33,8 +32,6 @@ namespace RockStar_IT_Events.Controllers
             userApi = new UserApi(clientFactory.CreateClient("event-handler"));
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             webHostEnvironment = e;
-            this.contextAccessor = contextAccessor;
-            BearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
         }
 
         public async Task<IActionResult> Index()
@@ -276,39 +273,6 @@ namespace RockStar_IT_Events.Controllers
             return View(user);
         }
 
-        [HttpGet]
-        public IActionResult AddCategory()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddCategory(CategoryCreateViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    string uniqueImageName = $"{Guid.NewGuid()}{Path.GetExtension(model.Thumbnail.FileName)}";
-                    var fileName = Path.Combine(webHostEnvironment.WebRootPath, uniqueImageName);
-                    model.Thumbnail.CopyTo(new FileStream(fileName, FileMode.Create));
-
-                    Category category = new Category
-                    {
-                        name = model.Name,
-                        description = model.Description,
-                        thumbnail = "https://teameventhandler.azurewebsites.net/" + uniqueImageName,
-                    };
-                    await categoryApi.CreateCategory(category, BearerTokenInCookie);
-                    return RedirectToAction("Index", "Admin");
-                }
-                catch (Exception e)
-                {
-                    ModelState.AddModelError("", e.Message);
-                }
-            }
-
-            return View();
-        }
+        
     }
 }
