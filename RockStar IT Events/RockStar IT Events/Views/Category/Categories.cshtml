@@ -3,40 +3,70 @@
     ViewData["Title"] = "Categories";
     Layout = "_Admin";
 }
-<h1>All categories</h1>
+    <div class="right-box col-md-10">
+        <div class="col-md-10 offset-1">
+            <div class="top-text">
+                All Catagories
+            </div>
 
-<div class="event-table col-md-12">
+            <div class="row action-controls">
+                <input class="col-md-3" id="Search" type="text" placeholder="Search" />
+            </div>
 
-    <table class="table col-md-12 table-hover">
-        <thead>
-            <tr class="col-md-12">
-                <th scope="col"><h4>Photo</h4> </th>
-                <th scope="col"><h4>Name</h4> </th>
-                <th scope="col"><h4>Description</h4></th>
-                <th scope="col"><h4>Options</h4></th>
+            <div class="event-table col-md-12">
+                <table class="table col-md-12 table-hover">
+                    <thead>
+                        <tr class="col-md-12">
+                            <th scope="col"><h4>Photo</h4> </th>
+                            <th scope="col"><h4>Name</h4> </th>
+                            <th scope="col"><h4>Description</h4></th>
+                            <th scope="col"><h4>Options</h4></th>
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var e in Model)
-            {
-                <tr>
-                    <th scope="row">
-                        <img class="Search" src="@e.thumbnail" alt="@e.name" />
-                    </th>
-                    <td>
-                        <h5>@e.name</h5>
-                    </td>
-                    <td>
-                        <div class="hostDescr">
-                            @e.description
-                        </div>
-                    </td>
-                    <td>
-                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@e.id">Remove</a>
-                    </td>
-                </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    <img class="Search" src="@e.thumbnail" alt="@e.name" />
+                                </th>
+                                <td>
+                                    <h5>@e.name</h5>
+                                </td>
+                                <td>
+                                    <div class="hostDescr">
+                                        @e.description
+                                    </div>
+                                </td>
+                                <td>
+                                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@e.id">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1) {
+                return true;
             }
-        </tbody>
-    </table>
-</div>
+        }
+
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            })
+        });
+    })
+    </script>
