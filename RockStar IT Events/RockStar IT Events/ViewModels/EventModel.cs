@@ -47,12 +47,14 @@ namespace RockStar_IT_Events.ViewModels
         public string HouseNumber { get; set; }
 
         [Display(Name = "Send notifications")]
-        [Required(ErrorMessage = "Notifications must be entered")]
         public bool SendNotifications { get; set; }
         public string SpeakerId { get; set; }
         public List<Host> Speakers { get; set; }
         public List<Category> Categories{ get; set; }
         public List<string> CategoryId { get; set; }
         public IFormFile Picture { get; set; }
+
+        [Display(Name = "For Rockstar accounts")]
+        public bool Rockstar { get; set; }
     }
 }

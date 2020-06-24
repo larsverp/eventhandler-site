@@ -194,7 +194,7 @@ namespace RockStar_IT_Events.Controllers
                     notification = model.SendNotifications,
                     host_id = model.SpeakerId,
                     categories = model.CategoryId,
-                    
+                    rockstar = model.Rockstar
                 };
 
                 string cookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
