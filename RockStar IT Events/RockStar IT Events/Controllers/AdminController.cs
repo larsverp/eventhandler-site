@@ -191,7 +191,7 @@ namespace RockStar_IT_Events.Controllers
                     description = model.Description,
                     begin_date= model.StartDate.ToString("dd-MM-yyyy hh:mm:ss"),
                     end_date = model.EndDate.ToString("dd-MM-yyyy hh:mm:ss"),
-                    thumbnail = "http://i436732core.venus.fhict.nl/" + uniqueImageName,
+                    thumbnail = "https://teameventhandler.azurewebsites.net/" + uniqueImageName,
                     seats = model.TotalSeats,
                     postal_code = model.PostalCode,
                     hnum = model.HouseNumber,
