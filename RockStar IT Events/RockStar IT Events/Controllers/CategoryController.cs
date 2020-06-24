@@ -59,5 +59,17 @@ namespace RockStar_IT_Events.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Categories()
+        {
+            var allCategories = await categoryApi.GetAllCategories();
+            return View(allCategories);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await categoryApi.RemoveCategory(id, BearerTokenInCookie);
+            return RedirectToAction("Categories", "Category");
+        }
     }
 }

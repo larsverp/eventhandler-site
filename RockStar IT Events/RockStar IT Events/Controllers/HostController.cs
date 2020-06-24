@@ -20,7 +20,8 @@ namespace RockStar_IT_Events.Controllers
         private readonly string BearerTokenInCookie;
         private readonly IWebHostEnvironment webHostEnvironment;
 
-        public HostController(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor, IWebHostEnvironment e)
+        public HostController(IHttpClientFactory clientFactory, IHttpContextAccessor contextAccessor,
+            IWebHostEnvironment e)
         {
             hostApi = new HostApi(clientFactory.CreateClient("event-handler"));
             BearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
@@ -68,15 +69,18 @@ namespace RockStar_IT_Events.Controllers
             }
 
             return View();
+        }
 
         public async Task<IActionResult> Hosts()
         {
-            var Allhosts = await hostApi.GetAllHosts();
-            return View(Allhosts);
+            var allHosts = await hostApi.GetAllHosts();
+            return View(allHosts);
+        }
 
-
+        public async Task<IActionResult> DeleteHost(string id)
+        {
+            await hostApi.DeleteHost(id, BearerTokenInCookie);
+            return RedirectToAction("Hosts", "Host");
         }
     }
-
-    
 }
