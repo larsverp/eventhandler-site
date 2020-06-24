@@ -23,5 +23,14 @@ namespace RockStar_IT_Events.Controllers
             Host host = await hostApi.GetHost(id);
             return View(host);
         }
+
+        public async Task<IActionResult> Hosts()
+        {
+            var Allhosts = await hostApi.GetAllHosts();
+            return View(Allhosts);
+
+        }
     }
+
+    
 }
