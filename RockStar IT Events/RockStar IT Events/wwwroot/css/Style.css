@@ -345,3 +345,8 @@ nav img {
 .rating label:hover ~ label:after,
 .rating input:checked ~ label:after {
   opacity: 1; }
+
+.host-img img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%; }
