@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rockstar.Data;
 using RockStar_IT_Events.ViewModels;
@@ -12,27 +13,38 @@ namespace RockStar_IT_Events.Controllers
 {
     public class EventController : Controller
     {
-        private IHttpContextAccessor contextAccessor;
         private readonly EventApi eventApi;
         private readonly HostApi hostApi;
         private readonly TicketsApi ticketsApi;
         private readonly CategoryApi categoryApi;
+        private readonly string bearerTokenInCookie;
 
         public EventController(
             IHttpContextAccessor contextAccessor,
             IHttpClientFactory clientFactory)
         {
-            this.contextAccessor = contextAccessor;
             eventApi = new EventApi(clientFactory.CreateClient("event-handler"));
             hostApi = new HostApi(clientFactory.CreateClient("event-handler"));
             ticketsApi = new TicketsApi(clientFactory.CreateClient("event-handler"));
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
+            bearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
         }
 
         public async Task<IActionResult> Index()
         {
-            List<Event.Event> events = await eventApi.GetAllEvents();
-            return View(events);
+            try
+            {
+                List<Event.Event> events;
+                if (bearerTokenInCookie != null)
+                    events = await eventApi.GetAllEventsForRockstarAccount(bearerTokenInCookie);
+                else
+                    events = await eventApi.GetAllEvents();
+                return View(events);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Logout", "User");
+            }
         }
 
         public async Task<IActionResult> Event(string id)
@@ -52,35 +64,35 @@ namespace RockStar_IT_Events.Controllers
 
         public async Task<IActionResult> FavoriteEvents()
         {
-            var events = await eventApi.ReturnAllFavoriteEvents(contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            var events = await eventApi.ReturnAllFavoriteEvents(bearerTokenInCookie);
             return View(events);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddEventToFavorites(string id)
         {
-            await eventApi.AddEventToFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await eventApi.AddEventToFavorites(id, bearerTokenInCookie);
             return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> RemoveEventFromFavorites(string id)
         {
-            await eventApi.RemoveEventFromFavorites(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await eventApi.RemoveEventFromFavorites(id, bearerTokenInCookie);
             return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> SubscribeForEvent(string id)
         {
-            await ticketsApi.SubscribeForEvent(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await ticketsApi.SubscribeForEvent(id, bearerTokenInCookie);
             return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> FollowHost(string id, string eventId)
         {
-            await hostApi.FollowHost(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await hostApi.FollowHost(id, bearerTokenInCookie);
 
             return RedirectToAction("Event", "Event", new { id = eventId });
         }
@@ -88,7 +100,7 @@ namespace RockStar_IT_Events.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFollowingHost(string id, string eventId)
         {
-            await hostApi.UnfollowHost(id, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+            await hostApi.UnfollowHost(id, bearerTokenInCookie);
 
             return RedirectToAction("Event", "Event", new { id = eventId });
         }
@@ -110,7 +122,7 @@ namespace RockStar_IT_Events.Controllers
         {
             if (ModelState.IsValid)
             {
-                await ticketsApi.UnsubscribeForEvent(model.Event.id, model.Reason, contextAccessor.HttpContext.Request.Cookies["BearerToken"]);
+                await ticketsApi.UnsubscribeForEvent(model.Event.id, model.Reason, bearerTokenInCookie);
                 return RedirectToAction("Index", "Event");
             }
 

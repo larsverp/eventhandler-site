@@ -28,6 +28,18 @@ namespace Rockstar.Data
             }
         }
 
+        public async Task<List<Event>> GetAllEventsForRockstarAccount(string bearerToken)
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+
+            using (HttpResponseMessage response = await client.GetAsync("events"))
+            {
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadAsAsync<List<Event>>();
+                throw new ArgumentException(response.ReasonPhrase);
+            }
+        }
+
         public async Task<Event> GetEvent(string id)
         {
             using (HttpResponseMessage response = await client.GetAsync($"events/{id}"))
