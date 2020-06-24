@@ -127,7 +127,7 @@
                     <p>
                         @Model.eEvent.city, The Netherlands
                     </p>
-                    <a href="https://www.google.com/maps/dir/Current+Location/@HttpUtility.UrlEncode( Model.eEvent.street + ' ' + Model.eEvent.hnum + ' ' + Model.eEvent.city)" class="rockstar-btn d-inline-flex" target="_blank">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=@HttpUtility.UrlEncode( Model.eEvent.hnum + ' ' +  Model.eEvent.street + ' ' + Model.eEvent.city)" class="rockstar-btn d-inline-flex" target="_blank">
                         <p>plan route</p>
                         <img src="~/Images/Next.png" class="icon" />
                     </a>
