@@ -6,7 +6,7 @@
     <div class="col-lg normal-padding">
         <h1>Update your Interests!</h1>
         <p class="sub-text">A brand new way of discovering your interests</p>
-        <a class="d-inline-flex next-button">
+        <a class="d-inline-flex next-button" asp-controller="Tinder" asp-action="Index">
             <span class="align-self-center">discover</span>
             <img class="align-self-center" src="~/Images/Next.png" />
         </a>
@@ -22,12 +22,6 @@
     </div>
 </div>
 
-<div class="d-flex flex-row mb-3">
-    <div class="p-2 category">all</div>
-    <div class="p-2 category">your interests</div>
-    <div class="p-2 category">your location</div>
-    <div class="p-2 category">your interests & location</div>
-</div>
 <div class="row">
     @foreach (var e in Model)
     {
