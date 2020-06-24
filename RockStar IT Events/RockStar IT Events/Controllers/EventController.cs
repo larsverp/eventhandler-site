@@ -17,6 +17,7 @@ namespace RockStar_IT_Events.Controllers
         private readonly HostApi hostApi;
         private readonly TicketsApi ticketsApi;
         private readonly CategoryApi categoryApi;
+        private readonly ReviewApi reviewApi;
         private readonly string bearerTokenInCookie;
 
         public EventController(
@@ -28,6 +29,7 @@ namespace RockStar_IT_Events.Controllers
             ticketsApi = new TicketsApi(clientFactory.CreateClient("event-handler"));
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             bearerTokenInCookie = contextAccessor.HttpContext.Request.Cookies["BearerToken"];
+            reviewApi = new ReviewApi();
         }
 
         public async Task<IActionResult> Index()
@@ -57,7 +59,8 @@ namespace RockStar_IT_Events.Controllers
             {
                 eEvent = e,
                 Host = host,
-                Categories = category
+                Categories = category,
+                Reviews = await reviewApi.GetAllReviewsFromEvent(id, bearerTokenInCookie)
             };
             return View(model);
         }

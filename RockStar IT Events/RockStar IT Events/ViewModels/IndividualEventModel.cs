@@ -10,5 +10,7 @@ namespace RockStar_IT_Events.ViewModels
         public Host Host { get; set; }
 
         public List<Category> Categories { get; set; }
+
+        public List<Review> Reviews { get; set; }
     }
 }
