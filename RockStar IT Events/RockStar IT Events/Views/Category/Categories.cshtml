@@ -1,9 +1,9 @@
-﻿@model List<Rockstar.Models.Host>
+﻿@model List<Rockstar.Models.Category>
 @{
-    ViewData["Title"] = "hosts";
+    ViewData["Title"] = "Categories";
     Layout = "_Admin";
 }
-<h1>All hosts</h1>
+<h1>All categories</h1>
 
 <div class="event-table col-md-12">
 
@@ -22,10 +22,10 @@
             {
                 <tr>
                     <th scope="row">
-                        <img class="Search" src="@e.picture" alt="@e.first_name" />
+                        <img class="Search" src="@e.thumbnail" alt="@e.name" />
                     </th>
                     <td>
-                        <h5>@e.first_name @e.last_name</h5>
+                        <h5>@e.name</h5>
                     </td>
                     <td>
                         <div class="hostDescr">
@@ -33,7 +33,7 @@
                         </div>
                     </td>
                     <td>
-                        <a asp-controller="Host" asp-action="DeleteHost" asp-route-id="@e.id">Remove</a>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@e.id">Remove</a>
                     </td>
                 </tr>
             }
