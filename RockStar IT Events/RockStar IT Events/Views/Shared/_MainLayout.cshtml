@@ -33,7 +33,7 @@
                         <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Update Interests</a>
+                        <a class="nav-link text-light" asp-controller="Tinder" asp-action="Index">Update Interests</a>
                     </li>
                     @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
                     {

@@ -28,7 +28,7 @@ namespace Rockstar.Data
 
         public async Task<List<Review>> GetAllReviewsFromEvent(string eventId, string cookieValue)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/users/reviews/" + eventId;
+            var url = "https://eventhandler-api.herokuapp.com/api/reviews/" + eventId;
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -43,7 +43,7 @@ namespace Rockstar.Data
 
         public async Task<List<Review>> GetUncheckedReviews(string cookieValue)
         {
-            var url = "https://eventhandler-api.herokuapp.com/api/users/reviews/check";
+            var url = "https://eventhandler-api.herokuapp.com/api/reviews/check";
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -55,7 +55,7 @@ namespace Rockstar.Data
                 return reviews;
             }
         }
-
+        
         public async Task CreateReview(Review review, string cookieValue)
         {
             string json = JsonConvert.SerializeObject(review);

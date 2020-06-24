@@ -1,4 +1,4 @@
-﻿@model Rockstar.Models.Event
+﻿@model RockStar_IT_Events.ViewModels.EventReviewViewModel
 @{
     ViewData["Title"] = "RateEvent";
 }
@@ -7,25 +7,34 @@
 <div class="row col-md-10">
 
     <div class="col-md-4 rating-img">
-        <img src="@Model.thumbnail" alt="oopsie didnt work" />
+        <img src="@Model.Event.thumbnail" alt="oopsie didnt work" />
     </div>
 
     <div class="col-md-4">
-        <h1>@Model.title</h1>
+        <h1>@Model.Event.title</h1>
         <p>by lorem</p>
     </div>
-
+    <div class="form-row">
+        <div class="col-md-12">
+            <input asp-for="Title" class="form-control " id="defaultFormCardNameEx" placeholder="Title"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-12">
+            <textarea rows="10" asp-for="Description" class="form-control " id="defaultFormCardNameEx" placeholder="Description"/>
+        </div>
+    </div>
     <div class=" col-md-4">
         <div class="rating row">
-            <input type="radio" name="star" id="star1" /><label for="star1">
+            <input asp-for="Star1" type="radio" name="star" id="star1" /><label for="star1">
             </label>
-            <input type="radio" name="star" id="star2" /><label for="star2">
+            <input asp-for="Star2" type="radio" name="star" id="star2" /><label for="star2">
             </label>
-            <input type="radio" name="star" id="star3" /><label for="star3">
+            <input asp-for="Star3" type="radio" name="star" id="star3" /><label for="star3">
             </label>
-            <input type="radio" name="star" id="star4" /><label for="star4">
+            <input asp-for="Star4" type="radio" name="star" id="star4" /><label for="star4">
             </label>
-            <input type="radio" name="star" id="star5" /><label for="star5">
+            <input asp-for="Star5" type="radio" name="star" id="star5" /><label for="star5">
             </label>
         </div>
     </div>
