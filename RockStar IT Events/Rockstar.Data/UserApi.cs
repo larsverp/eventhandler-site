@@ -24,7 +24,7 @@ namespace Rockstar.Data
 
             var userDetails = new Dictionary<string, string>
             {
-                { "username", username },
+                { "username", username.ToLower() },
                 { "password", password }
             };
 
