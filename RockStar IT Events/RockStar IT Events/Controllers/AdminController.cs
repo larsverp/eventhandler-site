@@ -275,7 +275,5 @@ namespace RockStar_IT_Events.Controllers
             var user = users.FirstOrDefault(u => u.Id == model.Id);
             return View(user);
         }
-
-        
     }
 }

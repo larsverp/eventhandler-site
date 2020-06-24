@@ -33,6 +33,7 @@ namespace RockStar_IT_Events.Controllers
             return View(host);
         }
 
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -67,6 +68,15 @@ namespace RockStar_IT_Events.Controllers
             }
 
             return View();
+
+        public async Task<IActionResult> Hosts()
+        {
+            var Allhosts = await hostApi.GetAllHosts();
+            return View(Allhosts);
+
+
         }
     }
+
+    
 }
