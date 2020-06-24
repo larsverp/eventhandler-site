@@ -1,12 +1,11 @@
 ﻿@model Rockstar.Models.Category
 @{
-    ViewData["Title"] = "Create category";
     Layout = "_Admin";
 }
 
 <div class="col-md-10 create-container">
 
-    <form class="rockstar-form">
+    <form class="rockstar-form" name="myForm" enctype="multipart/form-data">
 
         <h1 class="title col-md-12 text-center">
             Create a new category
@@ -29,7 +28,7 @@
                 <div class="col-md-12">
                     <div class="input-box" id="yourBtn" onclick="getFile()">click to upload a file</div>
                     <div style='height: 0px; width: 0px; overflow: hidden;'>
-                        <input id="upfile" asp-for="thumbnail" onchange="sub(this)" />
+                        <input type="file" id="upfile" asp-for="thumbnail" onchange="sub(this)"/>
                     </div>
                 </div>
             </div>
@@ -42,4 +41,5 @@
         </div>
     </form>
 </div>
+
 <script type="text/javascript" src="~/Scripts/file-display.js"></script>
