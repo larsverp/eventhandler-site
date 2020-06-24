@@ -32,9 +32,6 @@
                 <a class="nav-link text-light" asp-action="Index" asp-controller="Event">Event overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-light" href="#">Update Interests</a>
             </li>
             @if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "admin")
@@ -56,6 +53,7 @@
                         My Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" asp-controller="Event" asp-action="FavoriteEvents">My Favorite Events</a>
                         <a class="dropdown-item" asp-action="MyHosts" asp-controller="User">My Hosts</a>
                         <a class="dropdown-item" asp-action="Logout" asp-controller="User">Log out</a>
                     </div>

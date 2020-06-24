@@ -1,0 +1,22 @@
+﻿@model Rockstar.Models.Host
+@{
+    ViewData["Title"] = "Host";
+}
+
+    <div class="col-md-12">
+        <h1>@Model.first_name @Model.last_name</h1>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>@Model.description</p>
+        </div>
+
+        <div class="col-md-6 host-img">
+            <img src="@Model.picture" alt="photo" />
+        </div>
+    </div>
+
+
