@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="~/Scripts/config.js"></script>
+<script type="text/javascript" src="~/Scripts/tinder.js"></script>
+<script type="text/javascript" src="~/Scripts/Catagories.js"></script>
+<link rel="stylesheet" type="text/css" href="~/css/TinderStyle.css">
+
+<body onload="GetCategories()">
+    <div class="pt-5"></div>
+    <div class="row pt-5">
+        <div class="offset-1 col-md-10 tinder-wrapper row">
+            <div class="col-md-2 tinder-button-left">
+                <button class="center-block-icon" onclick="dislike()"><i class="fas fa-heart-broken"></i></button>
+            </div>
+            <div id="ratedimg" class="col-md-8 tinder-image tinder-image-animation">
+                <img id="tinderImg" src="img/testImage.png">
+            </div>
+            <div class="col-md-2 tinder-button-left">
+                <button class="center-block-icon" onclick="like()"><i class="fas fa-heart"></i></button><br>
+            </div>
+        </div>
+    </div>
+</body>
+

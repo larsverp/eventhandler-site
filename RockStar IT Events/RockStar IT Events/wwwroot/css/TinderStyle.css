@@ -1,0 +1,83 @@
+﻿body {
+    background-color: #333333;
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body button {
+    font-size: 3vw;
+    margin-top: 10vh;
+    color: #FFE000;
+    background: none;
+    border: none;
+}
+
+body button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.tinder-wrapper {
+    border-radius: 10px;
+    background-color: #333;
+}
+
+.tinder-image img {
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: relative;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center-block-icon {
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    font-size: 60px;
+}
+
+.like {
+    animation-duration: 2s;
+    animation-name: like;
+}
+
+@keyframes like {
+    0% {
+        left: 0px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        left: 3000px;
+        transform: rotate(40deg);
+    }
+}
+
+.dislike {
+    animation-duration: 2s;
+    animation-name: dislike;
+}
+
+@keyframes dislike {
+    0% {
+        right: 0px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        right: 3000px;
+        transform: rotate(-40deg);
+    }
+}
