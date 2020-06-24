@@ -25,13 +25,15 @@ namespace RockStar_IT_Events.Controllers
 
         public AdminController(
             IWebHostEnvironment e,
-            IHttpClientFactory clientFactory)
+            IHttpClientFactory clientFactory,
+            IHttpContextAccessor contextAccessor)
         {
             eventApi = new EventApi(clientFactory.CreateClient("event-handler"));
             hostApi = new HostApi(clientFactory.CreateClient("event-handler"));
             userApi = new UserApi(clientFactory.CreateClient("event-handler"));
             categoryApi = new CategoryApi(clientFactory.CreateClient("event-handler"));
             webHostEnvironment = e;
+            this.contextAccessor = contextAccessor;
         }
 
         public async Task<IActionResult> Index()
